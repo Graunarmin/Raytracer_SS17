@@ -17,5 +17,10 @@ float getRadius() const{
   return m_radius;
 }
 
-float area() const override;
-float volume() const override;
+float area() const override{
+  return 4 * M_PI * pow(m_radius, 2);
+}
+
+float volume() const override{
+  return (4/3)* M_PI * pow(m_radius, 3);
+}

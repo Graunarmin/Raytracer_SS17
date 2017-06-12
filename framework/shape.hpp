@@ -2,6 +2,7 @@
 #define SHAPE_HPP
 
 #include <glm/vec3.hpp>
+#include <cmath>
 
 class Shape{
 

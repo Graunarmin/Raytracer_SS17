@@ -27,4 +27,12 @@ float area() const override{
 
   return 2*((a*b) + (b*c) + (a*c));
 }
-float volume() const override;
+
+float volume() const override{
+  float a = std::abs(std::abs(m_max.x) - std::abs(m_min.x));
+  float b = std::abs(std::abs(m_max.y) - std::abs(m_min.y));
+  float c = std::abs(std::abs(m_max.z) - std::abs(m_min.z));
+
+  return a*b*c;
+
+}
