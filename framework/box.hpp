@@ -1,7 +1,6 @@
 #ifndef BOX_HPP
 #define BOX_HPP
-
-#include "Shape.hpp"
+#include "shape.hpp"
 
 class Box : public Shape{
 

@@ -1,7 +1,7 @@
 #ifndef SPHERE_HPP
 #define SPHERE_HPP
 
-#include "Shape.hpp"
+#include "shape.hpp"
 
 
 class Sphere : public Shape{
@@ -9,7 +9,7 @@ class Sphere : public Shape{
 public:
 
   Sphere();
-  Sphere(glm::vec3 const&y center, float radius);
+  Sphere(glm::vec3 const& center, float radius);
 
   glm::vec3 const& getCenter() const;
   float getRadius() const;
