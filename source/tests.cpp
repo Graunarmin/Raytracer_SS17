@@ -79,11 +79,22 @@ TEST_CASE("Sphere Volume", "[5.2 Sphere Volume]"){
 
   Sphere sphere2{glm::vec3{-1,2,0}, 5.0f, "Coole Kugel", Color{1.0f, 1.0f, 1.0f}};
   //REQUIRE(sphere2.volume() == Approx(4.18879f));
+}
 
+TEST_CASE("Print Sphere", "[5.5 print]"){
+  Sphere sphere2{glm::vec3{-1,2,0}, 5.0f, "Coole Kugel", Color{1.0f, 1.0f, 1.0f}};
+  std::cout << sphere2;
+}
+
+TEST_CASE("Print Box", "[5.5 print]"){
+  Box box2{glm::vec3{-1,-2,0}, glm::vec3{1,1,4}, "Coole Box", Color{1.0f, 1.0f, 1.0f}};
+  std::cout << box2;
 }
 
 
 int main(int argc, char *argv[])
 {
+
+
   return Catch::Session().run(argc, argv);
 }
