@@ -2,21 +2,18 @@
 
 //Konstruktoren
 Box::Box():
+  Shape{},
   min_{-1},
-  max_{1}/*,
-  name_{"box"},
-  color_{1.0f, 1.0f, 1.0f}*/{}
+  max_{1}{}
 
-Box::Box(glm::vec3 const& min, glm::vec3 const& max/*,
-        std::string const& name, Color const& color*/):
+Box::Box(glm::vec3 const& min, glm::vec3 const& max,
+        std::string const& name, Color const& color):
+  Shape{name, color},
   min_{min},
-  max_{max}/*,
-  name_{name},
-  color_{color}*/{}
+  max_{max}{}
 
 
 //Methoden
-
 glm::vec3 const& Box::getMin() const{
   return min_;
 }
@@ -26,17 +23,19 @@ glm::vec3 const& Box::getMax() const{
 }
 
 float Box::area() const{
-  float a = std::abs(max_.x - min_.x);
-  float b = std::abs(max_.y - min_.y);
-  float c = std::abs(max_.z - min_.z);
-
-  return 2*((a*b) + (b*c) + (a*c));
+  auto diff = max_ - min_;
+  return 2*((diff.x*diff.y) + (diff.y*diff.z) + (diff.x*diff.z));
 }
 
 float Box::volume() const{
-  float a = std::abs(max_.x - min_.x);
-  float b = std::abs(max_.y - min_.y);
-  float c = std::abs(max_.z - min_.z);
-  return a*b*c;
+  auto diff = max_ - min_;
+  return diff.x*diff.y*diff.z;
+}
 
+std::string Box::getName() const{
+  return name_;
+}
+
+Color Box::getColor() const{
+  return color_;
 }
