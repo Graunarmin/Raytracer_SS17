@@ -7,3 +7,20 @@ Shape::Shape():
 Shape::Shape(std::string const& name, Color const& color):
   name_{name},
   color_{color}{}
+
+  std::string Shape::getName() const{
+    return name_;
+  }
+
+  Color Shape::getColor() const{
+    return color_;
+  }
+
+  std::ostream& Shape::print(std::ostream& os) const{
+    os << "Name: " << name_ << "RGB: " << color_ << "\n";
+    return os;
+  }
+
+  std::ostream& operator<<(std::ostream& os, Shape const& s){
+    return s.print(os);
+  }

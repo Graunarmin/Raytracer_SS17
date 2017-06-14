@@ -27,11 +27,3 @@ float Sphere::area() const{
 float Sphere::volume() const{
   return ((4.0 * M_PI * pow(radius_, 3.0))/3.0);
 }
-
-std::string Sphere::getName() const{
-  return name_;
-}
-
-Color Sphere::getColor() const{
-  return color_;
-}

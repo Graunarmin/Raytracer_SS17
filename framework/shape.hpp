@@ -4,6 +4,8 @@
 
 #include <glm/vec3.hpp>
 #include <cmath>
+#include <iostream>
+#include <string>
 
 class Shape{
 
@@ -13,12 +15,16 @@ public:
 
   virtual float area() const = 0;
   virtual float volume() const = 0;
-  virtual std::string getName() const = 0;
-  virtual Color getColor() const = 0;
+  std::string getName() const;
+  Color getColor() const;
+
+  virtual std::ostream& print(std::ostream& os) const;
 
 protected:
   std::string name_;
   Color color_;
 };
+
+std::ostream& operator<<(std::ostream& os, Shape const& s);
 
 #endif //SHAPE_HPP

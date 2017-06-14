@@ -15,13 +15,10 @@ public:
 
   float area() const override;
   float volume() const override;
-  std::string getName() const override;
-  Color getColor() const override;
 
 private:
   glm::vec3 min_;
   glm::vec3 max_;
-
 
 };
 

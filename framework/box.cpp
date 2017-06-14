@@ -31,11 +31,3 @@ float Box::volume() const{
   auto diff = max_ - min_;
   return diff.x*diff.y*diff.z;
 }
-
-std::string Box::getName() const{
-  return name_;
-}
-
-Color Box::getColor() const{
-  return color_;
-}
