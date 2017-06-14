@@ -2,37 +2,41 @@
 
 //Konstruktoren
 Box::Box():
-  m_min{-1},
-  m_max{1} {}
+  min_{-1},
+  max_{1}/*,
+  name_{"box"},
+  color_{1.0f, 1.0f, 1.0f}*/{}
 
-Box::Box(glm::vec3 const& min, glm::vec3 const& max):
-  m_min{min},
-  m_max{max} {}
+Box::Box(glm::vec3 const& min, glm::vec3 const& max/*,
+        std::string const& name, Color const& color*/):
+  min_{min},
+  max_{max}/*,
+  name_{name},
+  color_{color}*/{}
 
 
 //Methoden
 
 glm::vec3 const& Box::getMin() const{
-  return m_min;
+  return min_;
 }
 
 glm::vec3 const& Box::getMax() const{
-  return m_max;
+  return max_;
 }
 
 float Box::area() const{
-  float a = std::abs(std::abs(m_max.x) - std::abs(m_min.x));
-  float b = std::abs(std::abs(m_max.y) - std::abs(m_min.y));
-  float c = std::abs(std::abs(m_max.z) - std::abs(m_min.z));
+  float a = std::abs(max_.x - min_.x);
+  float b = std::abs(max_.y - min_.y);
+  float c = std::abs(max_.z - min_.z);
 
   return 2*((a*b) + (b*c) + (a*c));
 }
 
 float Box::volume() const{
-  float a = std::abs(std::abs(m_max.x) - std::abs(m_min.x));
-  float b = std::abs(std::abs(m_max.y) - std::abs(m_min.y));
-  float c = std::abs(std::abs(m_max.z) - std::abs(m_min.z));
-
+  float a = std::abs(max_.x - min_.x);
+  float b = std::abs(max_.y - min_.y);
+  float c = std::abs(max_.z - min_.z);
   return a*b*c;
 
 }

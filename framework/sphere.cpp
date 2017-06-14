@@ -2,25 +2,30 @@
 
 //Konstruktoren
 Sphere::Sphere():
-  m_center{0.0f, 0.0f, 0.0f},
-  m_radius{1.0f}{}
+  center_{0.0f, 0.0f, 0.0f},
+  radius_{1.0f}/*,
+  name_{"Sphere"},
+  /* color_{1.0f, 1.0f, 1.0f}*/{}
 
-Sphere::Sphere(glm::vec3 const& center, float radius):
-  m_center{center},
-  m_radius{radius}{}
+Sphere::Sphere(glm::vec3 const& center, float radius/*,
+              std::string const& name, Color const& color*/):
+  center_{center},
+  radius_{radius}/*,
+  name_{name},
+  color_{color}*/{}
 
 glm::vec3 const& Sphere::getCenter() const{
-  return m_center;
+  return center_;
 }
 
 float Sphere::getRadius() const{
-  return m_radius;
+  return radius_;
 }
 
 float Sphere::area() const{
-  return 4 * M_PI * pow(m_radius, 2);
+  return 4 * M_PI * pow(radius_, 2);
 }
 
 float Sphere::volume() const{
-  return (4/3)* M_PI * pow(m_radius, 3);
+  return ((4 * M_PI * pow(radius_, 3))/3);
 }
