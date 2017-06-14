@@ -33,5 +33,9 @@ std::ostream& Sphere::print(std::ostream& os) const{
   os << "Center: " << "(" << center_.x << "," << center_.y << "," << center_.z << "),\n"
   << "Radius: " << radius_ << "\n" << "\n";
   return os;
+}
 
+bool Sphere::intersect(Ray const& ray, float& distance){
+  return glm::intersectRaySphere(ray.origin_, ray.direction_,
+          center_, radius_*radius_, distance);
 }

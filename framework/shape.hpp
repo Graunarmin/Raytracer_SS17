@@ -1,6 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 #include "color.hpp"
+#include "ray.hpp"
 
 #include <glm/vec3.hpp>
 #include <cmath>

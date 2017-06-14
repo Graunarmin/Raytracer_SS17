@@ -1,5 +1,7 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtx/intersect.hpp>
 #include "shape.hpp"
 #include "sphere.hpp"
 #include "box.hpp"
@@ -89,6 +91,27 @@ TEST_CASE("Print Sphere", "[5.5 print]"){
 TEST_CASE("Print Box", "[5.5 print]"){
   Box box2{glm::vec3{-1,-2,0}, glm::vec3{1,1,4}, "Coole Box", Color{1.0f, 1.0f, 1.0f}};
   std::cout << box2;
+}
+
+TEST_CASE("intersectRaySphere", "[5.6 intersect]")
+{
+  // Ray
+  glm::vec3 ray_origin{0.0 ,0.0 ,0.0};
+  // ray direction has to be normalized!
+  // you can use:
+  // v = glm :: normalize (some_vector)
+  glm::vec3 ray_direction{0.0 ,0.0 ,1.0};
+  // Sphere
+  glm::vec3 sphere_center{0.0 ,0.0 ,5.0};
+  float sphere_radius{1.0};
+  float distance{0.0};
+  auto result = glm::intersectRaySphere(
+      ray_origin, ray_direction,
+      sphere_center,
+      sphere_radius * sphere_radius, // squared radius !!!
+      distance);
+  REQUIRE(distance == Approx(4.0f));
+
 }
 
 
