@@ -129,7 +129,7 @@ TEST_CASE("Sphere method intersect", "[5.6 intersect]"){
 }
 
 
-TEST_CASE("Destructor", "[5.7 Destructor]"){
+TEST_CASE("Destructor", "[5.8 Destructor]"){
   std::cout << "---------------------------------------\n";
   std::cout<< "Ab hier ist wichtig, hier geht 5.8 los:" << std::endl;
   std::cout<<"Box Objekt anlegen:" << std::endl;
@@ -149,7 +149,5 @@ TEST_CASE("Destructor", "[5.7 Destructor]"){
 
 int main(int argc, char *argv[])
 {
-
-
   return Catch::Session().run(argc, argv);
 }
