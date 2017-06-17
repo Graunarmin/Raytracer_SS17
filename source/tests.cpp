@@ -93,8 +93,7 @@ TEST_CASE("Print Box", "[5.5 print]"){
   std::cout << box2;
 }
 
-TEST_CASE("intersectRaySphere", "[5.6 intersect]")
-{
+TEST_CASE("intersectRaySphere", "[5.6 intersect]"){
   // Ray
   glm::vec3 ray_origin{0.0 ,0.0 ,0.0};
   // ray direction has to be normalized!
@@ -111,8 +110,29 @@ TEST_CASE("intersectRaySphere", "[5.6 intersect]")
       sphere_radius * sphere_radius, // squared radius !!!
       distance);
   REQUIRE(distance == Approx(4.0f));
-
 }
+
+TEST_CASE("Sphere method intersect", "[5.6 intersect]"){
+
+  glm::vec3 ray_origin{0.0 ,0.0 ,-2.0};
+  glm::vec3 ray_direction{0.0 ,0.0 ,2.5};
+
+  glm::vec3 sphere_center{0.0 ,0.0 ,4.0};
+  float sphere_radius{1.0};
+  float distance{0.0};
+
+  Ray ray{ray_origin, ray_direction};
+  Sphere sphere{sphere_center, sphere_radius, "Beautiful Sphere", Color{1.0f, 1.0f, 1.0f}};
+
+  sphere.intersect(ray, distance);
+  REQUIRE(distance == Approx(5.0f));
+}
+
+
+// TEST_CASE("Shape Destructor", "[5.7 Shape Destructor]"){
+//   Shape s1{};
+//   ~s1;
+// }
 
 
 int main(int argc, char *argv[])

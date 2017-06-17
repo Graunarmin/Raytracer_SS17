@@ -35,7 +35,7 @@ std::ostream& Sphere::print(std::ostream& os) const{
   return os;
 }
 
-bool Sphere::intersect(Ray const& ray, float& distance){
+bool Sphere::intersect(Ray const& ray, float& distance) const{
   return glm::intersectRaySphere(ray.origin_, ray.direction_,
           center_, radius_*radius_, distance);
 }

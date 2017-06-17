@@ -14,8 +14,12 @@ public:
   Shape();
   Shape(std::string const& name, Color const& color);
 
+  // virtual ~Shape();
+
+
   virtual float area() const = 0;
   virtual float volume() const = 0;
+
   std::string getName() const;
   Color getColor() const;
 
