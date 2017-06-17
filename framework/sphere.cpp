@@ -4,13 +4,21 @@
 Sphere::Sphere():
   Shape{},
   center_{0.0f, 0.0f, 0.0f},
-  radius_{1.0f}{}
+  radius_{1.0f}{
+    std::cout << "Default Constructor derived class Sphere\n";
+  }
 
 Sphere::Sphere(glm::vec3 const& center, float radius,
               std::string const& name, Color const& color):
   Shape{name, color},
   center_{center},
-  radius_{radius}{}
+  radius_{radius}{
+    std::cout << "Constructor derived class Sphere\n";
+  }
+
+Sphere::~Sphere(){
+  std::cout << "Deconstructor derived class Sphere\n";
+}
 
 glm::vec3 const& Sphere::getCenter() const{
   return center_;

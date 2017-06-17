@@ -129,10 +129,22 @@ TEST_CASE("Sphere method intersect", "[5.6 intersect]"){
 }
 
 
-// TEST_CASE("Shape Destructor", "[5.7 Shape Destructor]"){
-//   Shape s1{};
-//   ~s1;
-// }
+TEST_CASE("Destructor", "[5.7 Destructor]"){
+  std::cout << "---------------------------------------\n";
+  std::cout<< "Ab hier ist wichtig, hier geht 5.8 los:" << std::endl;
+  std::cout<<"Box Objekt anlegen:" << std::endl;
+  Shape* s = new Box;
+  std::cout << "Box wieder loeschen:" << std::endl;
+  delete s;
+
+  std::cout << "---------------------------------------\n";
+  std::cout<< "Und jetzt mit Sphere:" << std::endl;
+  std::cout<<"Box Objekt anlegen:" << std::endl;
+  Shape* s2 = new Sphere;
+  std::cout << "Sphere wieder loeschen:" << std::endl;
+  delete s2;
+  std::cout << "---------------------------------------\n";
+}
 
 
 int main(int argc, char *argv[])

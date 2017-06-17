@@ -4,13 +4,21 @@
 Box::Box():
   Shape{},
   min_{-1},
-  max_{1}{}
+  max_{1}{
+    std::cout << "Default Constructor derived class Box\n";
+  }
 
 Box::Box(glm::vec3 const& min, glm::vec3 const& max,
         std::string const& name, Color const& color):
   Shape{name, color},
   min_{min},
-  max_{max}{}
+  max_{max}{
+    std::cout << "Constructor derived class Box\n";
+  }
+
+Box::~Box(){
+  std::cout << "Deconstructor derived class Box\n";
+}
 
 
 //Methoden
