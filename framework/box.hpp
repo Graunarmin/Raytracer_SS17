@@ -21,6 +21,7 @@ public:
   std::ostream& print(std::ostream& os) const override;
 
 private:
+  //Raumdiagonale zwischen min und max
   glm::vec3 min_;
   glm::vec3 max_;
 

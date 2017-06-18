@@ -16,16 +16,19 @@ public:
 
   virtual ~Shape();
 
-
+  //pure virtual: muss überschrieben werden
   virtual float area() const = 0;
   virtual float volume() const = 0;
 
+  //non-virtual: nicht überschreiben
   std::string getName() const;
   Color getColor() const;
 
+  //virtual: kann überschrieben werden
   virtual std::ostream& print(std::ostream& os) const;
 
 protected:
+  //protected, damit die abgeleiteten drauf zugreifen können
   std::string name_;
   Color color_;
 };

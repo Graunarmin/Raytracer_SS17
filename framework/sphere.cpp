@@ -37,6 +37,7 @@ float Sphere::volume() const{
 }
 
 std::ostream& Sphere::print(std::ostream& os) const{
+  //erst Name und Color, dann das Sphere-spezifische
   Shape::print(os);
   os << "Center: " << "(" << center_.x << "," << center_.y << "," << center_.z << "),\n"
   << "Radius: " << radius_ << "\n" << "\n";
@@ -44,6 +45,8 @@ std::ostream& Sphere::print(std::ostream& os) const{
 }
 
 bool Sphere::intersect(Ray const& ray, float& distance) const{
+  //distance ist dann der Abstand vom ray.origin zum nächsten Punkt der Kugel
+  //bekommt nen Ray und ne "leere" distance, wird auf sphere aufgerufen
   return glm::intersectRaySphere(ray.origin_, ray.direction_,
           center_, radius_*radius_, distance);
 }
