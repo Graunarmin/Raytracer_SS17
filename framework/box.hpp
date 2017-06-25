@@ -10,13 +10,14 @@ public:
   Box(glm::vec3 const& min, glm::vec3 const& max,
       std::string const& name, Color const& color);
 
-  ~Box();
+  ~Box() override;
 
   glm::vec3 const& getMin() const;
   glm::vec3 const& getMax() const;
 
   float area() const override;
   float volume() const override;
+  bool intersect(Ray const& ray, float& t) override;
 
   std::ostream& print(std::ostream& os) const override;
 

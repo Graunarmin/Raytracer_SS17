@@ -47,6 +47,10 @@ float Box::volume() const{
   return diff.x * diff.y * diff.z;
 }
 
+bool intersect(Ray const& ray, float& t){
+  
+}
+
 std::ostream& Box::print(std::ostream& os) const{
   //printet erst den Shape-Teil (Name und Farbe)
   Shape::print(os);
