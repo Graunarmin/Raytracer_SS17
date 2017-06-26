@@ -2,7 +2,7 @@ struct Material{
 
 //Konstruktoren
   Material():
-    name_{"Cooler Name"},
+    name_{"Cooles Material"},
     ka_{Color{}},
     kd_{Color{}},
     ks_{Color{}},
