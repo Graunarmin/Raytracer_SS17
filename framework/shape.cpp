@@ -2,15 +2,15 @@
 
 Shape::Shape():
   name_{"Cooles Objekt"},
-  color_{1.0f, 1.0f, 1.0f}{
-    std::cout << "Default Constructor Base class Shape\n";
-  }
+  material_{}{}
 
 Shape::Shape(std::string const& name, Color const& color):
   name_{name},
-  color_{color}{
-    std::cout << "Constructor Base class Shape\n";
-  }
+  color_{color}{}
+
+Shape::Shape(std::string const& name, Material const& material):
+  name_{name},
+  material_{material}{}
 
   Shape::~Shape()
   {
@@ -23,6 +23,10 @@ Shape::Shape(std::string const& name, Color const& color):
 
   Color Shape::getColor() const{
     return color_;
+  }
+
+  Material Shape::getMaterial() const{
+    return material_;
   }
 
   std::ostream& Shape::print(std::ostream& os) const{
