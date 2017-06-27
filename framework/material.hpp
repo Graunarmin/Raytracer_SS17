@@ -1,3 +1,6 @@
+#ifndef MATERIAL_HPP
+#define MATERIAL_HPP
+
 struct Material{
 
 //Konstruktoren
@@ -21,12 +24,11 @@ struct Material{
     return os;
   }
 
-
-
 //Member
   std::string name_;
   color ka_;
   color kd_;
   color ks_;
   float m_;
-}
+};
+#endif //MATERIAL_HPP
