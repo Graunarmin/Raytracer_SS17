@@ -9,8 +9,8 @@ Sphere::Sphere():
   }
 
 Sphere::Sphere(glm::vec3 const& center, float radius,
-              std::string const& name, Color const& color):
-  Shape{name, color},
+              std::string const& name, Material const& material):
+  Shape{name, material},
   center_{center},
   radius_{radius}{
     std::cout << "Constructor derived class Sphere\n";

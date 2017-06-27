@@ -14,7 +14,21 @@
 
 struct Color
 {
-  Color(float red, float green, float blue) : r(red), g(green), b(blue) {}
+  Color():
+    r{0.0f},
+    g{0.0f},
+    b{0.0f}{}
+
+  Color(float all):
+    r{all},
+    g{all},
+    b{all}{}
+
+  Color(float red, float green, float blue):
+    r{red},
+    g{green},
+    b{blue} {}
+
   float r;
   float g;
   float b;
