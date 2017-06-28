@@ -1,3 +1,6 @@
+#ifndef SDFLOADER_HPP
+#define SDFLOADER_HPP
+
 #include <iostream>
 #include <fstream>
 
@@ -6,17 +9,6 @@ class SDFloader{
   *liest ihn ein und gibt eine Scene zurück
   */
 
-  Scene loadScene(/*datentyp??*/ const& file){
-
-    std::ifstream sceneFile;
-    sceneFile.open(file);
-
-    Scene beautifulScene;
-
-    return beautifulScene;
-
-  }
-
-
-
-}
+  Scene loadScene(std::string const& fileIn);
+};
+#endif //SDFLOADER_HPP
