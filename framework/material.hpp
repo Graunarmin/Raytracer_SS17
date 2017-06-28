@@ -1,6 +1,10 @@
 #ifndef MATERIAL_HPP
 #define MATERIAL_HPP
 
+#include <string>
+#include <iostream>
+#include "color.hpp"
+
 struct Material{
 
 //Konstruktoren
@@ -11,14 +15,14 @@ struct Material{
     ks_{Color{}},
     m_{0.0f}{}
 
-  Material(std::string name, color a, color d, color s, float m):
+  Material(std::string name, Color a, Color d, Color s, float m):
     name_{name},
     ka_{a},
     kd_{d},
     ks_{s},
     m_{m}{}
 
-  std::ostream& operator<<(std::ostream& os, Material const& mat){
+  friend std::ostream& operator<<(std::ostream& os, Material const& mat){
     os << "(" << mat.name_ << "," << mat.ka_ << "," << mat.kd_ <<
             "," << mat.ks_ << "," << mat.m_ << ")\n";
     return os;
@@ -26,9 +30,9 @@ struct Material{
 
 //Member
   std::string name_;
-  color ka_;
-  color kd_;
-  color ks_;
+  Color ka_;
+  Color kd_;
+  Color ks_;
   float m_;
 };
 #endif //MATERIAL_HPP

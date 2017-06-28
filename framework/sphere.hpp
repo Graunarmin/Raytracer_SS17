@@ -10,7 +10,10 @@ public:
 
   Sphere();
   Sphere(glm::vec3 const& center, float radius,
+          std::string const& name, Color const& color);
+  Sphere(glm::vec3 const& center, float radius,
           std::string const& name, Material const& material);
+
 
   ~Sphere() override;
 
@@ -22,7 +25,7 @@ public:
 
   std::ostream& print(std::ostream& os) const override;
 
-  bool intersect(Ray const& ray, float& distance) const override;
+  bool intersect(Ray const& ray, float& t) /*override*/;
 
 
 private:

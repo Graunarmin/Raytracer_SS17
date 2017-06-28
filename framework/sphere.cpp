@@ -4,17 +4,20 @@
 Sphere::Sphere():
   Shape{},
   center_{0.0f, 0.0f, 0.0f},
-  radius_{1.0f}{
-    std::cout << "Default Constructor derived class Sphere\n";
-  }
+  radius_{1.0f}{}
+
+Sphere::Sphere(glm::vec3 const& center, float radius,
+          std::string const& name, Color const& color):
+  Shape{name, color},
+  center_{center},
+  radius_{radius}{}
+
 
 Sphere::Sphere(glm::vec3 const& center, float radius,
               std::string const& name, Material const& material):
   Shape{name, material},
   center_{center},
-  radius_{radius}{
-    std::cout << "Constructor derived class Sphere\n";
-  }
+  radius_{radius}{}
 
 Sphere::~Sphere(){
   std::cout << "Deconstructor derived class Sphere\n";
@@ -44,9 +47,9 @@ std::ostream& Sphere::print(std::ostream& os) const{
   return os;
 }
 
-bool Sphere::intersect(Ray const& ray, float& distance) const{
+bool Sphere::intersect(Ray const& ray, float& t) {
   //distance ist dann der Abstand vom ray.origin zum nächsten Punkt der Kugel
   //bekommt nen Ray und ne "leere" distance, wird auf sphere aufgerufen
   return glm::intersectRaySphere(ray.origin_, ray.direction_,
-          center_, radius_*radius_, distance);
+          center_, radius_*radius_, t);
 }

@@ -5,6 +5,7 @@
 #include "shape.hpp"
 #include "sphere.hpp"
 #include "box.hpp"
+#include "material.hpp"
 
 //Konstruktoren Tests, implizieren getter
 TEST_CASE("Box Default Constructor", "[5.2 Box Constructor]"){

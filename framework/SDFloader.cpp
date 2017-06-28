@@ -1,25 +1,30 @@
+#include "SDFloader.hpp"
 
-  std::vector<Material*> materials;
 
-  Material SDFloader::loadMaterial(std::string const& fileIn) const{
+  std::vector<Material> materials();
+
+void SDFloader::loadMaterial(std::string const& fileIn) const{
 
     std::ifstream file;
     std::string line;
-    sceneFile.open(fileIn);
+    file.open(fileIn);
 
     if(file.is_open()){
-      while(){
+      while(std::getline(file,line)){
         std::stringstream ss;
         std::string keyword;
 
+
+
         ss<<line;
         ss>>keyword;
+        std::cout << keyword;
       }
 
     }
 
-    Material beautifulMaterial;
-
-    return beautifulMaterial;
+    // Material beautifulMaterial;
+    //
+    // return beautifulMaterial;
 
   }

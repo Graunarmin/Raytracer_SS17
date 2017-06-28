@@ -21,9 +21,9 @@ Shape::Shape(std::string const& name, Material const& material):
     return name_;
   }
 
-  // Color Shape::getColor() const{
-  //   return color_;
-  // }
+  Color Shape::getColor() const{
+    return color_;
+  }
 
   Material Shape::getMaterial() const{
     return material_;
@@ -32,7 +32,7 @@ Shape::Shape(std::string const& name, Material const& material):
   std::ostream& Shape::print(std::ostream& os) const{
     // << für color gibt es schon in color.hpp
     // Name und color werden in os gepackt
-    os << "Name: " << name_ << " \nMaterial: " << material_ ;
+    os << "Name: " << name_ /*<< " \nMaterial: " << material_ */;
     return os;
   }
 
