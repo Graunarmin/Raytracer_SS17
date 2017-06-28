@@ -6,6 +6,7 @@
 #include "sphere.hpp"
 #include "box.hpp"
 #include "material.hpp"
+#include "SDFloader.hpp"
 
 //Konstruktoren Tests, implizieren getter
 TEST_CASE("Box Default Constructor", "[5.2 Box Constructor]"){
@@ -187,6 +188,12 @@ TEST_CASE("Destructor 2", "[5.8 Destructor]"){
   std::cout << "Und das andere auch wieder loeschen:" << std::endl;
   delete s2;
   std::cout << "---------------------------------------\n";
+}
+
+TEST_CASE("SDF loader Material", "[6.5 SDF loader]"){
+  SDFloader loader{};
+  loader.loadMaterial("material.txt");
+
 }
 
 

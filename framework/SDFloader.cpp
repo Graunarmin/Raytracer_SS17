@@ -18,7 +18,7 @@ void SDFloader::loadMaterial(std::string const& fileIn) const{
 
         ss<<line;
         ss>>keyword;
-        std::cout << keyword;
+        std::cout << "keyword: " << keyword;
       }
 
     }
