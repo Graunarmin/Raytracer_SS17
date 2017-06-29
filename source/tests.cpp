@@ -191,6 +191,8 @@ TEST_CASE("Sphere method intersect", "[5.6 intersect]"){
 // }
 
 TEST_CASE("Ray intersects Box", "[6.3 intersect]"){
+
+  //Strahl z-Richtung
   glm::vec3 ray_origin{0.0 ,0.0 ,0.0};
   glm::vec3 ray_direction{0.0 ,0.0 ,1.0};
   Ray ray{ray_origin, ray_direction};
@@ -200,15 +202,42 @@ TEST_CASE("Ray intersects Box", "[6.3 intersect]"){
           Material{}};
   REQUIRE(box.intersect(ray, distance));
   REQUIRE(distance == 1.0f);
+
+  //Strahl y-Richtung
+  glm::vec3 ray_origin2{0.0 ,0.0 ,0.0};
+  glm::vec3 ray_direction2{0.0 ,1.0 ,0.0};
+  Ray ray2{ray_origin2, ray_direction2};
+  float distance2{0.0};
+
+  Box box2{glm::vec3{-2,-2,-2}, glm::vec3{2,6,5}, "Zu schneidende Box",
+          Material{}};
+
+  REQUIRE(box2.intersect(ray2, distance2));
+  REQUIRE(distance2 == 2);
+
+  //Strahl in x-Richtung
+  glm::vec3 ray_origin3{0.0 ,0.0 ,0.0};
+  glm::vec3 ray_direction3{1.0 ,0.0 ,0.0};
+  Ray ray3{ray_origin3, ray_direction3};
+  float distance3{0.0};
+
+  Box box3{glm::vec3{-2,-2,-2}, glm::vec3{2,6,5}, "Zu schneidende Box",
+          Material{}};
+
+  auto b = box3.intersect(ray3, distance3);
+  std::cout << box3;
+
+  REQUIRE(b);
+  REQUIRE(distance3 == 2.0f);
 }
 
-TEST_CASE("Ray doesn't intersects Box", "[6.3 intersect]"){
+TEST_CASE("Ray doesn't intersect Box", "[6.3 intersect]"){
   glm::vec3 ray_origin{0.0 ,0.0 ,0.0};
   glm::vec3 ray_direction{0.0 ,0.0 ,1.0};
   Ray ray{ray_origin, ray_direction};
   float distance{0.0};
 
-  Box box{glm::vec3{-2,2,1}, glm::vec3{2,6,5}, "Zu schneidende Box",
+  Box box{glm::vec3{-2,2,1}, glm::vec3{2,6,5}, "Nicht zu schneidende Box",
           Material{}};
   REQUIRE(!box.intersect(ray, distance));
 }
