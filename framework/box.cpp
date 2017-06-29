@@ -59,45 +59,41 @@ float Box::volume() const{
 
 bool intersect(Ray const& ray, float& t){
 
-  float tFarX;
-  float tNearX;
-  float tFarY;
-  float tNearY;
-  float tFar;
-  float tNear;
-  float tF;
-  float tN;
-
   float tx1 = (min_.x - ray.origin_.x)/(ray.direction_.x);
   float tx2 = (max_.x - ray.origin_.x)/(ray.direction_.x);
 
   float ty1 = (min_.y - ray.origin_.y)/(ray.direction_.y);
   float ty2 = (max_.y - ray.origin_.y)/(ray.direction_.y);
 
-  tFarX = std::max(tx1, tx2);
-  tNearX = std::min(tx1, tx2);
+  float tz1 = (min_.z - ray.origin_.z)/(ray.direction_.z);
+  float tz2 = (max_.z - ray.origin_.z)/(ray.direction_.z);
 
-  tFarY = std::max(ty1, ty2);
-  tNearY = std::min(ty1, ty2);
+  float tFX = std::max(tx1, tx2);
+  float tNX = std::min(tx1, tx2);
 
-  tFar = min(tFarX, tFarY);
-  tNear = max(tNearX, tNearY);
+  float tFY = std::max(ty1, ty2);
+  float tNY = std::min(ty1, ty2);
 
-  if(tNear < tFar){
-    float tz1 = (min_.z - ray.origin_.z)/(ray.direction_.z);
-    float tz2 = (max_.z - ray.origin_.z)/(ray.direction_.z);
+  float tFZ = std::max(tz1, tz2);
+  float tNZ = std::min(tz1, tz2);
 
-    tFarZ = std::max(tz1, tz2);
-    tNearZ = std::min(tz1, tz2);
+  float tF = min(tFX, tFY);
+  float tN = max(tNX, tNY);
 
-    tF = std::min(tFarZ, tFar);
-    tN = std::min(tNearZ, tNear);
-
-    std::vec3 SP{};
+  if(tF < tN){
+    t = tF;
+    return false;
   }
-  else{
- //return kein SP
+
+  tFar = std::min(tF, tFZ);
+  tNear = std::max(tN, tNZ);
+
+  if((tFar < 0) || (tFar < tNear){
+    t = tFar;
+    return false;
   }
+  t = tNear;
+  return true;
 
 }
 
