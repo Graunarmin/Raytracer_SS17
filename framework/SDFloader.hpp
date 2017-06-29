@@ -3,9 +3,11 @@
 
 #include "material.hpp"
 #include <iostream>
+#include <cstdlib>
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <vector>
 
 class SDFloader{
   /*bekommt einen file im SDF Format übergeben,

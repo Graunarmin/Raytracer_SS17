@@ -23,8 +23,8 @@ struct Material{
     m_{m}{}
 
   friend std::ostream& operator<<(std::ostream& os, Material const& mat){
-    os << "(" << mat.name_ << "," << mat.ka_ << "," << mat.kd_ <<
-            "," << mat.ks_ << "," << mat.m_ << ")\n";
+    os << "Name: " << mat.name_ << "\nka: " << mat.ka_ << "\nkd: " << mat.kd_ <<
+            "\nks: " << mat.ks_ << "\nm: " << mat.m_ << "\n";
     return os;
   }
 

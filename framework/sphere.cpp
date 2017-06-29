@@ -20,7 +20,7 @@ Sphere::Sphere(glm::vec3 const& center, float radius,
   radius_{radius}{}
 
 Sphere::~Sphere(){
-  std::cout << "Deconstructor derived class Sphere\n";
+  //std::cout << "Deconstructor derived class Sphere\n";
 }
 
 glm::vec3 const& Sphere::getCenter() const{

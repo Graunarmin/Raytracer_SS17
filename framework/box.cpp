@@ -33,7 +33,7 @@ Box::Box(glm::vec3 const& min, glm::vec3 const& max,
   }
 
 Box::~Box(){
-  std::cout << "Deconstructor derived class Box\n";
+  //std::cout << "Deconstructor derived class Box\n";
 }
 
 //Methoden
@@ -57,9 +57,49 @@ float Box::volume() const{
   return diff.x * diff.y * diff.z;
 }
 
-// bool intersect(Ray const& ray, float& t){
-//
-// }
+bool intersect(Ray const& ray, float& t){
+
+  float tFarX;
+  float tNearX;
+  float tFarY;
+  float tNearY;
+  float tFar;
+  float tNear;
+  float tF;
+  float tN;
+
+  float tx1 = (min_.x - ray.origin_.x)/(ray.direction_.x);
+  float tx2 = (max_.x - ray.origin_.x)/(ray.direction_.x);
+
+  float ty1 = (min_.y - ray.origin_.y)/(ray.direction_.y);
+  float ty2 = (max_.y - ray.origin_.y)/(ray.direction_.y);
+
+  tFarX = std::max(tx1, tx2);
+  tNearX = std::min(tx1, tx2);
+
+  tFarY = std::max(ty1, ty2);
+  tNearY = std::min(ty1, ty2);
+
+  tFar = min(tFarX, tFarY);
+  tNear = max(tNearX, tNearY);
+
+  if(tNear < tFar){
+    float tz1 = (min_.z - ray.origin_.z)/(ray.direction_.z);
+    float tz2 = (max_.z - ray.origin_.z)/(ray.direction_.z);
+
+    tFarZ = std::max(tz1, tz2);
+    tNearZ = std::min(tz1, tz2);
+
+    tF = std::min(tFarZ, tFar);
+    tN = std::min(tNearZ, tNear);
+
+    std::vec3 SP{};
+  }
+  else{
+ //return kein SP
+  }
+
+}
 
 std::ostream& Box::print(std::ostream& os) const{
   //printet erst den Shape-Teil (Name und Farbe)

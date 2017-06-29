@@ -14,7 +14,7 @@ Shape::Shape(std::string const& name, Material const& material):
 
   Shape::~Shape()
   {
-    std::cout << "Deconstructor Base class Shape\n";
+    //std::cout << "Deconstructor Base class Shape\n";
   }
 
   std::string Shape::getName() const{
@@ -32,7 +32,7 @@ Shape::Shape(std::string const& name, Material const& material):
   std::ostream& Shape::print(std::ostream& os) const{
     // << für color gibt es schon in color.hpp
     // Name und color werden in os gepackt
-    os << "Name: " << name_ /*<< " \nMaterial: " << material_ */;
+    os << "Name: " << name_ << "\nMaterial: " << material_;
     return os;
   }
 

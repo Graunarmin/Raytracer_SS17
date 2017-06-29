@@ -155,44 +155,65 @@ TEST_CASE("Sphere method intersect", "[5.6 intersect]"){
 }
 
 
-TEST_CASE("Destructor", "[5.8 Destructor]"){
-  std::cout << "---------------------------------------\n";
-  std::cout<< "Ab hier ist wichtig, hier geht 5.8 los:" << std::endl;
-  std::cout<<"Box Objekt anlegen:" << std::endl;
-  Shape* s = new Box;
-  std::cout << "Box wieder loeschen:" << std::endl;
-  delete s;
+// TEST_CASE("Destructor", "[5.8 Destructor]"){
+//   std::cout << "---------------------------------------\n";
+//   std::cout<< "Ab hier ist wichtig, hier geht 5.8 los:" << std::endl;
+//   std::cout<<"Box Objekt anlegen:" << std::endl;
+//   Shape* s = new Box;
+//   std::cout << "Box wieder loeschen:" << std::endl;
+//   delete s;
+//
+//   std::cout << "---------------------------------------\n";
+//   std::cout<< "Und jetzt mit Sphere:" << std::endl;
+//   std::cout<<"Sphere Objekt anlegen:" << std::endl;
+//   Shape* s2 = new Sphere;
+//   std::cout << "Sphere wieder loeschen:" << std::endl;
+//   delete s2;
+//   std::cout << "---------------------------------------\n";
+// }
+//
+// TEST_CASE("Destructor 2", "[5.8 Destructor]"){
+//   std::cout << "---------------------------------------\n";
+//   std::cout<< "5.8 Test 2:" << std::endl;
+//   Color red{255, 0, 0};
+//   glm::vec3 position{0};
+//   std::cout<<"Sphere Objekt anlegen:" << std::endl;
+//   Sphere* s1 = new Sphere{position,1.2,"sphere0",red};
+//   std::cout<<"Noch eins anlegen:" << std::endl;
+//   Shape* s2 = new Sphere{position,1.2,"sphere1",red};
+//   s1->print(std::cout);
+//   s2->print(std::cout);
+//   std::cout << "Sphere wieder loeschen:" << std::endl;
+//   delete s1;
+//   std::cout << "Und das andere auch wieder loeschen:" << std::endl;
+//   delete s2;
+//   std::cout << "---------------------------------------\n";
+// }
 
-  std::cout << "---------------------------------------\n";
-  std::cout<< "Und jetzt mit Sphere:" << std::endl;
-  std::cout<<"Sphere Objekt anlegen:" << std::endl;
-  Shape* s2 = new Sphere;
-  std::cout << "Sphere wieder loeschen:" << std::endl;
-  delete s2;
-  std::cout << "---------------------------------------\n";
+TEST_CASE("Material Default Constructor", "[6.4 Material]"){
+  Material m1{};
+  REQUIRE(m1.name_ == "Cooles Material");
+  REQUIRE(m1.ka_.r == 0.0f);
+  REQUIRE(m1.m_ == 0.0f);
 }
 
-TEST_CASE("Destructor 2", "[5.8 Destructor]"){
-  std::cout << "---------------------------------------\n";
-  std::cout<< "5.8 Test 2:" << std::endl;
-  Color red{255, 0, 0};
-  glm::vec3 position{0};
-  std::cout<<"Sphere Objekt anlegen:" << std::endl;
-  Sphere* s1 = new Sphere{position,1.2,"sphere0",red};
-  std::cout<<"Noch eins anlegen:" << std::endl;
-  Shape* s2 = new Sphere{position,1.2,"sphere1",red};
-  s1->print(std::cout);
-  s2->print(std::cout);
-  std::cout << "Sphere wieder loeschen:" << std::endl;
-  delete s1;
-  std::cout << "Und das andere auch wieder loeschen:" << std::endl;
-  delete s2;
-  std::cout << "---------------------------------------\n";
+TEST_CASE("Material Constructor", "[6.4 Material]"){
+  Material m1{"Awesome Material", Color{1.0f, 0.0f, 1.0f}, Color{}, Color{}, 1.3f};
+  REQUIRE(m1.name_ == "Awesome Material");
+  REQUIRE(m1.ka_.r == 1.0f);
+  REQUIRE(m1.kd_.g == 0.0f);
+  REQUIRE(m1.m_ == 1.3f);
 }
+
+TEST_CASE("Print Material", "[6.4 Material]"){
+    Material m1{"Awesome Material", Color{1.0f, 0.0f, 1.0f}, Color{}, Color{}, 1.3f};
+    std::cout << m1;
+}
+
 
 TEST_CASE("SDF loader Material", "[6.5 SDF loader]"){
   SDFloader loader{};
-  loader.loadMaterial("material.txt");
+  loader.loadMaterial("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
 
 }
 
