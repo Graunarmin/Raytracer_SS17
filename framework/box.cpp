@@ -57,7 +57,7 @@ float Box::volume() const{
   return diff.x * diff.y * diff.z;
 }
 
-bool intersect(Ray const& ray, float& t){
+bool Box::intersect(Ray const& ray, float& t){
 
   float tx1 = (min_.x - ray.origin_.x)/(ray.direction_.x);
   float tx2 = (max_.x - ray.origin_.x)/(ray.direction_.x);
@@ -77,18 +77,18 @@ bool intersect(Ray const& ray, float& t){
   float tFZ = std::max(tz1, tz2);
   float tNZ = std::min(tz1, tz2);
 
-  float tF = min(tFX, tFY);
-  float tN = max(tNX, tNY);
+  float tF = std::min(tFX, tFY);
+  float tN = std::max(tNX, tNY);
 
   if(tF < tN){
     t = tF;
     return false;
   }
 
-  tFar = std::min(tF, tFZ);
-  tNear = std::max(tN, tNZ);
+  float tFar = std::min(tF, tFZ);
+  float tNear = std::max(tN, tNZ);
 
-  if((tFar < 0) || (tFar < tNear){
+  if((tFar < 0) || (tFar < tNear)){
     t = tFar;
     return false;
   }

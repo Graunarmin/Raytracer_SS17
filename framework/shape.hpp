@@ -22,7 +22,7 @@ public:
   virtual float area() const = 0;
   virtual float volume() const = 0;
 
-  //virtual bool intersect(Ray const& ray, float& t) = 0;
+  virtual bool intersect(Ray const& ray, float& t) = 0;
 
   //virtual: kann überschrieben werden
   virtual std::ostream& print(std::ostream& os) const;

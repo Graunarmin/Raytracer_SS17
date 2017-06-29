@@ -190,6 +190,29 @@ TEST_CASE("Sphere method intersect", "[5.6 intersect]"){
 //   std::cout << "---------------------------------------\n";
 // }
 
+TEST_CASE("Ray intersects Box", "[6.3 intersect]"){
+  glm::vec3 ray_origin{0.0 ,0.0 ,0.0};
+  glm::vec3 ray_direction{0.0 ,0.0 ,1.0};
+  Ray ray{ray_origin, ray_direction};
+  float distance{0.0};
+
+  Box box{glm::vec3{-2,-2,1}, glm::vec3{2,6,5}, "Zu schneidende Box",
+          Material{}};
+  REQUIRE(box.intersect(ray, distance));
+  REQUIRE(distance == 1.0f);
+}
+
+TEST_CASE("Ray doesn't intersects Box", "[6.3 intersect]"){
+  glm::vec3 ray_origin{0.0 ,0.0 ,0.0};
+  glm::vec3 ray_direction{0.0 ,0.0 ,1.0};
+  Ray ray{ray_origin, ray_direction};
+  float distance{0.0};
+
+  Box box{glm::vec3{-2,2,1}, glm::vec3{2,6,5}, "Zu schneidende Box",
+          Material{}};
+  REQUIRE(!box.intersect(ray, distance));
+}
+
 TEST_CASE("Material Default Constructor", "[6.4 Material]"){
   Material m1{};
   REQUIRE(m1.name_ == "Cooles Material");
@@ -214,9 +237,7 @@ TEST_CASE("Print Material", "[6.4 Material]"){
 TEST_CASE("SDF loader Material", "[6.5 SDF loader]"){
   SDFloader loader{};
   loader.loadMaterial("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
-
 }
-
 
 int main(int argc, char *argv[])
 {
