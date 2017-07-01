@@ -97,6 +97,7 @@ TEST_CASE("Sphere Volume", "[5.2 Sphere Volume]"){
 }
 
 TEST_CASE("Print Sphere", "[5.5 print]"){
+  std::cout<<"------5.5 Noch mit Color statt Material-------\n";
   Sphere sphere2{glm::vec3{-1,2,0}, 5.0f, "Coole Kugel", Color{1.0f, 1.0f, 1.0f}};
   std::cout << sphere2;
 }
@@ -225,7 +226,6 @@ TEST_CASE("Ray intersects Box", "[6.3 intersect]"){
           Material{}};
 
   auto b = box3.intersect(ray3, distance3);
-  std::cout << box3;
 
   REQUIRE(b);
   REQUIRE(distance3 == 2.0f);
@@ -258,15 +258,19 @@ TEST_CASE("Material Constructor", "[6.4 Material]"){
 }
 
 TEST_CASE("Print Material", "[6.4 Material]"){
+    std::cout<<"--------------------6.4-----------------\n";
     Material m1{"Awesome Material", Color{1.0f, 0.0f, 1.0f}, Color{}, Color{}, 1.3f};
     std::cout << m1;
 }
 
 
 TEST_CASE("SDF loader Material", "[6.5 SDF loader]"){
+  std::cout <<"---------------------6.5-----------------\n";
+
   SDFloader loader{};
   loader.loadMaterial("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
 }
+
 
 int main(int argc, char *argv[])
 {

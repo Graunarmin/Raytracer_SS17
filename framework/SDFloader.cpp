@@ -1,24 +1,40 @@
 #include "SDFloader.hpp"
 
-
-  std::vector<Material> materials(2);
-
-  void print(const std::vector<Material> &mat){
-    for(const auto& i: mat){
-      std::cout << i << ' ';
-      std::cout << std::endl;
+void SDFloader::print() const{
+      std::cout<<"PrintMethode\n";
+      for(const auto& i: materials_){
+        std::cout<<"For Schleife\n";
+        Material mp{i.name_, i.ka_, i.kd_, i.ks_, i.m_};
+        std::cout<<mp;
+      }
     }
-  }
+
+std::vector<Material> SDFloader::getVector() const{
+  return materials_;
+}
+
+void SDFloader::addMaterial(Material const& mat){
+  materials_.push_back(mat);
+  // std::cout<<"Das Material\n";
+  // std::cout << mat;
+  // std::cout<<"Wurde echt gepusht!\n\n";
+  // std::cout<< "Der Vektor sieht jetzt so aus: \n";
+  // print(materials_);
+  // std::cout<<"und ist hier zuende.\n\n";
+}
 
 void SDFloader::loadMaterial(std::string const& fileIn) const{
-  std::cout <<"Hi ich geh hier rein.\n";
+  SDFloader myLoader;
+
+  //std::cout <<"Hi ich geh hier rein.\n";
 
     std::ifstream file;
     std::string line;
     file.open(fileIn);
 
     if(file.is_open()){
-      std::cout <<"File is open!\n";
+      //std::cout <<"File is open!\n";
+
       while(std::getline(file,line)){
         std::stringstream ss;
         std::string keyword;
@@ -33,46 +49,33 @@ void SDFloader::loadMaterial(std::string const& fileIn) const{
           //std::cout << "Nächstest keyword: " << keyword <<"\n";
 
           if(keyword == "material"){
-            //material erstellen:
-            // std::string name_;
-            // Color ka_;
-            // Color kd_;
-            // Color ks_;
-            // float m_;
 
+            Material mat;
 
-            Material material;
-
-            ss>>material.name_;
+            ss>>mat.name_;
             //std::cout << "name: " << material.name_<<"\n";
 
-            ss>> material.ka_.r;
-            ss>> material.ka_.g;
-            ss>> material.ka_.b;
-            ss>> material.kd_.r;
-            ss>> material.kd_.g;
-            ss>> material.kd_.b;
-            ss>> material.ks_.r;
-            ss>> material.ks_.g;
-            ss>> material.ks_.b;
-            ss>> material.m_;
+            ss>> mat.ka_.r;
+            ss>> mat.ka_.g;
+            ss>> mat.ka_.b;
+            ss>> mat.kd_.r;
+            ss>> mat.kd_.g;
+            ss>> mat.kd_.b;
+            ss>> mat.ks_.r;
+            ss>> mat.ks_.g;
+            ss>> mat.ks_.b;
+            ss>> mat.m_;
 
-            std::cout << material;
-            std::cout<< "Wird gepusht.";
-            materials.push_back(material);
+            // std::cout << mat;
+            // std::cout<< "Wird gepusht.\n";
+            myLoader.addMaterial(mat);
 
           }
-          std::cout<< "Vector: ";
-          print(materials);
-
-
         }
+
       }
-
+      file.close();
     }
-
-    // Material beautifulMaterial;
-    //
-    // return beautifulMaterial;
+    myLoader.print();
 
   }

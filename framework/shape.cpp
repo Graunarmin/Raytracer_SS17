@@ -32,7 +32,7 @@ Shape::Shape(std::string const& name, Material const& material):
   std::ostream& Shape::print(std::ostream& os) const{
     // << für color gibt es schon in color.hpp
     // Name und color werden in os gepackt
-    os << "Name: " << name_ << "\nMaterial:\n " << material_;
+    os << "Objektname: " << name_ << "\n"<<material_<<"\n";
     return os;
   }
 
