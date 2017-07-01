@@ -11,13 +11,15 @@
 
 struct Scene{
 
-  void loadScene(std::string const& fileIn) const;
+  Scene loadScene(std::string const& fileIn) const;
   void addMaterial(Material const& m);
   void print() const;
 
 
   //Smartpointer!!
   // std::vector<std::shared_ptr<Shape>> shapes_;
+  // std::vector<std::shared_ptr<Box>> boxes_;
+  // std::vector<std::shared_ptr<Sphere>> spheres_;
   // std::vector<std::shared_ptr<Camera>> camera_;
   // std::vector<std::shared_ptr<Light>> lights_; //aufteilen in Grundbeleuchtung und Punktlichtquellen!
   // std::vector<std::shared_ptr<Ray>> rays_;

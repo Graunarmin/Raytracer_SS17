@@ -1,6 +1,6 @@
 #include "scene.hpp"
 
-void Scene::loadScene(std::string const& fileIn) const{
+Scene Scene::loadScene(std::string const& fileIn) const{
   Scene myScene;
 
   std::ifstream file;
@@ -39,11 +39,14 @@ void Scene::loadScene(std::string const& fileIn) const{
 
           myScene.addMaterial(mat);
         }
+        //if(keyword == "shape" oder whatever){...}
       }
     }
     file.close();
   }
-  myScene.print();
+  myScene.printScene();
+
+  return myScene;
 
 }
 
@@ -53,11 +56,14 @@ void Scene::addMaterial(Material const& mat){
   std::cout<< p->name_<<" wird gepusht.\n\n";
 }
 
-void Scene::print() const{
-      std::cout<<"PrintMethode\n";
+void Scene::printScene() const{
+      std::cout<<"Materiealien der Szene:\n";
       for(const auto& i: materials_){
-        std::cout<<"For Schleife\n";
         Material mp{i->name_, i->ka_, i->kd_, i->ks_, i->m_};
         std::cout<<mp;
       }
+      //for(const auto& i: boxes_){
+      //Box b{};
+      //std::cout<<b;
+    }
     }
