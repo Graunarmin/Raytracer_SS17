@@ -7,6 +7,7 @@
 #include "box.hpp"
 #include "material.hpp"
 #include "SDFloader.hpp"
+#include "scene.hpp"
 
 //Konstruktoren Tests, implizieren getter
 TEST_CASE("Box Default Constructor", "[5.2 Box Constructor]"){
@@ -258,17 +259,24 @@ TEST_CASE("Material Constructor", "[6.4 Material]"){
 }
 
 TEST_CASE("Print Material", "[6.4 Material]"){
-    std::cout<<"--------------------6.4-----------------\n";
+    std::cout<<"------------------6.4-----------------\n";
     Material m1{"Awesome Material", Color{1.0f, 0.0f, 1.0f}, Color{}, Color{}, 1.3f};
     std::cout << m1;
 }
 
 
 TEST_CASE("SDF loader Material", "[6.5 SDF loader]"){
-  std::cout <<"---------------------6.5-----------------\n";
+  std::cout<<"--------------------6.5-----------------\n";
 
   SDFloader loader{};
   loader.loadMaterial("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
+}
+
+TEST_CASE("Struct Scene", "[6.6 Scene]"){
+  std::cout<<"--------------------6.6-----------------\n";
+  Scene cooleSzene{};
+
+  cooleSzene.loadScene("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
 }
 
 

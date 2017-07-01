@@ -1,42 +1,26 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
+#include "material.hpp"
+#include <iostream>
 #include <cstdlib>
+#include <fstream>
+#include <string>
+#include <sstream>
 #include <vector>
 
 struct Scene{
 
+  void loadScene(std::string const& fileIn) const;
+  void addMaterial(Material const& m);
+  void print() const;
+
+
   //Smartpointer!!
-
-  std::vector<Shape*> shapes;
-  std::vector<Camera*> camera;
-  std::vector<Light*> lights; //aufteilen in Grundbeleuchtung und Punktlichtquellen!
-  std::vector<Ray*> rays;
-  std::vector<Material*> materials;
-
-  Scene loadScene(std::string const& fileIn){
-
-    std::ifstream file;
-    std::string line;
-    sceneFile.open(fileIn);
-
-    if(file.is_open()){
-      while(){
-        std::stringstream ss;
-        std::string keyword;
-
-        ss<<line;
-        ss>>keyword;
-      }
-
-    }
-
-    Scene beautifulScene;
-
-    return beautifulScene;
-
-  }
-
-
+  // std::vector<std::shared_ptr<Shape>> shapes_;
+  // std::vector<std::shared_ptr<Camera>> camera_;
+  // std::vector<std::shared_ptr<Light>> lights_; //aufteilen in Grundbeleuchtung und Punktlichtquellen!
+  // std::vector<std::shared_ptr<Ray>> rays_;
+  std::vector<std::shared_ptr<Material>> materials_;
 };
 #endif //SCENE_HPP

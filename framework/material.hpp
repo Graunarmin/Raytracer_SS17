@@ -22,6 +22,7 @@ struct Material{
     ks_{s},
     m_{m}{}
 
+
   //friend, da es ja aus der Shape aufgerufen wird!
   friend std::ostream& operator<<(std::ostream& os, Material const& mat){
     os << "Materialname: " << mat.name_ << std::endl <<

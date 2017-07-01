@@ -9,9 +9,9 @@ void SDFloader::print() const{
       }
     }
 
-std::vector<Material> SDFloader::getVector() const{
-  return materials_;
-}
+// std::vector<Material> SDFloader::getVector() const{
+//   return materials_;
+// }
 
 void SDFloader::addMaterial(Material const& mat){
   materials_.push_back(mat);

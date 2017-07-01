@@ -17,21 +17,12 @@ public:
   //Methoden
   void loadMaterial(std::string const& fileIn) const;
   void addMaterial(Material const& m);
-
   void print() const;
-  std::vector<Material> getVector() const;
+  //std::vector<Material> getVector() const;
 
   //Member
 private:
   std::vector<Material> materials_;
 
 };
-
-// void printMat(const std::vector<Material> &mater){
-//   for(const auto& i: mater){
-//     std::cout << i<< ' ';
-//     std::cout << std::endl;
-//   }
-// }
-
 #endif //SDFLOADER_HPP
