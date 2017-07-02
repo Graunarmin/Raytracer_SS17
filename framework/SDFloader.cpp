@@ -72,10 +72,11 @@ void SDFloader::loadMaterial(std::string const& fileIn) const{
 
           }
         }
-
       }
       file.close();
+      std::cout << "Hier der Vector mit den Materialien:\n";
     }
+
     myLoader.print();
 
   }

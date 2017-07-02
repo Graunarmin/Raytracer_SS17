@@ -44,6 +44,7 @@ Scene Scene::loadScene(std::string const& fileIn) const{
     }
     file.close();
   }
+
   myScene.printScene();
 
   return myScene;
@@ -65,5 +66,5 @@ void Scene::printScene() const{
       //for(const auto& i: boxes_){
       //Box b{};
       //std::cout<<b;
-    }
+    //}
     }

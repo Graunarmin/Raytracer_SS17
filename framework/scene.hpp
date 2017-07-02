@@ -13,7 +13,7 @@ struct Scene{
 
   Scene loadScene(std::string const& fileIn) const;
   void addMaterial(Material const& m);
-  void print() const;
+  void printScene() const;
 
 
   //Smartpointer!!
