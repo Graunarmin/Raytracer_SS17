@@ -6,7 +6,6 @@
 #include "sphere.hpp"
 #include "box.hpp"
 #include "material.hpp"
-#include "SDFloader.hpp"
 #include "scene.hpp"
 
 //Konstruktoren Tests, implizieren getter
@@ -265,18 +264,20 @@ TEST_CASE("Print Material", "[6.4 Material]"){
 }
 
 
-TEST_CASE("SDF loader Material", "[6.5 SDF loader]"){
-  std::cout<<"--------------------6.5-----------------\n";
-
-  SDFloader loader{};
-  loader.loadMaterial("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
-}
+// TEST_CASE("SDF loader Material", "[6.5 SDF loader]"){
+//   std::cout<<"--------------------6.5-----------------\n";
+//
+//   SDFloader loader{};
+//   loader.loadMaterial("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
+//   //../../doc/..
+// }
 
 TEST_CASE("Struct Scene", "[6.6 Scene]"){
   std::cout<<"--------------------6.6-----------------\n";
   Scene cooleSzene{};
 
-  cooleSzene.loadScene("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
+  Scene nSzene = cooleSzene.SDFloader("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
+  nSzene.printScene();
 }
 
 

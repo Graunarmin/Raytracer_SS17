@@ -1,6 +1,6 @@
 #include "scene.hpp"
 
-Scene Scene::loadScene(std::string const& fileIn) const{
+Scene Scene::SDFloader(std::string const& fileIn) const{
   Scene myScene;
 
   std::ifstream file;
@@ -17,7 +17,6 @@ Scene Scene::loadScene(std::string const& fileIn) const{
       ss>>keyword;
 
       if(keyword == "define"){
-        ss<<line;
         ss>>keyword;
 
         if(keyword == "material"){
@@ -39,13 +38,62 @@ Scene Scene::loadScene(std::string const& fileIn) const{
 
           myScene.addMaterial(mat);
         }
-        //if(keyword == "shape" oder whatever){...}
+
+        if(keyword == "shape"){
+          ss>>keyword;
+
+          if(keyword == "box"){
+            std::string bName;
+            glm::vec3 bMin;
+            glm::vec3 bMax;
+
+            ss>>bName;
+            ss>>bMin.x;
+            ss>>bMin.y;
+            ss>>bMin.z;
+            ss>>bMax.x;
+            ss>>bMax.y;
+            ss>>bMax.z;
+            ss>>keyword;
+
+            for(const auto& i: myScene.materials_){
+              if(i->name_ == keyword){
+                Box box{bMin, bMax, bName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_}};
+                myScene.addBox(box);
+                break;
+              }
+            }
+          }
+
+          if(keyword == "sphere"){
+            std::string sName;
+            glm::vec3 sCenter;
+            float sRad;
+
+
+            ss>>sName;
+            ss>>sCenter.x;
+            ss>>sCenter.y;
+            ss>>sCenter.z;
+            ss>>sRad;
+            ss>>keyword;
+
+            for(const auto& i: myScene.materials_){
+              if(i->name_ == keyword){
+                Sphere sphere{sCenter, sRad, sName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_}};
+                myScene.addSphere(sphere);
+                break;
+              }
+            }
+
+          }
       }
     }
+  }
     file.close();
   }
 
-  myScene.printScene();
+  //myScene.printScene();
 
   return myScene;
 
@@ -57,14 +105,40 @@ void Scene::addMaterial(Material const& mat){
   std::cout<< p->name_<<" wird gepusht.\n\n";
 }
 
+void Scene::addBox(Box const& b){
+  auto p = std::make_shared<Box>(b);
+  boxes_.push_back(p);
+  std::cout<<"AddBox Funktion: "<<p->getName()<<" wird gepusht.\n\n";
+}
+
+void Scene::addSphere(Sphere const& s){
+  auto p = std::make_shared<Sphere>(s);
+  spheres_.push_back(p);
+  std::cout<<"AddSphere Funktion: "<<p->getName()<<" wird gepusht.\n\n";
+}
+
+// void Scene::addLight(Light const& l){
+//   auto p = std::make_shared<Light>(l);
+//   lights_.push_back(p);
+//   std::cout<<"AddLight Funktion: "<<p->name_<<" wird gepusht.\n\n";
+// }
+
+
 void Scene::printScene() const{
-      std::cout<<"Materiealien der Szene:\n";
-      for(const auto& i: materials_){
-        Material mp{i->name_, i->ka_, i->kd_, i->ks_, i->m_};
-        std::cout<<mp;
-      }
-      //for(const auto& i: boxes_){
-      //Box b{};
-      //std::cout<<b;
-    //}
+    std::cout<<"printScene Funktion:\n"<<"Materiealien der Szene:\n";
+    for(const auto& i: materials_){
+      Material mp = *i;
+      std::cout<<mp;
     }
+
+        std::cout<<"\nObjekte der Szene:\n";
+        for(const auto& i: boxes_){
+          Box b = *i;
+          std::cout<<b;
+        }
+
+        for(const auto& i: spheres_){
+          Sphere s = *i;
+          std::cout<<s;
+        }
+      }

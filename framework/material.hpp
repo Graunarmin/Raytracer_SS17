@@ -15,7 +15,7 @@ struct Material{
     ks_{Color{}},
     m_{0.0f}{}
 
-  Material(std::string name, Color a, Color d, Color s, float m):
+  Material(std::string const& name, Color const& a, Color const& d, Color const& s, float m):
     name_{name},
     ka_{a},
     kd_{d},
