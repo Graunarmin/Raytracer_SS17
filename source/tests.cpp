@@ -268,7 +268,7 @@ TEST_CASE("Print Material", "[6.4 Material]"){
 //   std::cout<<"--------------------6.5-----------------\n";
 //
 //   SDFloader loader{};
-//   loader.loadMaterial("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
+//   loader.loadMaterial("../programmiersprachen-raytracer/doc/material.txt");
 //   //../../doc/..
 // }
 
@@ -276,7 +276,7 @@ TEST_CASE("Struct Scene", "[6.6 Scene]"){
   std::cout<<"--------------------6.6-----------------\n";
   Scene cooleSzene{};
 
-  Scene nSzene = cooleSzene.SDFloader("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
+  Scene nSzene = cooleSzene.SDFloader("../../doc/material.txt");
   nSzene.printScene();
 }
 
