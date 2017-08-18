@@ -9,31 +9,86 @@
 
 #include "renderer.hpp"
 
-Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
-  : width_(w)
-  , height_(h)
-  , colorbuffer_(w*h, Color(0.0, 0.0, 0.0))
-  , filename_(file)
-  , ppm_(width_, height_)
-{}
+
+Renderer::Renderer(unsigned w, unsigned h, std::string const& file,
+                    Scene const& scene, glm::vec3 const& be, glm::vec3 const& ce):
+  width_(w),
+  height_(h),
+  colorbuffer_(w*h, Color(0.0, 0.0, 0.0)),
+  filename_(file),
+  scene_(scene),
+  beobachter_(be),
+  screenCenter_(ce),
+  ppm_(width_, height_){}
 
 void Renderer::render()
 {
-  const std::size_t checkersize = 20;
+  //const std::size_t checkersize = 20;
 
   for (unsigned y = 0; y < height_; ++y) {
     for (unsigned x = 0; x < width_; ++x) {
       Pixel p(x,y);
-      if ( ((x/checkersize)%2) != ((y/checkersize)%2)) {
-        p.color = Color(0.0, 1.0, float(x)/height_);
-      } else {
-        p.color = Color(1.0, 0.0, float(y)/width_);
-      }
+      /*Pixel passend im Koordinatensystem verschieben, sodass der Ursprung
+      /in der Mitte liegt*/
+      glm::vec3 screenP;
+      screenP.x = 1 * (x + (-width_/2));
+      screenP.y = -1 * (y + (-height_/2));
+      screenP.z = screenCenter_.z;
+
+      Ray ray(beobachter_, screenP - beobachter_);//beobachter als Fußpunkt, Differenz zum Schirm ist Richtung
+
+      p.color = color(ray, scene_);
+
+      // if ( ((x/checkersize)%2) != ((y/checkersize)%2)) {
+      //   p.color = Color(0.0, 1.0, float(x)/height_);
+      // } else {
+      //   p.color = Color(1.0, 0.0, float(y)/width_);
+      // }
 
       write(p);
     }
   }
   ppm_.save(filename_);
+}
+
+Color Renderer::color(Ray const& ray, Scene const& scene){
+  bool getroffen = false;
+
+  OptionalHit hitMinB{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
+  Box nearestBox;
+
+  for(const auto& i: scene.boxes_){
+    Box b = *i;
+    float distance = 0.0f;
+    auto hit = b.intersect(ray, distance);
+    //if(hit.hit_){
+      if(hit.t_ < hitMinB.t_){
+        hitMinB = hit; //!!!
+        nearestBox = *i;
+        getroffen = true;
+      }
+    //}
+  }
+  //über nearestBox color aufrufen
+
+  // OptionalHit hitMinS{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
+  // Sphere nearestSphere;
+  //
+  // for(const auto& i: scene.spheres_){
+  //   Sphere s = *i;
+  //   float distance = 0.0f;
+  //   auto hitS = s.intersect(ray, distance);
+  //   if(hitS.t_ < hitMinS.t_){
+  //     hitMinS = hitS;
+  //     nearestSphere = *i;
+  //     getroffen = true;
+  //   }
+  // }
+  if(getroffen){
+    return Color{0.8f, 0.2f, 0.4f};
+  }
+
+  return Color{0.0f};
 }
 
 void Renderer::write(Pixel const& p)
