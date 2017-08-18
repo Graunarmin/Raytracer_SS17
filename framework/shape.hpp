@@ -3,6 +3,7 @@
 #include "color.hpp"
 #include "ray.hpp"
 #include "material.hpp"
+#include "optionalHit.hpp"
 
 #include <glm/vec3.hpp>
 #include <cmath>
@@ -22,7 +23,7 @@ public:
   virtual float area() const = 0;
   virtual float volume() const = 0;
 
-  virtual bool intersect(Ray const& ray, float& t) = 0;
+  virtual OptionalHit intersect(Ray const& ray, float& t) = 0;
 
   //virtual: kann überschrieben werden
   virtual std::ostream& print(std::ostream& os) const;

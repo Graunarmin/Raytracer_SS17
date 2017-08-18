@@ -57,7 +57,9 @@ float Box::volume() const{
   return diff.x * diff.y * diff.z;
 }
 
-bool Box::intersect(Ray const& ray, float& t){
+OptionalHit Box::intersect(Ray const& ray, float& t){
+
+  glm::vec3 intP{0.0f};
 
   float tx1 = (min_.x - ray.origin_.x)/(ray.direction_.x);
   float tx2 = (max_.x - ray.origin_.x)/(ray.direction_.x);
@@ -82,23 +84,26 @@ bool Box::intersect(Ray const& ray, float& t){
 
   if(tF < tN){
     //t = std::abs(tF);
-    return false;
+    return OptionalHit{false, 0, intP};
   }
 
   float tFar = std::min(tF, tFZ);
   float tNear = std::max(tN, tNZ);
 
   //Bedingungen!!
-  if(/*(tFar < 0) ||*/ (tFar < tNear) /*|| (tNear < 0)*/){
+  if(tFar < tNear){
     //t = std::abs(tFar);
-    return false;
+    return OptionalHit{false, 0, intP};
   }
 
   t = std::abs(tNear);
-  return true;
+  //Schnittpunkt berechnen
+  intP.x = ray.origin_.x + (t*ray.direction_.x);
+  intP.y = ray.origin_.y + (t*ray.direction_.y);
+  intP.z = ray.origin_.z + (t*ray.direction_.z);
 
+  return OptionalHit{true, t, intP};
 }
-
 std::ostream& Box::print(std::ostream& os) const{
   //printet erst den Shape-Teil (Name und Farbe)
   Shape::print(os);

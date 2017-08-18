@@ -17,14 +17,6 @@ struct Ray{
     origin_{origin},
     direction_{glm::normalize(direction)}{}
 
-  glm::vec3 const& getOrigin() const{
-    return origin_;
-  }
-
-  glm::vec3 const& getDirection() const{
-    return direction_;
-  }
-
   glm::vec3 origin_;
   glm::vec3 direction_;
   //glm::vec3 distance_; //Strahlenparameter t?

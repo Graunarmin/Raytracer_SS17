@@ -47,9 +47,17 @@ std::ostream& Sphere::print(std::ostream& os) const{
   return os;
 }
 
-bool Sphere::intersect(Ray const& ray, float& t) {
+OptionalHit Sphere::intersect(Ray const& ray, float& t) {
   //distance ist dann der Abstand vom ray.origin zum nächsten Punkt der Kugel
   //bekommt nen Ray und ne "leere" distance, wird auf sphere aufgerufen
-  return glm::intersectRaySphere(ray.origin_, ray.direction_,
+  glm::vec3 intP{0.0f};
+  auto hit = glm::intersectRaySphere(ray.origin_, ray.direction_,
           center_, radius_*radius_, t);
+  if(hit){
+    //Wenn es einen SP git: Koordinaten bestimmen
+    intP.x = ray.origin_.x + (t*ray.direction_.x);
+    intP.y = ray.origin_.y + (t*ray.direction_.y);
+    intP.z = ray.origin_.z + (t*ray.direction_.z);
+  }
+  return OptionalHit{hit, t, intP};
 }

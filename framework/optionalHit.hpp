@@ -5,22 +5,26 @@ struct OptionalHit{
 
   OptionalHit():
     hit_{false},
-    t_{0.0f}{}
+    t_{0.0f},
+    intersectionPoint_{0.0f}/*,
+    color_{0.0f}*/{}
 
-  OptionalHit(bool hit, float distance):
+  OptionalHit(bool hit, float distance, glm::vec3 intP /*,Color color*/):
       hit_{hit},
-      t_{distance}{}
+      t_{distance},
+      intersectionPoint_{intP}/*,
+      color_{color}*/{}
 
-  bool rayHits() const{
-    return hit_;
-  }
+  // OptionalHit(OptionalHit const& hit):
+  //   hit_{hit.hit_},
+  //   t_{hit.t_},
+  //   intersectionPoint_{hit.intersectionPoint_}{}
 
-  float getDistance() const{
-    return t_;
-  }
 
   bool hit_;
   float t_;
+  glm::vec3 intersectionPoint_;
+  //Color color_;
 };
 
 #endif //OPTIONALHIT_HPP

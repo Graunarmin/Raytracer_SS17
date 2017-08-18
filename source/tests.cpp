@@ -201,7 +201,7 @@ TEST_CASE("Ray intersects Box", "[6.3 intersect]"){
 
   Box box{glm::vec3{-2,-2,1}, glm::vec3{2,6,5}, "Zu schneidende Box",
           Material{}};
-  REQUIRE(box.intersect(ray, distance));
+  REQUIRE(box.intersect(ray, distance).hit_);
   REQUIRE(distance == 1.0f);
 
   //Strahl y-Richtung
@@ -213,7 +213,7 @@ TEST_CASE("Ray intersects Box", "[6.3 intersect]"){
   Box box2{glm::vec3{-2,-2,-2}, glm::vec3{2,6,5}, "Zu schneidende Box",
           Material{}};
 
-  REQUIRE(box2.intersect(ray2, distance2));
+  REQUIRE(box2.intersect(ray2, distance2).hit_);
   REQUIRE(distance2 == 2);
 
   //Strahl in x-Richtung
@@ -227,8 +227,44 @@ TEST_CASE("Ray intersects Box", "[6.3 intersect]"){
 
   auto b = box3.intersect(ray3, distance3);
 
-  REQUIRE(b);
+  REQUIRE(b.hit_);
   REQUIRE(distance3 == 2.0f);
+}
+
+  TEST_CASE("does Ray really intersect Box", "[intersect]"){
+
+  std::cout<<"Test Box 1\n";
+  glm::vec3 ray_origin3{0.0 ,0.0 ,0.0};
+  glm::vec3 ray_direction3{3.0 ,0.0 ,1.0};
+  Ray ray3{ray_origin3, ray_direction3};
+  float distance3{0.0};
+
+  Box box3{glm::vec3{5,-1,2}, glm::vec3{10,2,5}, "Zu schneidende Box",
+          Material{}};
+
+  auto b = box3.intersect(ray3, distance3);
+
+  REQUIRE(b.hit_);
+  REQUIRE(distance3 == Approx(sqrt(40)));
+  REQUIRE(b.t_ == distance3);
+  REQUIRE(b.intersectionPoint_.x == 6);
+  REQUIRE(b.intersectionPoint_.y == 0);
+  REQUIRE(b.intersectionPoint_.z == 2);
+
+  std::cout<<"Test Box 2\n";
+  glm::vec3 ray_origin2{0.0 ,0.0 ,0.0};
+  glm::vec3 ray_direction2{6.0 ,1.0 ,2.0};
+  Ray ray2{ray_origin2, ray_direction2};
+  float distance2{0.0};
+
+  Box box2{glm::vec3{5,-1,2}, glm::vec3{10,2,5}, "andere Box",
+          Material{}};
+
+  auto a = box2.intersect(ray2, distance2);
+
+  REQUIRE(a.hit_);
+  REQUIRE(distance2 == Approx(sqrt(41)));
+  REQUIRE(a.t_ == Approx(sqrt(41)));
 }
 
 TEST_CASE("Ray doesn't intersect Box", "[6.3 intersect]"){
@@ -239,7 +275,7 @@ TEST_CASE("Ray doesn't intersect Box", "[6.3 intersect]"){
 
   Box box{glm::vec3{-2,2,1}, glm::vec3{2,6,5}, "Nicht zu schneidende Box",
           Material{}};
-  REQUIRE(!box.intersect(ray, distance));
+  REQUIRE(!box.intersect(ray, distance).hit_);
 }
 
 TEST_CASE("Material Default Constructor", "[6.4 Material]"){
