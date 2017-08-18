@@ -276,7 +276,8 @@ TEST_CASE("Struct Scene", "[6.6 Scene]"){
   std::cout<<"--------------------6.6-----------------\n";
   Scene cooleSzene{};
 
-  Scene nSzene = cooleSzene.SDFloader("/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt");
+  Scene nSzene = cooleSzene.SDFloader("../../doc/material.txt");
+  //"/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/doc/material.txt"
   nSzene.printScene();
 }
 
