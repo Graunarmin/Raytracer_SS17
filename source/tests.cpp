@@ -277,6 +277,7 @@ TEST_CASE("Struct Scene", "[6.6 Scene]"){
   Scene cooleSzene{};
 
   Scene nSzene = cooleSzene.SDFloader("../../doc/material.txt");
+
   nSzene.printScene();
 }
 
