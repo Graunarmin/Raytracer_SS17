@@ -1,4 +1,6 @@
 define material red   1 0 0 1 0 0 1 0 0 1
 define material blue  0 0 1 0 0 1 0 0 1 1
-define shape box tollerKasten -90 10 -300 50 80 -450 red
-define shape sphere krasseKugel -350 0 0 60 blue
+define shape box Box1 50 -50 -300 -75 75 -450 red
+define shape box Wuerfel 100 10 -300 180 70 -350 blue
+define shape sphere Kugel1 0 0 -320 70 blue
+define light light1 1 4 3 1 0 0 0 1 1

@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
   std::string const filepath = "../../doc/material.txt";
   //filename als instream anfragen
   Scene szene{};
-  Scene superSzene = szene.loadScene(filepath);
+  Scene superSzene = szene.SDFloader(filepath);
   superSzene.printScene();
 
 
