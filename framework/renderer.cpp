@@ -58,17 +58,42 @@ void Renderer::render()
 Color Renderer::color(Ray const& ray, Scene const& scene){
   bool boxGetroffen = false;
   bool sphereGetroffen = false;
+  bool lightGetroffen = false;
+
+  Light light{"coolesLicht", glm::vec3{0.0f}, Color{1.0f, 0.9f, 0.9f}, Color{0.0f}};
+
+  OptionalHit hitMinL{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
+  Light nearestLight;
+
+  for(const auto& i: scene.lights_){
+    Light l = *i;
+    //float distance = 0.0f;
+    float rx = (l.position_.x)/(ray.direction_.x);
+    float ry = (l.position_.y)/(ray.direction_.y);
+    float rz = (l.position_.z)/(ray.direction_.z);
+
+    if(rx == ry == rz){
+      lightGetroffen = true;
+      std::cout<<"----Licht wurde getroffen----\n";
+    }
+    // auto hitL
+    // //auto hitL = l.intersect(ray, distance);
+    //   if(hitL.hit_ && (hitL.t_ < hitMinL.t_)){
+    //     hitMinL = hitL;
+    //     nearestLight = *i;
+    //     lightGetroffen = true;
+    //   }
+  }
 
   OptionalHit hitMinB{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
   Box nearestBox;
-  Light light{"coolesLicht", glm::vec3{0.0f}, Color{1.0f, 0.9f, 0.9f}, Color{0.0f}};
 
   for(const auto& i: scene.boxes_){
     Box b = *i;
     float distance = 0.0f;
-    auto hit = b.intersect(ray, distance);
-      if(hit.hit_ && (hit.t_ < hitMinB.t_)){
-        hitMinB = hit; //!!!
+    auto hitB = b.intersect(ray, distance);
+      if(hitB.hit_ && (hitB.t_ < hitMinB.t_)){
+        hitMinB = hitB; //!!!
         nearestBox = *i;
         boxGetroffen = true;
       }
@@ -88,14 +113,26 @@ Color Renderer::color(Ray const& ray, Scene const& scene){
       sphereGetroffen = true;
     }
   }
+  if(lightGetroffen){
+    return light.ia_ + light.ip_;
+  }
+  if(boxGetroffen && sphereGetroffen){
+    if(hitMinB.t_ < hitMinS.t_){
+      return compColor(nearestBox, light);
+    }
+    else{
+      return compColor(nearestSphere, light);
+    }
+  }
 
-  if(boxGetroffen){
+  else if(boxGetroffen){
     return compColor(nearestBox, light); //nearestBox.
   }
 
-  if(sphereGetroffen){
+  else if(sphereGetroffen){
     return compColor(nearestSphere, light);
   }
+
 
   return Color{0.0f};
 }

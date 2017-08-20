@@ -8,6 +8,9 @@
 
 struct Ray{
 
+  //define shape box Wuerfel 100 10 -300 180 70 -350 blue
+  //(define shape sphere Kugel1 -200 0 -350 150 blue
+
   Ray():
     origin_{},
     direction_{}{}
