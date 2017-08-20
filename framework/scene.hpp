@@ -5,6 +5,7 @@
 #include "shape.hpp"
 #include "box.hpp"
 #include "sphere.hpp"
+#include "light.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -18,7 +19,7 @@ struct Scene{
   void addMaterial(Material const& m);
   void addBox(Box const& b);
   void addSphere(Sphere const& s);
-  //void addLight(Light const& l);
+  void addLight(Light const& l);
   void printScene() const;
 
 
@@ -27,7 +28,7 @@ struct Scene{
   //std::vector<std::shared_ptr<Shape>> shapes_;
   std::vector<std::shared_ptr<Box>> boxes_;
   std::vector<std::shared_ptr<Sphere>> spheres_;
-  //std::vector<std::shared_ptr<Light>> lights_; //aufteilen in Grundbeleuchtung und Punktlichtquellen!
+  std::vector<std::shared_ptr<Light>> lights_;
   std::vector<std::shared_ptr<Material>> materials_;
   // Camera camera_;
 };

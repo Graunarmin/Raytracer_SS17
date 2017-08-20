@@ -30,6 +30,8 @@ public:
 
   void render();
   Color color(Ray const& ray, Scene const& scene);
+  Color compColor(Shape const& shape, Light const& light/*,
+          Ray const& n, Ray const& l, Ray const&, Ray const& r, Ray const& v*/);
   void write(Pixel const& p);
 
   inline std::vector<Color> const& colorbuffer() const

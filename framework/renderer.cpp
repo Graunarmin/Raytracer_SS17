@@ -1,12 +1,3 @@
-// -----------------------------------------------------------------------------
-// Copyright  : (C) 2014-2017 Andreas-C. Bernstein
-// License    : MIT (see the file LICENSE)
-// Maintainer : Andreas-C. Bernstein <andreas.bernstein@uni-weimar.de>
-// Stability  : experimental
-//
-// Renderer
-// -----------------------------------------------------------------------------
-
 #include "renderer.hpp"
 
 
@@ -25,8 +16,8 @@ void Renderer::render()
 {
   //const std::size_t checkersize = 20;
   std::cout<<"screenCenter: "<< screenCenter_.z<<"\n";
-  for (int y = 0; y < height_; ++y) {
-    for (int x = 0; x < width_; ++x) {
+  for (unsigned y = 0; y < height_; ++y) {
+    for (unsigned x = 0; x < width_; ++x) {
       Pixel p(x,y);
       /*Pixel passend im Koordinatensystem verschieben, sodass der Ursprung
       /in der Mitte liegt*/
@@ -70,6 +61,7 @@ Color Renderer::color(Ray const& ray, Scene const& scene){
 
   OptionalHit hitMinB{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
   Box nearestBox;
+  Light light{"coolesLicht", glm::vec3{0.0f}, Color{1.0f, 0.9f, 0.9f}, Color{0.0f}};
 
   for(const auto& i: scene.boxes_){
     Box b = *i;
@@ -98,23 +90,26 @@ Color Renderer::color(Ray const& ray, Scene const& scene){
   }
 
   if(boxGetroffen){
-    return Color{0.8f, 0.2f, 0.4f}; //nearestBox.
+    return compColor(nearestBox, light); //nearestBox.
   }
 
   if(sphereGetroffen){
-    return Color{0.0f, 0.8f, 0.2f};
+    return compColor(nearestSphere, light);
   }
 
   return Color{0.0f};
 }
 
-// Color Renderer::comColor(Shape const& shape, Light const& light,
-//         Ray const& n, Ray const& l, Ray const&, Ray const& r, Ray const& v){
-//   Color i{};
-//   Material m = shape.getMaterial();
-//   i.r_ = (m.ka_.r * light.ia_.r)+
-//         (light.ip_.r*(m.kd_.r*(l*n) + m.ks_.r*pow((r*v),m.m_);
-// }
+Color Renderer::compColor(Shape const& shape, Light const& light/*,
+Ray const& n, Ray const& l, Ray const&, Ray const& r, Ray const& v*/){
+   Color i{};
+   Material m = shape.getMaterial();
+   i.r = (m.ka_.r * light.ia_.r);
+//         +(light.ip_.r*(m.kd_.r*(l*n) + m.ks_.r*pow((r*v),m.m_);
+  i.g = (m.ka_.g * light.ia_.g);
+  i.b = (m.ka_.b * light.ia_.b);
+  return i;
+}
 
 void Renderer::write(Pixel const& p)
 {
