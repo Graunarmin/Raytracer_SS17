@@ -8,8 +8,8 @@
 
 int main(int argc, char* argv[])
 {
-  unsigned const width = 800;
-  unsigned const height = 600;
+  unsigned const width = 350;
+  unsigned const height = 300;
   //std::string const filename = "./checkerboard.ppm";
   std::string const filename = "./Szene.ppm";
   std::string const filepath = "../../doc/material.txt";
@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 
   glm::vec3 beobachter{0.0f};
   //beobachter/camera später in scene!!
-  glm::vec3 screenCenter{0.0f, 0.0f, -200.0f};
+  glm::vec3 screenCenter{0.0f, 0.0f, -100.0f};
 
   Renderer app{width, height, filename, superSzene, beobachter, screenCenter};
 

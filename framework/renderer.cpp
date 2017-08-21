@@ -11,6 +11,9 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file,
   beobachter_(be),
   screenCenter_(ce),
   ppm_(width_, height_){}
+  
+  Box nearestBox{};
+  Sphere nearestSphere{};
 
 
 //Berechnen der Rays durch jedes einzelne Pixel
@@ -37,7 +40,7 @@ void Renderer::render(){
       Ray ray(beobachter_, screenP);
       
       //Berechnen der Farbe für jedes Pixel
-      p.color = color(ray, scene_);
+      p.color = raytracer(ray);
 
       write(p);
     }
@@ -45,22 +48,65 @@ void Renderer::render(){
   ppm_.save(filename_);
 }
 
+OptionalHit Renderer::hitBox(Ray const& ray){
+
+  OptionalHit boxGetroffen{};
+  boxGetroffen.hit_ = false;
+
+  //Berechnen Schnitt Ray durch Pixel mit jeder Box
+  OptionalHit hitMinB{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
+
+  for(const auto& i: scene_.boxes_){
+    Box b = *i;
+    float distance = 0.0f;
+    auto hitB = b.intersect(ray, distance);
+      if(hitB.hit_ && (hitB.t_ < hitMinB.t_)){
+        hitMinB = hitB; 
+        nearestBox = *i;
+        boxGetroffen.hit_ = true;
+        boxGetroffen.intersectionPoint_ = hitMinB.intersectionPoint_;
+        boxGetroffen.t_ = hitMinB.t_;
+      } 
+  }
+  return boxGetroffen;
+}
+
+  OptionalHit Renderer::hitSphere(Ray const& ray){
+    
+    OptionalHit sphereGetroffen{};
+    sphereGetroffen.hit_ = false;
+
+  //Berechnen Schnitt Ray durch Pixel mit jeder Kugel
+  OptionalHit hitMinS{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
+
+  for(const auto& i: scene_.spheres_){
+    Sphere s = *i;
+    float distance = 0.0f;
+    auto hitS = s.intersect(ray, distance);
+    if(hitS.hit_ && (hitS.t_ < hitMinS.t_)){
+      hitMinS = hitS;
+      nearestSphere = *i;
+      sphereGetroffen.hit_ = true;
+      sphereGetroffen.intersectionPoint_ = hitMinS.intersectionPoint_;
+      sphereGetroffen.t_ = hitMinS.t_;
+    }
+  }
+
+  return sphereGetroffen;
+
+}
+
 
  //Berechnen der Farbe
-Color Renderer::color(Ray const& ray, Scene const& scene){
+Color Renderer::raytracer(Ray const& ray){
   
-  bool boxGetroffen = false;
-  bool sphereGetroffen = false;
-  bool lightGetroffen = false;
+  OptionalHit boxGetroffen = hitBox(ray);
+  OptionalHit sphereGetroffen = hitSphere(ray);
+  
   Light currentLight;
-  glm::vec3 schnittpunktNearestB;
-  glm::vec3 schnittpunktNearestS;
-
-  //Light light{"coolesLicht", glm::vec3{0.0f}, Color{1.0f, 0.9f, 0.9f}, Color{0.5f}};
-  //Light nearestLight;
   
   //Licht einlesen
-  for(const auto& i: scene.lights_){
+  for(const auto& i: scene_.lights_){
     currentLight = *i;
     /*float distance = 0.0f;
     float rx = ((currentLight.position_.x) - (ray.origin_.x)) / (ray.direction_.x);
@@ -80,82 +126,52 @@ Color Renderer::color(Ray const& ray, Scene const& scene){
 
   }
 
-  //Berechnen Schnitt Ray durch Pixel mit jeder Box
-  OptionalHit hitMinB{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
-  Box nearestBox;
-
-  for(const auto& i: scene.boxes_){
-    Box b = *i;
-    float distance = 0.0f;
-    auto hitB = b.intersect(ray, distance);
-      if(hitB.hit_ && (hitB.t_ < hitMinB.t_)){
-        hitMinB = hitB; 
-        nearestBox = *i;
-        boxGetroffen = true;
-        schnittpunktNearestB = hitB.intersectionPoint_;
-      }
-  }
-
-  //Berechnen Schnitt Ray durch Pixel mit jeder Kugel
-  OptionalHit hitMinS{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
-  Sphere nearestSphere;
-
-  for(const auto& i: scene.spheres_){
-    Sphere s = *i;
-    float distance = 0.0f;
-    auto hitS = s.intersect(ray, distance);
-    if(hitS.hit_ && (hitS.t_ < hitMinS.t_)){
-      hitMinS = hitS;
-      nearestSphere = *i;
-      sphereGetroffen = true;
-      schnittpunktNearestS = hitS.intersectionPoint_;
-    }
-  }
-
   /*if(lightGetroffen){
     return light.ia_ + light.ip_;
   }*/
 
   //wenn Box und Sphere überlappen: kleinste Distanz
-  if(boxGetroffen && sphereGetroffen){
+  if(boxGetroffen.hit_ && sphereGetroffen.hit_){
 
     //Falls Box näher
-    if(hitMinB.t_ < hitMinS.t_){
-      //glm::vec3 l = glm::normalize(currentLight.position_ - schnittpunktNearestB);
+    if(boxGetroffen.t_ < sphereGetroffen.t_){
     
-      glm::vec3 n = glm::normalize(nearestBox.computeNorm(hitMinB));
+      glm::vec3 n = glm::normalize(nearestBox.computeNorm(boxGetroffen));
 
-      glm::vec3 v = glm::normalize(beobachter_ - schnittpunktNearestB);
-
-      //glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
+      glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
     
-      return compColor(nearestBox, currentLight, n, v, schnittpunktNearestB);
+      return compColor(nearestBox, currentLight, n, v, boxGetroffen.intersectionPoint_);
     }
     //falls Sphere näher
-    /*else{
-      return compColor(nearestSphere, light);
-    }*/
+    else{
+
+      glm::vec3 v = glm::normalize(beobachter_ - sphereGetroffen.intersectionPoint_);
+
+      glm::vec3 n = glm::normalize(sphereGetroffen.intersectionPoint_ - nearestSphere.getCenter());
+
+      return compColor(nearestSphere, currentLight, n, v, sphereGetroffen.intersectionPoint_);
+    }
   }
 
   //Nur Box getroffen
-  else if(boxGetroffen){
-
-    //glm::vec3 l = glm::normalize(currentLight.position_ - schnittpunktNearestB);
+  else if(boxGetroffen.hit_){
     
-    glm::vec3 n = glm::normalize(nearestBox.computeNorm(hitMinB));
+   glm::vec3 n = glm::normalize(nearestBox.computeNorm(boxGetroffen));
 
-    glm::vec3 v = glm::normalize(beobachter_ - schnittpunktNearestB);
-
-    //glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
+      glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
     
-    return compColor(nearestBox, currentLight, n, v, schnittpunktNearestB);
-    //return compColor(nearestBox, currentLight, n, l, r, v);
+      return compColor(nearestBox, currentLight, n, v, boxGetroffen.intersectionPoint_);
   }
 
   //Nur Sphere getroffen
-  /*else if(sphereGetroffen){
-    return compColor(nearestSphere, light);
-  }*/
+  else if(sphereGetroffen.hit_){
+
+    glm::vec3 v = glm::normalize(beobachter_ - sphereGetroffen.intersectionPoint_);
+
+      glm::vec3 n = glm::normalize(sphereGetroffen.intersectionPoint_ - nearestSphere.getCenter());
+
+      return compColor(nearestSphere, currentLight, n, v, sphereGetroffen.intersectionPoint_);
+  }
 
   //Background Farbe
   return Color{0.9f};
@@ -168,16 +184,24 @@ glm::vec3 const& n, glm::vec3 const& v, glm::vec3 const& schnP){
    Color summeDif{};
    Material m = shape.getMaterial();
 
-   //Nur für Box!!
    for(const auto& h: scene_.lights_){
      Light j = *h;
+     int delta = 1;
 
      glm::vec3 l = glm::normalize(light.position_ - schnP);
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
+
+     Ray thomas{schnP, l};
+     OptionalHit boxObst = hitBox(thomas);
+     OptionalHit sphereObst = hitSphere(thomas);
+
+     /*if(boxObst.hit_ || sphereObst.hit_){
+        delta = 0;
+     }*/
      
-     summeDif.r += (j.ip_.r * (m.kd_.r * glm::dot(l,n) + m.ks_.r * pow(glm::dot(r,v),m.m_)));
-     summeDif.g += (j.ip_.g * (m.kd_.g * glm::dot(l,n) + m.ks_.g * pow(glm::dot(r,v),m.m_)));
-     summeDif.b += (j.ip_.b * (m.kd_.b * glm::dot(l,n) + m.ks_.b * pow(glm::dot(r,v),m.m_)));
+     summeDif.r += (j.ip_.r * delta * (m.kd_.r * glm::dot(l,n) + m.ks_.r * pow(glm::dot(r,v),m.m_)));
+     summeDif.g += (j.ip_.g * delta * (m.kd_.g * glm::dot(l,n) + m.ks_.g * pow(glm::dot(r,v),m.m_)));
+     summeDif.b += (j.ip_.b * delta * (m.kd_.b * glm::dot(l,n) + m.ks_.b * pow(glm::dot(r,v),m.m_)));
    }
 
    i.r = (m.ka_.r * light.ia_.r) + summeDif.r;

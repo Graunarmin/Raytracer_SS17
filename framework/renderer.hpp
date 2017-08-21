@@ -30,7 +30,9 @@ public:
                       Scene const& scene, glm::vec3 const& be, glm::vec3 const& ce);
 
   void render();
-  Color color(Ray const& ray, Scene const& scene);
+  OptionalHit hitBox(Ray const& ray);
+  OptionalHit hitSphere(Ray const& ray);
+  Color raytracer(Ray const& ray);
   Color compColor(Shape const& shape, Light const& light,
         glm::vec3 const& n, glm::vec3 const& v, glm::vec3 const& schnP);
   void write(Pixel const& p);
