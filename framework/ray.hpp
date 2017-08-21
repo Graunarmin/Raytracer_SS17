@@ -20,6 +20,13 @@ struct Ray{
     origin_{origin},
     direction_{glm::normalize(direction)}{}
 
+  friend std::ostream& operator<<(std::ostream&os, Ray const& ray){
+    os<<"Ray origin: (" << ray.origin_.x << ", "<<ray.origin_.y<<", "<<
+        ray.origin_.y<<"), direction: ("<<ray.direction_.x<<", "<<
+        ray.direction_.y<<", "<<ray.direction_.z<<")\n";
+    return os;
+  }
+
   glm::vec3 origin_;
   glm::vec3 direction_;
   //glm::vec3 distance_; //Strahlenparameter t?

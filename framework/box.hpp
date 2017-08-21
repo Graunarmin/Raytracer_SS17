@@ -1,6 +1,8 @@
 #ifndef BOX_HPP
 #define BOX_HPP
 #include "shape.hpp"
+#include <cmath>
+#include <catch.hpp>
 
 class Box : public Shape{
 
@@ -22,6 +24,8 @@ public:
   OptionalHit intersect(Ray const& ray, float& t) override;
 
   std::ostream& print(std::ostream& os) const override;
+
+  glm::vec3 computeNorm(OptionalHit const& hit) const;
 
 private:
   //Raumdiagonale zwischen min und max

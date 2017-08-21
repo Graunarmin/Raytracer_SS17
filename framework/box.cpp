@@ -11,12 +11,12 @@ Box::Box(glm::vec3 const& min, glm::vec3 const& max,
     Shape{name, color},
     min_{min},
     max_{max}{
-      min_.x = std::min(min.x, max.x);
+      /*min_.x = std::min(min.x, max.x);
       min_.y = std::min(min.y, max.y);
       min_.z = std::min(min.z, max.z);
       max_.x = std::max(min.x, max.x);
       max_.y = std::max(min.y, max.y);
-      max_.z = std::max(min.z, max.z);
+      max_.z = std::max(min.z, max.z);*/
     }
 
 Box::Box(glm::vec3 const& min, glm::vec3 const& max,
@@ -24,12 +24,12 @@ Box::Box(glm::vec3 const& min, glm::vec3 const& max,
   Shape{name, material},
   min_{min},
   max_{max}{
-    min_.x = std::min(min.x, max.x);
+    /*min_.x = std::min(min.x, max.x);
     min_.y = std::min(min.y, max.y);
     min_.z = std::min(min.z, max.z);
     max_.x = std::max(min.x, max.x);
     max_.y = std::max(min.y, max.y);
-    max_.z = std::max(min.z, max.z);
+    max_.z = std::max(min.z, max.z);*/
   }
 
 Box::~Box(){
@@ -104,6 +104,7 @@ OptionalHit Box::intersect(Ray const& ray, float& t){
 
   return OptionalHit{true, t, intP};
 }
+
 std::ostream& Box::print(std::ostream& os) const{
   //printet erst den Shape-Teil (Name und Farbe)
   Shape::print(os);
@@ -111,4 +112,28 @@ std::ostream& Box::print(std::ostream& os) const{
   os << "Min: " << "(" << min_.x << "," << min_.y << "," << min_.z << ")\n"
   << "Max: " << "(" << max_.x << "," << max_.y << "," << max_.z << ")\n" << "\n" ;
   return os;
+}
+
+glm::vec3 Box::computeNorm(OptionalHit const& hit) const{
+  if(hit.intersectionPoint_.x == Approx(min_.x)){   //Dann yz Ebene n = (0,1,1)
+    return glm::vec3{0.0f, 1.0f, 1.0f};
+  }
+  else if(hit.intersectionPoint_.x == Approx(max_.x)){
+    return glm::vec3{0.0f, 1.0f, 1.0f};
+  }
+  else if(hit.intersectionPoint_.y == Approx(min_.y)){   //Dann xz Ebene n = (1,0,1)
+    return glm::vec3{1.0f, 0.0f, 1.0f};
+  }
+  else if(hit.intersectionPoint_.y == Approx(max_.y)){
+    return glm::vec3{1.0f, 0.0f, 1.0f};
+  }
+  else if(hit.intersectionPoint_.z == Approx(min_.z)){   //Dann xy Ebene n = (1,1,0)
+    return glm::vec3{1.0f, 1.0f, 0.0f};
+  }
+  else if(hit.intersectionPoint_.z == Approx(max_.z)){
+    return glm::vec3{1.0f, 1.0f, 0.0f};
+  }
+  else{
+     return glm::vec3{};
+  }
 }

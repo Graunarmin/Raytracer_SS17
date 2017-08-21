@@ -14,6 +14,7 @@
 #include "pixel.hpp"
 #include "ppmwriter.hpp"
 #include "scene.hpp"
+#include "box.hpp"
 #include <string>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
@@ -30,8 +31,8 @@ public:
 
   void render();
   Color color(Ray const& ray, Scene const& scene);
-  Color compColor(Shape const& shape, Light const& light/*,
-          Ray const& n, Ray const& l, Ray const&, Ray const& r, Ray const& v*/);
+  Color compColor(Shape const& shape, Light const& light,
+        glm::vec3 const& n, glm::vec3 const& v, glm::vec3 const& schnP);
   void write(Pixel const& p);
 
   inline std::vector<Color> const& colorbuffer() const
