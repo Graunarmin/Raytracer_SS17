@@ -158,9 +158,9 @@ Color Renderer::raytracer(Ray const& ray){
     
    glm::vec3 n = glm::normalize(nearestBox.computeNorm(boxGetroffen));
 
-      glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
+   glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
     
-      return compColor(nearestBox, currentLight, n, v, boxGetroffen.intersectionPoint_);
+   return compColor(nearestBox, currentLight, n, v, boxGetroffen.intersectionPoint_);
   }
 
   //Nur Sphere getroffen
@@ -168,9 +168,9 @@ Color Renderer::raytracer(Ray const& ray){
 
     glm::vec3 v = glm::normalize(beobachter_ - sphereGetroffen.intersectionPoint_);
 
-      glm::vec3 n = glm::normalize(sphereGetroffen.intersectionPoint_ - nearestSphere.getCenter());
+    glm::vec3 n = glm::normalize(sphereGetroffen.intersectionPoint_ - nearestSphere.getCenter());
 
-      return compColor(nearestSphere, currentLight, n, v, sphereGetroffen.intersectionPoint_);
+    return compColor(nearestSphere, currentLight, n, v, sphereGetroffen.intersectionPoint_);
   }
 
   //Background Farbe
@@ -180,6 +180,7 @@ Color Renderer::raytracer(Ray const& ray){
 //Berechnung der Farbe mit Beleuchtungsmodell
 Color Renderer::compColor(Shape const& shape, Light const& light,
 glm::vec3 const& n, glm::vec3 const& v, glm::vec3 const& schnP){
+  
    Color i{};
    Color summeDif{};
    Material m = shape.getMaterial();
