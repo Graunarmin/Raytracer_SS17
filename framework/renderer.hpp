@@ -33,8 +33,8 @@ public:
   OptionalHit hitBox(Ray const& ray);
   OptionalHit hitSphere(Ray const& ray);
   Color raytracer(Ray const& ray);
-  Color compColor(Shape const& shape, Light const& light,
-        glm::vec3 const& n, glm::vec3 const& v, glm::vec3 const& schnP);
+  Color compColor(Shape const& shape, glm::vec3 const& n, 
+  glm::vec3 const& v, glm::vec3 const& schnP);
   void write(Pixel const& p);
 
   inline std::vector<Color> const& colorbuffer() const

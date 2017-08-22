@@ -103,10 +103,10 @@ Color Renderer::raytracer(Ray const& ray){
   OptionalHit boxGetroffen = hitBox(ray);
   OptionalHit sphereGetroffen = hitSphere(ray);
   
-  Light currentLight;
+  //Light currentLight;
   
   //Licht einlesen
-  for(const auto& i: scene_.lights_){
+  /*for(const auto& i: scene_.lights_){
     currentLight = *i;
     /*float distance = 0.0f;
     float rx = ((currentLight.position_.x) - (ray.origin_.x)) / (ray.direction_.x);
@@ -122,9 +122,9 @@ Color Renderer::raytracer(Ray const& ray){
     if(rx == ry || ry == rz || rx == rz){
       lightGetroffen = true;
       std::cout<<"----Licht wurde fast getroffen----\n";
-    }*/
+    }
 
-  }
+  }*/
 
   /*if(lightGetroffen){
     return light.ia_ + light.ip_;
@@ -140,7 +140,7 @@ Color Renderer::raytracer(Ray const& ray){
 
       glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
     
-      return compColor(nearestBox, currentLight, n, v, boxGetroffen.intersectionPoint_);
+      return compColor(nearestBox, n, v, boxGetroffen.intersectionPoint_);
     }
     //falls Sphere näher
     else{
@@ -149,7 +149,7 @@ Color Renderer::raytracer(Ray const& ray){
 
       glm::vec3 n = glm::normalize(sphereGetroffen.intersectionPoint_ - nearestSphere.getCenter());
 
-      return compColor(nearestSphere, currentLight, n, v, sphereGetroffen.intersectionPoint_);
+      return compColor(nearestSphere, n, v, sphereGetroffen.intersectionPoint_);
     }
   }
 
@@ -160,7 +160,7 @@ Color Renderer::raytracer(Ray const& ray){
 
    glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
     
-   return compColor(nearestBox, currentLight, n, v, boxGetroffen.intersectionPoint_);
+   return compColor(nearestBox, n, v, boxGetroffen.intersectionPoint_);
   }
 
   //Nur Sphere getroffen
@@ -170,7 +170,7 @@ Color Renderer::raytracer(Ray const& ray){
 
     glm::vec3 n = glm::normalize(sphereGetroffen.intersectionPoint_ - nearestSphere.getCenter());
 
-    return compColor(nearestSphere, currentLight, n, v, sphereGetroffen.intersectionPoint_);
+    return compColor(nearestSphere, n, v, sphereGetroffen.intersectionPoint_);
   }
 
   //Background Farbe
@@ -178,18 +178,21 @@ Color Renderer::raytracer(Ray const& ray){
 }
 
 //Berechnung der Farbe mit Beleuchtungsmodell
-Color Renderer::compColor(Shape const& shape, Light const& light,
-glm::vec3 const& n, glm::vec3 const& v, glm::vec3 const& schnP){
+Color Renderer::compColor(Shape const& shape, glm::vec3 const& n, 
+glm::vec3 const& v, glm::vec3 const& schnP){
   
    Color i{};
    Color summeDif{};
    Material m = shape.getMaterial();
 
+   
    for(const auto& h: scene_.lights_){
      Light j = *h;
      int delta = 1;
+     /*delta 0 = Objekt dazwischen
+     delta 1 = kein Objekt*/
 
-     glm::vec3 l = glm::normalize(light.position_ - schnP);
+     glm::vec3 l = glm::normalize(j.position_ - schnP);
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
      Ray thomas{schnP, l};
@@ -197,7 +200,13 @@ glm::vec3 const& n, glm::vec3 const& v, glm::vec3 const& schnP){
      OptionalHit sphereObst = hitSphere(thomas);
 
      /*if(boxObst.hit_ || sphereObst.hit_){
-        delta = 0;
+       float lightdist =  glm::length(l);
+       if((lightdist < boxObst.t_) || (lightdist < sphereObst.t_)){
+         delta = 1;
+       }
+     }
+     else{
+       delta = 1;
      }*/
      
      summeDif.r += (j.ip_.r * delta * (m.kd_.r * glm::dot(l,n) + m.ks_.r * pow(glm::dot(r,v),m.m_)));
@@ -205,9 +214,14 @@ glm::vec3 const& n, glm::vec3 const& v, glm::vec3 const& schnP){
      summeDif.b += (j.ip_.b * delta * (m.kd_.b * glm::dot(l,n) + m.ks_.b * pow(glm::dot(r,v),m.m_)));
    }
 
-   i.r = (m.ka_.r * light.ia_.r) + summeDif.r;
-   i.g = (m.ka_.g * light.ia_.g) + summeDif.g;
-   i.b = (m.ka_.b * light.ia_.b) + summeDif.b;
+   for(const auto& u: scene_.lights_){
+    Light light = *u;
+
+    i.r += (m.ka_.r * light.ia_.r) + summeDif.r;
+    i.g += (m.ka_.g * light.ia_.g) + summeDif.g;
+    i.b += (m.ka_.b * light.ia_.b) + summeDif.b;
+
+   }
   
   Color f{};
   f.r = i.r / (i.r +1);
