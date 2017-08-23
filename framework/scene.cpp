@@ -117,6 +117,10 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
             }//for zu
 
           }//if sphere zu
+
+          // if(keyword == "composite"){
+          //
+          // }
       }//if shape zu
 
     }//if define zu
@@ -135,21 +139,17 @@ void Scene::addMaterial(Material const& mat){
   std::cout<<"AddMaterial Funktion: "<< p->name_<<" wird gepusht.\n\n";
 }
 
-// void Scene::addShape(Shape const& shape){
-//   auto p = std::make_shared<Shape>(shape);
-//   shapes_.push_back(p);
-//   //std::cout<< *p.getName()<<" wird gepusht.\n\n";
-// }
-
 void Scene::addBox(Box const& b){
   auto p = std::make_shared<Box>(b);
   boxes_.push_back(p);
+  shapes_.push_back(p);
   std::cout<<"AddBox Funktion: "<<p->getName()<<" wird gepusht.\n\n";
 }
 
 void Scene::addSphere(Sphere const& s){
   auto p = std::make_shared<Sphere>(s);
   spheres_.push_back(p);
+  shapes_.push_back(p);
   std::cout<<"AddSphere Funktion: "<<p->getName()<<" wird gepusht.\n\n";
 }
 
@@ -167,14 +167,18 @@ void Scene::printScene() const{
       }
 
       std::cout<<"\nObjekte der Szene:\n";
-      for(const auto& i: boxes_){
-        Box b = *i;
-        std::cout<<b;
-      }
 
-      for(const auto& i: spheres_){
-        Sphere s = *i;
-        std::cout<<s;
+      // for(const auto& i: boxes_){
+      //   std::cout<< *i;
+      // }
+      //
+      // for(const auto& i: spheres_){
+      //   std::cout<< *i;
+      // }
+      //
+      // std::cout<<"Und im Shapes Container stehen: \n";
+      for(const auto& i: shapes_){
+        std::cout<< *i;
       }
 
       std::cout<<"\nLichtquellen der Szene:\n";

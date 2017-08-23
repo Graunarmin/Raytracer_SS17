@@ -25,7 +25,7 @@ struct Scene{
 
 
   //Smartpointer!!
-  //std::vector<std::shared_ptr<Shape>> shapes_;
+  std::vector<std::shared_ptr<Shape>> shapes_;
   std::vector<std::shared_ptr<Box>> boxes_;
   std::vector<std::shared_ptr<Sphere>> spheres_;
   std::vector<std::shared_ptr<Light>> lights_;
