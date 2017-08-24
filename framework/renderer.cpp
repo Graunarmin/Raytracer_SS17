@@ -203,7 +203,9 @@ Color Renderer::compColor(Shape const& shape, glm::vec3 const& n,
      OptionalHit boxObstacle = hitBox(lightRay);
      OptionalHit sphereObstacle = hitSphere(lightRay);
 
-     if(boxObstacle.hit_ || sphereObstacle.hit_){
+     //vielleicht stimmt was mit OptionalHit nicht???
+
+     if(!boxObstacle.hit_ || !sphereObstacle.hit_){
        float lightDist =  glm::length(l);
        if((lightDist < boxObstacle.t_) || (lightDist < sphereObstacle.t_)){
          //dann liegt nichts dazwischen!
