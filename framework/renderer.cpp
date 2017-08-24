@@ -54,6 +54,7 @@ Color Renderer::raytracer(Ray const& ray){
  OptionalHit boxGetroffen = hitBox(ray);
  OptionalHit sphereGetroffen = hitSphere(ray);
 
+
  //Light currentLight;
 
  //Licht einlesen
@@ -85,14 +86,14 @@ Color Renderer::raytracer(Ray const& ray){
  if(boxGetroffen.hit_ && sphereGetroffen.hit_){
    //Falls Box näher
    if(boxGetroffen.t_ < sphereGetroffen.t_){
-     glm::vec3 n = glm::normalize(nearestBox.computeNorm(boxGetroffen));
+     glm::vec3 n = nearestBox.computeNorm(boxGetroffen);
      glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
      //return compColor(boxGetroffen, n, v);
      return compColor(nearestBox, n, v, boxGetroffen.intersectionPoint_);
    }
    //falls Sphere näher
    else{
-     glm::vec3 n = glm::normalize(sphereGetroffen.intersectionPoint_ - nearestSphere.getCenter());
+     glm::vec3 n = nearestSphere.computeNorm(sphereGetroffen);
      glm::vec3 v = glm::normalize(beobachter_ - sphereGetroffen.intersectionPoint_);
      //return compColor(sphereGetroffen, n, v);
      return compColor(nearestSphere, n, v, sphereGetroffen.intersectionPoint_);
@@ -101,17 +102,29 @@ Color Renderer::raytracer(Ray const& ray){
 
  //Nur Box getroffen
  else if(boxGetroffen.hit_){
-  glm::vec3 n = glm::normalize(nearestBox.computeNorm(boxGetroffen));
-  glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
-  return compColor(nearestBox, n, v, boxGetroffen.intersectionPoint_);
+   glm::vec3 n = nearestBox.computeNorm(boxGetroffen);
+   glm::vec3 v = glm::normalize(beobachter_ - boxGetroffen.intersectionPoint_);
+   //return compColor(boxGetroffen, n, v);
+   return compColor(nearestBox, n, v, boxGetroffen.intersectionPoint_);
  }
 
  //Nur Sphere getroffen
  else if(sphereGetroffen.hit_){
+   glm::vec3 n = nearestSphere.computeNorm(sphereGetroffen);
    glm::vec3 v = glm::normalize(beobachter_ - sphereGetroffen.intersectionPoint_);
-   glm::vec3 n = glm::normalize(sphereGetroffen.intersectionPoint_ - nearestSphere.getCenter());
+   //return compColor(sphereGetroffen, n, v);
    return compColor(nearestSphere, n, v, sphereGetroffen.intersectionPoint_);
  }
+
+ /*funktionert nicht wegen abstract Class Shape -.-
+ Sobald irgendjemand das mit dem scheiß Container hinbekommt brauchen wird
+ nur noch diese drei Zeilen.*/
+
+ // OptionalHit nearestH = hitObject(ray);
+ // if(nearestH.hit_){
+ //   glm::vec3 n = nearestH.nearestShape_->computeNorm(nearestH);
+ //   glm::vec3 v = glm::normalize(beobachter_ - nearestH.intersectionPoint_);
+ // }
 
  //Background Farbe
  return Color{0.9f};
@@ -153,66 +166,63 @@ OptionalHit Renderer::hitSphere(Ray const& ray){
   return sphereGetroffen;
 }
 
+//nur theoretisch, falls man alle in einen Container packen KÖNNTE
+OptionalHit Renderer::hitObject(Ray const& ray){
+
+  OptionalHit nearestHit{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
+
+  for(auto const& i: scene_.shapes_){
+    float distance = 0.0f;
+    auto currentHit = i -> intersect(ray, distance);
+    if(currentHit.hit_&&(currentHit.t_ < nearestHit.t_)){
+      nearestHit = currentHit;
+      //nearestHit.nearestShape_ = std::make_shared<Box>(i); *i -> createPointer());
+    }
+  }
+  return nearestHit;
+}
+
 
 //Berechnung der Farbe mit Beleuchtungsmodell
 Color Renderer::compColor(Shape const& shape, glm::vec3 const& n,
-      glm::vec3 const& v, glm::vec3 const& schnP){
+      glm::vec3 const& v, glm::vec3 const& intP){
 
    Color i{};
    Color summeDif{0.0f};
    Material m = shape.getMaterial();
 
-   for(const auto& h: scene_.lights_){
+   for(auto const& h: scene_.lights_){
      Light j = *h;
-     //int delta = 1;
-     /*delta 0 = Objekt dazwischen
-     delta 1 = kein Objekt*/
 
-     glm::vec3 l = glm::normalize(j.position_ - schnP);
+     glm::vec3 l = glm::normalize(j.position_ - intP);
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
-     Ray thomas{schnP, l};
-     thomas.origin_ += thomas.direction_ * 0.001f;
-     OptionalHit boxObst = hitBox(thomas);
-     OptionalHit sphereObst = hitSphere(thomas);
+     Ray lightRay{intP, l};
+     lightRay.origin_ += lightRay.direction_ * 0.001f;
 
-     if(boxObst.hit_ || sphereObst.hit_){
-       float lightdist =  glm::length(l);
-       if((lightdist < boxObst.t_) || (lightdist < sphereObst.t_)){
+     OptionalHit boxObstacle = hitBox(lightRay);
+     OptionalHit sphereObstacle = hitSphere(lightRay);
 
-         summeDif.r += (j.ip_.r * (m.kd_.r * std::max(glm::dot(l,n), 0.0f) + m.ks_.r * pow(glm::dot(r,v),m.m_)));
-         summeDif.g += (j.ip_.g * (m.kd_.g * std::max(glm::dot(l,n), 0.0f) + m.ks_.g * pow(glm::dot(r,v),m.m_)));
-         summeDif.b += (j.ip_.b * (m.kd_.b * std::max(glm::dot(l,n), 0.0f) + m.ks_.b * pow(glm::dot(r,v),m.m_)));
+     if(boxObstacle.hit_ || sphereObstacle.hit_){
+       float lightDist =  glm::length(l);
+       if((lightDist < boxObstacle.t_) || (lightDist < sphereObstacle.t_)){
+         //dann liegt nichts dazwischen!
+         summeDif.r += (j.ip_.r * ((m.kd_.r * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.r * pow(glm::dot(r,v),m.m_))));
+         summeDif.g += (j.ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
+         summeDif.b += (j.ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
 
-       }
+       }//if zu
+     }//if zu
+   }//for zu
 
+  //  i.r += (m.ka_.r * j.ia_.r) + summeDif.r;
+  //  i.g += (m.ka_.g * j.ia_.g) + summeDif.g;
+  //  i.b += (m.ka_.b * j.ia_.b) + summeDif.b;
 
-       /*float lightdist =  glm::length(l);
-       if((lightdist < boxObst.t_) || (lightdist < sphereObst.t_)){
-         delta = 1;
-       }
-     }
-     else{
-       delta = 1;*/
-     }
-
-     i.r += (m.ka_.r * j.ia_.r) + summeDif.r;
-     i.g += (m.ka_.g * j.ia_.g) + summeDif.g;
-     i.b += (m.ka_.b * j.ia_.b) + summeDif.b;
-
-     /*summeDif.r += (j.ip_.r * delta * (m.kd_.r * std::max(glm::dot(l,n), 0.0f) + m.ks_.r * pow(glm::dot(r,v),m.m_)));
-     summeDif.g += (j.ip_.g * delta * (m.kd_.g * std::max(glm::dot(l,n), 0.0f) + m.ks_.g * pow(glm::dot(r,v),m.m_)));
-     summeDif.b += (j.ip_.b * delta * (m.kd_.b * std::max(glm::dot(l,n), 0.0f) + m.ks_.b * pow(glm::dot(r,v),m.m_)));*/
-   }
-
-   /*for(const auto& u: scene_.lights_){
-    Light light = *u;
-
-    i.r += (m.ka_.r * light.ia_.r) + summeDif.r;
-    i.g += (m.ka_.g * light.ia_.g) + summeDif.g;
-    i.b += (m.ka_.b * light.ia_.b) + summeDif.b;
-
-   }*/
+  //EIN ambientes Licht pro Szene wird in der Szenenbeschreibung eingelesen!
+   i.r += (m.ka_.r * scene_.ambientLight_.ia_.r) + summeDif.r;
+   i.g += (m.ka_.g * scene_.ambientLight_.ia_.r) + summeDif.g;
+   i.b += (m.ka_.b * scene_.ambientLight_.ia_.r) + summeDif.b;
 
   Color f{};
   f.r = i.r / (i.r +1);

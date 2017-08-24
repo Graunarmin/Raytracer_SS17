@@ -22,6 +22,8 @@
 #include <cmath>
 #include <iostream>
 #include <limits>
+#include <typeinfo>
+#include <cstdlib>
 
 class Renderer
 {
@@ -32,8 +34,9 @@ public:
   void render();
   OptionalHit hitBox(Ray const& ray);
   OptionalHit hitSphere(Ray const& ray);
+  OptionalHit hitObject(Ray const& ray);
   Color raytracer(Ray const& ray);
-  Color compColor(Shape const& shape, glm::vec3 const& n, 
+  Color compColor(Shape const& shape, glm::vec3 const& n,
   glm::vec3 const& v, glm::vec3 const& schnP);
   void write(Pixel const& p);
 

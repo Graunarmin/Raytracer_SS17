@@ -24,14 +24,17 @@ public:
   virtual float volume() const = 0;
 
   virtual OptionalHit intersect(Ray const& ray, float& t) = 0;
-
+  virtual glm::vec3 computeNorm(OptionalHit const& hit) const = 0;
   //virtual: kann überschrieben werden
   virtual std::ostream& print(std::ostream& os) const;
+
+  //virtual std::shared_ptr<T> createPointer() const = 0;
 
   //non-virtual: nicht überschreiben
   std::string getName() const;
   Color getColor() const;
   Material getMaterial() const;
+
 
 
 

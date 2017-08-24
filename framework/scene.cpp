@@ -55,7 +55,13 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>>light.ip_.g;
           ss>>light.ip_.b;
 
-          myScene.addLight(light);
+          if(light.name_ == "ambient"){
+            std::cout<<"Das ambiente Licht: "<< light<<"\n";
+            myScene.ambientLight_ = light;
+          }//if zu
+          else{
+            myScene.addLight(light);
+          }//else zu
         }//if light zu
 
         if(keyword == "shape"){
@@ -86,13 +92,6 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
               }//if zu
             }//for zu
 
-            // const auto& mat = std::find(std::begin(myScene.materials_)->name_, std::end(myScene.materials_)->name_, keyword);
-            // Material bMat{mat->name_, mat->ka_, mat->kd_, mat->ks_, mat->m_};
-            //
-            // if(bMat != std::end(materials_)){
-            //   //dann steht das Material in der Liste
-            //   Box box{bMin, bMax, bName, bMat};
-            // }
           }//if-box zu
 
           if(keyword == "sphere"){
@@ -118,9 +117,20 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
           }//if sphere zu
 
-          // if(keyword == "composite"){
-          //
-          // }
+          if(keyword == "composite"){
+            std::string cName;
+            std::string shapeName;
+
+            ss>>cName;
+            //???
+
+
+            while(!ss.eof()){
+
+
+            }//while zu
+
+          }//if composite zu
       }//if shape zu
 
     }//if define zu

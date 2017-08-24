@@ -35,6 +35,7 @@ struct OptionalHit{
   glm::vec3 intersectionPoint_;
   std::shared_ptr<Shape> nearestShape_;
   //Jetzt können wir die Objekte direkt im hit speichern!
+  //Also theoretisch. Praktisch leider nicht.
 
 };
 
