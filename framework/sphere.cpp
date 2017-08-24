@@ -4,7 +4,7 @@
 Sphere::Sphere():
   Shape{},
   center_{0.0f, 0.0f, 0.0f},
-  radius_{1.0f}{}
+  radius_{0.0f}{}
 
 Sphere::Sphere(glm::vec3 const& center, float radius,
           std::string const& name, Color const& color):

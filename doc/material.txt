@@ -8,11 +8,11 @@ define material blurple 0.6 0.6 1 0.6 0.6 1 0.6 0.6 1 3
 define shape box Boden -1400 700 -600 1400 670 -1500 grey
 
 #Objekte
-#define shape box Box1 -1200 670 -650 -450 300 -900 blurple
-define shape box Box1 300 -500 -600 -20 -300 -1300 blurple
-define shape sphere sphere1 0 270 -1000 400 purple
+define shape box Box1 -1000 670 -650 -550 300 -900 blurple
+#define shape box Box1 -200 -200 -400 200 -220 -1300 blurple
+define shape sphere sphere1 0 200 -900 400 purple
 
 #Licht
-define light ambient 0 0 0 1.0 0.9 0.9 0 0 0
-define light light1 0 1000 -100 0 0 0 0.5 0.5 0.5
-#define light light2 300 1000 -100 0 0 0 0.6 0.4 0.5
+define light ambient 0 0 0 0.5 0.5 0.5 0 0 0
+define light light1 100 -1000 -100 0 0 0 1.0 0.9 0.9
+define light light2 500 1000 -100 0 0 0 0.6 0.4 0.5

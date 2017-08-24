@@ -3,8 +3,8 @@
 //Konstruktoren
 Box::Box():
   Shape{},
-  min_{-1},
-  max_{1}{}
+  min_{0.0f},
+  max_{0.0f}{}
 
 Box::Box(glm::vec3 const& min, glm::vec3 const& max,
           std::string const& name, Color const& color):
