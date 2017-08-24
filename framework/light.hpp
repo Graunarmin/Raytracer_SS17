@@ -12,9 +12,9 @@ struct Light{
 
   Light():
     name_{"Default Light"},
-    position_{1.0f, 1.0f, 1.0f},
-    ia_{0.5f, 0.5f, 0.5f},
-    ip_{1.0f, 1.0f, 1.0f}{}
+    position_{0.0f},
+    ia_{0.0f},
+    ip_{0.0f}{}
 
   Light(std::string name, glm::vec3 pos, Color ia, Color ip):
     name_{name},

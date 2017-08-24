@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="raytracer"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\external\;CMake Files\external\glfw-3.2.1\;CMake Files\external\glfw-3.2.1\CMake\;CMake Files\external\glfw-3.2.1\CMake\modules\;CMake Files\external\glfw-3.2.1\src\;CMake Files\framework\;CMake Files\source\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nanovg">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/libnanovg.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 nanovg"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nanovg/fast">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/libnanovg.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 nanovg/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glfw">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/libglfw3.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-D_GLFW_USE_CONFIG_H"/>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/Makefile&quot;  VERBOSE=1 glfw"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glfw/fast">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/libglfw3.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-D_GLFW_USE_CONFIG_H"/>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/Makefile&quot;  VERBOSE=1 glfw/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="framework">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/libframework.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/.."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/Makefile&quot;  VERBOSE=1 framework"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="framework/fast">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/libframework.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/.."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/Makefile&quot;  VERBOSE=1 framework/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/framework/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests/fast">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raytracer">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/raytracer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 raytracer"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raytracer/fast">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/raytracer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 raytracer/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="example">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 example"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="example/fast">
+				<Option output="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/catch-1.5"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glm-0.9.5.3"/>
+					<Add directory="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 example/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/source/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/cmake-build-debug/external/glfw-3.2.1/src/glfw_config.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include/GLFW/glfw3.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/include/GLFW/glfw3native.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/cocoa_init.m">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/cocoa_joystick.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/cocoa_joystick.m">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/cocoa_monitor.m">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/cocoa_platform.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/cocoa_time.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/cocoa_window.m">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/init.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/input.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/internal.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/monitor.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/nsgl_context.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/nsgl_context.m">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/posix_tls.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/posix_tls.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/vulkan.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/window.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src/nanovg.c">
+			<Option target="nanovg"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/nanovg/src/nanovg.h">
+			<Option target="nanovg"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/box.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/box.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/color.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/composite.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/composite.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/fensterchen.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/glew.c">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/light.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/material.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/optionalHit.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/pixel.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/pixel.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/ppmwriter.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/ppmwriter.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/ray.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/renderer.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/renderer.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/scene.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/scene.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/shape.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/shape.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/sphere.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/sphere.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/window.cpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/window.hpp">
+			<Option target="framework"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/source/example.cpp">
+			<Option target="example"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/source/raytracer.cpp">
+			<Option target="raytracer"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/source/tests.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/CMake/modules/FindVulkan.cmake">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\CMake\modules\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/CMake/modules/FindVulkan.cmake">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\CMake\modules\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/glfw3Config.cmake.in">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\src\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/glfw_config.h.in">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\src\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/glfw3.pc.in">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\src\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\src\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/glfw3Config.cmake.in">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\src\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/glfw_config.h.in">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\src\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/glfw3.pc.in">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\src\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/external/glfw-3.2.1/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\glfw-3.2.1\src\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/framework/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\framework\"/>
+		</Unit>
+		<Unit filename="/Users/Hanna/Uni/02_Semester/Programmiersprachen/Uebung/programmiersprachen-raytracer/source/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

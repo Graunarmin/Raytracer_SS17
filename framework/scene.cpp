@@ -146,27 +146,27 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 void Scene::addMaterial(Material const& mat){
   auto p = std::make_shared<Material>(mat);
   materials_.push_back(p);
-  std::cout<<"AddMaterial Funktion: "<< p->name_<<" wird gepusht.\n\n";
+  //std::cout<<"AddMaterial Funktion: "<< p->name_<<" wird gepusht.\n\n";
 }
 
 void Scene::addBox(Box const& b){
   auto p = std::make_shared<Box>(b);
   boxes_.push_back(p);
   shapes_.push_back(p);
-  std::cout<<"AddBox Funktion: "<<p->getName()<<" wird gepusht.\n\n";
+  //std::cout<<"AddBox Funktion: "<<p->getName()<<" wird gepusht.\n\n";
 }
 
 void Scene::addSphere(Sphere const& s){
   auto p = std::make_shared<Sphere>(s);
   spheres_.push_back(p);
   shapes_.push_back(p);
-  std::cout<<"AddSphere Funktion: "<<p->getName()<<" wird gepusht.\n\n";
+  //std::cout<<"AddSphere Funktion: "<<p->getName()<<" wird gepusht.\n\n";
 }
 
 void Scene::addLight(Light const& l){
   auto p = std::make_shared<Light>(l);
   lights_.push_back(p);
-  std::cout<<"AddLight Funktion: "<<p->name_<<" wird gepusht.\n\n";
+  //std::cout<<"AddLight Funktion: "<<p->name_<<" wird gepusht.\n\n";
 }
 
 void Scene::printScene() const{

@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++   -std=c++14 -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/tests.dir/tests.cpp.o  -o tests ../framework/libframework.a -framework OpenGL 

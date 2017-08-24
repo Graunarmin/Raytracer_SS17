@@ -187,7 +187,7 @@ OptionalHit Renderer::hitObject(Ray const& ray){
 Color Renderer::compColor(Shape const& shape, glm::vec3 const& n,
       glm::vec3 const& v, glm::vec3 const& intP){
 
-   Color i{};
+   Color i{0.0f};
    Color summeDif{0.0f};
    Material m = shape.getMaterial();
 
@@ -198,7 +198,7 @@ Color Renderer::compColor(Shape const& shape, glm::vec3 const& n,
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
      Ray lightRay{intP, l};
-     lightRay.origin_ += lightRay.direction_ * 0.001f;
+     lightRay.origin_ += /*lightRay.direction_*/n * 0.001f;
 
      OptionalHit boxObstacle = hitBox(lightRay);
      OptionalHit sphereObstacle = hitSphere(lightRay);
@@ -215,6 +215,7 @@ Color Renderer::compColor(Shape const& shape, glm::vec3 const& n,
      }//if zu
    }//for zu
 
+
   //  i.r += (m.ka_.r * j.ia_.r) + summeDif.r;
   //  i.g += (m.ka_.g * j.ia_.g) + summeDif.g;
   //  i.b += (m.ka_.b * j.ia_.b) + summeDif.b;
@@ -224,10 +225,11 @@ Color Renderer::compColor(Shape const& shape, glm::vec3 const& n,
    i.g += (m.ka_.g * scene_.ambientLight_.ia_.r) + summeDif.g;
    i.b += (m.ka_.b * scene_.ambientLight_.ia_.r) + summeDif.b;
 
-  Color f{};
+  Color f{0.0f};
   f.r = i.r / (i.r +1);
   f.g = i.g / (i.g +1);
   f.b = i.b / (i.b +1);
+  //std::cout<<"So oft durch lights gelaufen: "<<counter;
   return f;
 }
 
