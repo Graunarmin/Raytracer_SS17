@@ -128,7 +128,3 @@ glm::vec3 Box::computeNorm(OptionalHit const& hit) const{
      return glm::vec3{};
   }
 }
-
-// std::shared_ptr<Box> Box::createPointer() const{
-//   return std::make_shared<Box>(this);
-// }

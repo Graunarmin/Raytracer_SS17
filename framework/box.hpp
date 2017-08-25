@@ -26,7 +26,6 @@ public:
   std::ostream& print(std::ostream& os) const override;
 
   glm::vec3 computeNorm(OptionalHit const& hit) const override;
-  //std::shared_ptr<Box> createPointer() const override;
 
 private:
   //Raumdiagonale zwischen min und max

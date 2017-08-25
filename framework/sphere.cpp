@@ -65,7 +65,3 @@ OptionalHit Sphere::intersect(Ray const& ray, float& t) {
 glm::vec3 Sphere::computeNorm(OptionalHit const& hit) const{
    return glm::normalize(hit.intersectionPoint_ - getCenter());
 }
-
-// std::shared_ptr<Sphere> Sphere::createPointer() const{
-//   return std::make_shared<Sphere>(this);
-// }

@@ -28,8 +28,6 @@ public:
   //virtual: kann überschrieben werden
   virtual std::ostream& print(std::ostream& os) const;
 
-  //virtual std::shared_ptr<T> createPointer() const = 0;
-
   //non-virtual: nicht überschreiben
   std::string getName() const;
   Color getColor() const;
