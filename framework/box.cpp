@@ -115,13 +115,22 @@ std::ostream& Box::print(std::ostream& os) const{
 }
 
 glm::vec3 Box::computeNorm(OptionalHit const& hit) const{
-  if((hit.intersectionPoint_.x == Approx(min_.x)) ||(hit.intersectionPoint_.x == Approx(max_.x))){   //Dann yz Ebene n = (0,1,1)
+  if((hit.intersectionPoint_.x == Approx(min_.x)) /*||(hit.intersectionPoint_.x == Approx(max_.x))*/){   //Dann yz Ebene n = (0,1,1)
+    return glm::normalize(glm::vec3{-1.0f, 0.0f, 0.0f});
+  }
+  else if((hit.intersectionPoint_.x == Approx(max_.x))){
     return glm::normalize(glm::vec3{1.0f, 0.0f, 0.0f});
   }
-  else if((hit.intersectionPoint_.y == Approx(min_.y))||(hit.intersectionPoint_.y == Approx(max_.y))){   //Dann xz Ebene n = (1,0,1)
+  else if((hit.intersectionPoint_.y == Approx(min_.y))/*||(hit.intersectionPoint_.y == Approx(max_.y)*/){   //Dann xz Ebene n = (1,0,1)
+    return glm::normalize(glm::vec3{0.0f, -1.0f, 0.0f});
+  }
+  else if((hit.intersectionPoint_.y == Approx(max_.y))){
     return glm::normalize(glm::vec3{0.0f, 1.0f, 0.0f});
   }
-  else if((hit.intersectionPoint_.z == Approx(min_.z))||(hit.intersectionPoint_.z == Approx(max_.z))){   //Dann xy Ebene n = (1,1,0)
+  else if((hit.intersectionPoint_.z == Approx(min_.z))/*||(hit.intersectionPoint_.z == Approx(max_.z))*/){   //Dann xy Ebene n = (1,1,0)
+    return glm::normalize(glm::vec3{0.0f, 0.0f, -1.0f});
+  }
+  else if((hit.intersectionPoint_.z == Approx(max_.z))){
     return glm::normalize(glm::vec3{0.0f, 0.0f, 1.0f});
   }
   else{

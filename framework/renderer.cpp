@@ -58,7 +58,12 @@ Color Renderer::raytracer(Ray const& ray){
    return compColor(nearestH, n, v);
  }
  //Background Farbe
- return Color{0.9f};
+ Color y {0.9f};
+ y.r = (y.r * scene_.ambientLight_.ia_.r);
+ y.g = (y.g * scene_.ambientLight_.ia_.g); 
+ y.b = (y.b * scene_.ambientLight_.ia_.b); 
+ return y;
+ //return Color{1.0f, 1.0f, 0.5f};
 }
 
 OptionalHit Renderer::hitObject(Ray const& ray){
@@ -106,15 +111,20 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n,
          summeDif.b += (j.ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
        }//if zu
      }//if zu
-    //  i.r += (m.ka_.r * j.ia_.r) + summeDif.r;
-    //  i.g += (m.ka_.g * j.ia_.r) + summeDif.g;
-    //  i.b += (m.ka_.b * j.ia_.r) + summeDif.b;
+    if(!obstacle.hit_){
+      summeDif.r += (j.ip_.r * ((m.kd_.r * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.r * pow(glm::dot(r,v),m.m_))));
+      summeDif.g += (j.ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
+      summeDif.b += (j.ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
+    }
+    //i.r += (m.ka_.r * j.ia_.r) + summeDif.r;
+    //i.g += (m.ka_.g * j.ia_.g) + summeDif.g;
+    //i.b += (m.ka_.b * j.ia_.b) + summeDif.b;
    }//for zu
 
   //EIN ambientes Licht pro Szene wird in der Szenenbeschreibung eingelesen!
-   i.r += (m.ka_.r * scene_.ambientLight_.ia_.r) + summeDif.r;
-   i.g += (m.ka_.g * scene_.ambientLight_.ia_.g) + summeDif.g;
-   i.b += (m.ka_.b * scene_.ambientLight_.ia_.b) + summeDif.b;
+   i.r = (m.ka_.r * scene_.ambientLight_.ia_.r) + summeDif.r;
+   i.g = (m.ka_.g * scene_.ambientLight_.ia_.g) + summeDif.g;
+   i.b = (m.ka_.b * scene_.ambientLight_.ia_.b) + summeDif.b;
 
   Color f{0.0f};
   f.r = i.r / (i.r +1);
