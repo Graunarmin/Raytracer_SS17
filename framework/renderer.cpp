@@ -113,8 +113,8 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n,
 
   //EIN ambientes Licht pro Szene wird in der Szenenbeschreibung eingelesen!
    i.r += (m.ka_.r * scene_.ambientLight_.ia_.r) + summeDif.r;
-   i.g += (m.ka_.g * scene_.ambientLight_.ia_.r) + summeDif.g;
-   i.b += (m.ka_.b * scene_.ambientLight_.ia_.r) + summeDif.b;
+   i.g += (m.ka_.g * scene_.ambientLight_.ia_.g) + summeDif.g;
+   i.b += (m.ka_.b * scene_.ambientLight_.ia_.b) + summeDif.b;
 
   Color f{0.0f};
   f.r = i.r / (i.r +1);
