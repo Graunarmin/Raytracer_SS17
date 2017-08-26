@@ -29,11 +29,12 @@ int main(int argc, char* argv[])
 
   Window win{glm::ivec2{width,height}};
 
+
   while (!win.should_close()) {
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
       win.close();
     }
-    win.show(app.colorbuffer());
+      win.show(app.colorbuffer());
   }
 
   thr.join();

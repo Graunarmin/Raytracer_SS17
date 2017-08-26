@@ -18,18 +18,18 @@ void Renderer::render(){
   for (unsigned y = 0; y < height_; ++y){
     for (unsigned x = 0; x < width_; ++x){
 
-      scene_.camera_.fovX_ = 65;
-
-      Ray ray = scene_.camera_.compRay(x, y, width_, height_);
+      // scene_.camera_.fovX_ = 65;
+      //
+      // Ray ray = scene_.camera_.compRay(x, y, width_, height_);
 
       Pixel p(x,y);
 
       //Pixel Koordinaten für Koordinatensystem umrechnen
-      /*glm::vec3 screenP{0.0f};
+      glm::vec3 screenP{0.0f};
       float w = width_ / 2;
       float h = height_ / 2;
       screenP.x = 1 * (x + (-w));
-      screenP.y = -1 * (y + (-h));
+      screenP.y = 1 * (y + (-h));
       screenP.z = screenCenter_.z;
 
       //Beobachter als Fußpunkt, Differenz zum Schirm ist Richtung
@@ -37,7 +37,7 @@ void Renderer::render(){
       screenP.y -= beobachter_.y;
       screenP.z -= beobachter_.z;
 
-      Ray ray(beobachter_, screenP);*/
+      Ray ray(beobachter_, screenP);
 
       //Berechnen der Farbe für jedes Pixel
       p.color = raytracer(ray);
@@ -101,20 +101,19 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
      Ray lightRay{intP, l};
-     lightRay.origin_ += intP + l * 0.01f;
-     // lightRay.origin_ += n * 0.01f; weniger Lichtquellen zu sehen
+     lightRay.origin_ += n * 0.01f;
 
      int distance = glm::length(intP - h->position_);
      OptionalHit obstacle = hitObject(lightRay);
 
      //Objekt liegt hinter Lichtquelle, also kein Schatten
-     if(glm::length(l) < obstacle.t_){
+     if(glm::length(u) < obstacle.t_){
 
        pointLight(summeDif, m, h, r, v, l, n);
      }
-     else{ //Eigentlich Schatten! Es geht einfach viel zu selten hier rein...
-         std::cout << "gehe rein \n";
-     }
+    //  else{ //Eigentlich Schatten! Es geht einfach viel zu selten hier rein...
+    //      std::cout << "gehe rein \n";
+    //  }
    }//for zu
 
     //EIN ambientes Licht pro Szene wird in der Szenenbeschreibung eingelesen!

@@ -91,7 +91,7 @@ OptionalHit Box::intersect(Ray const& ray, float& t){
   float tNear = std::max(tN, tNZ);
 
   //Bedingungen!!
-  if(tFar < tNear){
+  if((tFar < 0) || (tFar < tNear) || (tNear < 0)){
     //t = std::abs(tFar);
     return OptionalHit{false, 0, intP};
   }
