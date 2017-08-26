@@ -150,29 +150,22 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
    for(auto const& h: scene_.lights_){
 
      glm::vec3 l = glm::normalize(h->position_ - intP);
+     glm::vec3 u = h->position_ - intP;
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
      Ray lightRay{intP, l};
-     lightRay.origin_ += intP + l * 0.01f; //Neue Version...schaut euch mal den Unterschied an! Was ist besser?
-     //lightRay.origin_ += n * 0.01f;      //Alte Version und von 0.001f zu 0.01f sieht schöner aus
-    
+     lightRay.origin_ += intP + l * 0.01f; 
+
+     int distance = glm::length(intP - h->position_);
      OptionalHit obstacle = hitObject(lightRay);
 
-     //Objekt liegt dazwischen
-     if(obstacle.hit_){
-       //Ausnahme es liegt doch kein Objekt dazwischen!
-       if(glm::length(l) < obstacle.t_){
+     //Objekt liegt hinter Lichtquelle, also kein Schatten
+     if(glm::length(l) < obstacle.t_){
 
-          pointLight(summeDif, m, h, r, v, l, n);
-       }
-       else{ //Es geht einfach viel zu selten hier rein...
-         std::cout << "gehe rein \n";
-       }
-     }
-
-     else if(!obstacle.hit_){
-       
        pointLight(summeDif, m, h, r, v, l, n);
+     }
+     else{ //Eigentlich Schatten! Es geht einfach viel zu selten hier rein...
+         std::cout << "gehe rein \n";
      }
    }//for zu
 
