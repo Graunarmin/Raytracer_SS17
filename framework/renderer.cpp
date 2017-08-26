@@ -155,6 +155,7 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
 
      Ray lightRay{intP, l};
      lightRay.origin_ += intP + l * 0.01f; 
+     // lightRay.origin_ += n * 0.01f;
 
      int distance = glm::length(intP - h->position_);
      OptionalHit obstacle = hitObject(lightRay);
