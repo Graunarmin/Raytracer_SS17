@@ -97,23 +97,18 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
    for(auto const& h: scene_.lights_){
 
      glm::vec3 l = glm::normalize(h->position_ - intP);
-     glm::vec3 u = h->position_ - intP;
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
      Ray lightRay{intP, l};
      lightRay.origin_ += n * 0.01f;
 
-     int distance = glm::length(intP - h->position_);
+     float distance = glm::length(intP - h->position_);
      OptionalHit obstacle = hitObject(lightRay);
 
      //Objekt liegt hinter Lichtquelle, also kein Schatten
-     if(glm::length(u) < obstacle.t_){
-
+     if(distance < obstacle.t_){
        pointLight(summeDif, m, h, r, v, l, n);
      }
-    //  else{ //Eigentlich Schatten! Es geht einfach viel zu selten hier rein...
-    //      std::cout << "gehe rein \n";
-    //  }
    }//for zu
 
     //EIN ambientes Licht pro Szene wird in der Szenenbeschreibung eingelesen!
@@ -139,8 +134,6 @@ void Renderer::pointLight(Color& summeDif, Material const& m, std::shared_ptr<Li
   summeDif.g += (h->ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
   summeDif.b += (h->ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
 }
-
-
 
 
 //------------------------------------------------------------//
