@@ -175,7 +175,7 @@ void Scene::printScene() const{
       //   std::cout<< *i;
       // }
 
-      std::cout << "Added Composite: \n" << *myScene.composite_ << std::endl;
+      std::cout << "Added Composite: \n" << *composite_ << std::endl;
 
       std::cout<<"\nLichtquellen der Szene:\n";
       for(const auto& i: lights_){
