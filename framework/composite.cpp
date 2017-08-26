@@ -20,6 +20,10 @@ float Composite::volume() const{
   return -1.0f;
 }
 
+void Composite::addShape(std::shared_ptr<Shape> const& s){
+  shapes_.push_back(s);
+}
+
 std::ostream& Composite::print(std::ostream& os) const{
   for(auto const& i: shapes_){
     i->print(os);
@@ -37,8 +41,13 @@ OptionalHit Composite::intersect(Ray const& ray, float& t){
     auto currentHit = i -> intersect(ray, distance);
     if(currentHit.hit_&&(currentHit.t_ < nearestHit.t_)){
       nearestHit = currentHit;
-      //nearestHit.nearestShape_ = std::make_shared<Shape>(*i);
+      nearestHit.nearestShape_ = i;
     }
   }
   return nearestHit;
+}
+
+glm::vec3 Composite::computeNorm(OptionalHit const& hit) const{
+  std::cout<<"Kein Normalenvektor für Composites, so sorry!\n";
+  return glm::vec3{-1.0f};
 }

@@ -13,6 +13,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <map>
 
 struct Scene{
 
@@ -26,10 +27,8 @@ struct Scene{
 
 
   //Smartpointer!!
-  std::vector<std::shared_ptr<Composite>> composite_;
+  std::shared_ptr<Composite> composite_;
   std::vector<std::shared_ptr<Shape>> shapes_;
-  std::vector<std::shared_ptr<Box>> boxes_;
-  std::vector<std::shared_ptr<Sphere>> spheres_;
   std::vector<std::shared_ptr<Light>> lights_;
   std::vector<std::shared_ptr<Material>> materials_;
   Light ambientLight_;

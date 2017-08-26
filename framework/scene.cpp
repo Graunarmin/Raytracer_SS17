@@ -5,6 +5,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
   std::ifstream file;
   std::string line;
+  std::map<std::string, std::shared_ptr<Shape>> shapeMap;
   file.open(fileIn);
 
   if(file.is_open()){
@@ -17,11 +18,9 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
       ss>>keyword;
 
       if(keyword == "define"){
-        //ss<<line;
         ss>>keyword;
 
         if(keyword == "material"){
-
           Material mat;
 
           ss>> mat.name_;
@@ -34,9 +33,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>> mat.ks_.r;
           ss>> mat.ks_.g;
           ss>> mat.ks_.b;
-          //std::cout<<"Hauptfunktion: vorletzter Materialwert: "<<mat.ks_.b<<"\n";
           ss>> mat.m_;
-          //std::cout<<"Hauptfunktion: letzter Materialwert: "<<mat.m_<<"\n";
 
           myScene.addMaterial(mat);
         }//if material zu
@@ -65,7 +62,6 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
         }//if light zu
 
         if(keyword == "shape"){
-          //ss<<line;
           ss>>keyword;
 
           if(keyword == "box"){
@@ -83,11 +79,11 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
             ss>>keyword;
 
             for(const auto& i: myScene.materials_){
-              //std::cout<<"Geht in die For-Schleife.\n";
               if(i->name_ == keyword){
                 Box box{bMin, bMax, bName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_}};
                 myScene.addBox(box);
-                //myScene.addShape(box);
+                auto bo = std::make_shared<Box>(bMin, bMax, bName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_});
+                shapeMap[bName] = bo;
                 break;
               }//if zu
             }//for zu
@@ -110,11 +106,11 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
               if(i->name_ == keyword){
                 Sphere sphere{sCenter, sRad, sName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_}};
                 myScene.addSphere(sphere);
-                //myScene.addShape(sphere);
+                auto sp = std::make_shared<Sphere>(sCenter, sRad, sName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_});
+                shapeMap[sName] = sp;
                 break;
               }//if zu
             }//for zu
-
           }//if sphere zu
 
           if(keyword == "composite"){
@@ -122,14 +118,23 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
             std::string shapeName;
 
             ss>>cName;
-            //???
-
+            myScene.composite_ = std::make_shared<Composite>(cName);
 
             while(!ss.eof()){
+              ss>>shapeName;
 
+              auto currentShape = shapeMap.find(shapeName);
 
+              if(currentShape != shapeMap.end()){
+                myScene.composite_->addShape(currentShape->second);
+                //second holt den dem String zugeordneten Wert aus der Map,
+                //also die Shap (bzw. den ptr auf die Shape)
+              }//if zu
+              else{
+                 std::cout<<"Sorry, but this shape seems not to exist.";
+              }//else zu
             }//while zu
-
+            std::cout << "Added Composite: \n" << *myScene.composite_ << std::endl;
           }//if composite zu
       }//if shape zu
 
@@ -137,9 +142,6 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
   }//while zu
     file.close();
   }//if is-open zu
-
-  //myScene.printScene();
-
   return myScene;
 }//Fkt zu
 
@@ -151,14 +153,12 @@ void Scene::addMaterial(Material const& mat){
 
 void Scene::addBox(Box const& b){
   auto p = std::make_shared<Box>(b);
-  boxes_.push_back(p);
   shapes_.push_back(p);
   //std::cout<<"AddBox Funktion: "<<p->getName()<<" wird gepusht.\n\n";
 }
 
 void Scene::addSphere(Sphere const& s){
   auto p = std::make_shared<Sphere>(s);
-  spheres_.push_back(p);
   shapes_.push_back(p);
   //std::cout<<"AddSphere Funktion: "<<p->getName()<<" wird gepusht.\n\n";
 }
@@ -172,21 +172,10 @@ void Scene::addLight(Light const& l){
 void Scene::printScene() const{
       std::cout<<"printScene Funktion:\n"<<"Materiealien der Szene:\n";
       for(const auto& i: materials_){
-        Material mp = *i;
-        std::cout<<mp;
+        std::cout<<*i;
       }
 
       std::cout<<"\nObjekte der Szene:\n";
-
-      // for(const auto& i: boxes_){
-      //   std::cout<< *i;
-      // }
-      //
-      // for(const auto& i: spheres_){
-      //   std::cout<< *i;
-      // }
-      //
-      // std::cout<<"Und im Shapes Container stehen: \n";
       for(const auto& i: shapes_){
         std::cout<< *i;
       }

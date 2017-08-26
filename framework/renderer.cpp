@@ -61,8 +61,8 @@ Color Renderer::raytracer(Ray const& ray){
  //Background Farbe
  Color y {0.9f};
  y.r = (y.r * scene_.ambientLight_.ia_.r);
- y.g = (y.g * scene_.ambientLight_.ia_.g); 
- y.b = (y.b * scene_.ambientLight_.ia_.b); 
+ y.g = (y.g * scene_.ambientLight_.ia_.g);
+ y.b = (y.b * scene_.ambientLight_.ia_.b);
  return y;
  //return Color{1.0f, 1.0f, 0.5f};
 }
@@ -154,8 +154,8 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
      Ray lightRay{intP, l};
-     lightRay.origin_ += intP + l * 0.01f; 
-     // lightRay.origin_ += n * 0.01f;
+     lightRay.origin_ += intP + l * 0.01f;
+     // lightRay.origin_ += n * 0.01f; weniger Lichtquellen zu sehen
 
      int distance = glm::length(intP - h->position_);
      OptionalHit obstacle = hitObject(lightRay);
@@ -187,7 +187,7 @@ void Renderer::ambientLight(Color const& summeDif, Material const& m, Color& i){
   i.b = (m.ka_.b * scene_.ambientLight_.ia_.b) + summeDif.b;
 }
 
-void Renderer::pointLight(Color& summeDif, Material const& m, std::shared_ptr<Light> const& h, 
+void Renderer::pointLight(Color& summeDif, Material const& m, std::shared_ptr<Light> const& h,
                           glm::vec3 const& r, glm::vec3 const& v, glm::vec3 const& l, glm::vec3 const& n){
   summeDif.r += (h->ip_.r * ((m.kd_.r * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.r * pow(glm::dot(r,v),m.m_))));
   summeDif.g += (h->ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
