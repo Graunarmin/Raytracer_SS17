@@ -18,10 +18,14 @@ void Renderer::render(){
   for (unsigned y = 0; y < height_; ++y){
     for (unsigned x = 0; x < width_; ++x){
 
+      scene_.camera_.fovX_ = 65;
+
+      Ray ray = scene_.camera_.compRay(x, y, width_, height_);
+
       Pixel p(x,y);
 
       //Pixel Koordinaten für Koordinatensystem umrechnen
-      glm::vec3 screenP{0.0f};
+      /*glm::vec3 screenP{0.0f};
       float w = width_ / 2;
       float h = height_ / 2;
       screenP.x = 1 * (x + (-w));
@@ -33,7 +37,7 @@ void Renderer::render(){
       screenP.y -= beobachter_.y;
       screenP.z -= beobachter_.z;
 
-      Ray ray(beobachter_, screenP);
+      Ray ray(beobachter_, screenP);*/
 
       //Berechnen der Farbe für jedes Pixel
       p.color = raytracer(ray);

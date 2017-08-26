@@ -15,6 +15,7 @@
 #include "ppmwriter.hpp"
 #include "scene.hpp"
 #include "box.hpp"
+#include "camera.hpp"
 #include <string>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
