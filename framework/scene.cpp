@@ -80,14 +80,11 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
             for(const auto& i: myScene.materials_){
               if(i->name_ == keyword){
-                Box box{bMin, bMax, bName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_}};
-                myScene.addBox(box);
                 auto bo = std::make_shared<Box>(bMin, bMax, bName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_});
                 shapeMap[bName] = bo;
                 break;
               }//if zu
             }//for zu
-
           }//if-box zu
 
           if(keyword == "sphere"){
@@ -104,8 +101,6 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
             for(const auto& i: myScene.materials_){
               if(i->name_ == keyword){
-                Sphere sphere{sCenter, sRad, sName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_}};
-                myScene.addSphere(sphere);
                 auto sp = std::make_shared<Sphere>(sCenter, sRad, sName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_});
                 shapeMap[sName] = sp;
                 break;
@@ -114,6 +109,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           }//if sphere zu
 
           if(keyword == "composite"){
+            std::cout<<" ----- Gehe in comp-----\n";
             std::string cName;
             std::string shapeName;
 
@@ -126,6 +122,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
               auto currentShape = shapeMap.find(shapeName);
 
               if(currentShape != shapeMap.end()){
+
                 myScene.composite_->addShape(currentShape->second);
                 //second holt den dem String zugeordneten Wert aus der Map,
                 //also die Shap (bzw. den ptr auf die Shape)
@@ -134,10 +131,8 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
                  std::cout<<"Sorry, but this shape seems not to exist.";
               }//else zu
             }//while zu
-            std::cout << "Added Composite: \n" << *myScene.composite_ << std::endl;
           }//if composite zu
       }//if shape zu
-
     }//if define zu
   }//while zu
     file.close();
@@ -151,17 +146,17 @@ void Scene::addMaterial(Material const& mat){
   //std::cout<<"AddMaterial Funktion: "<< p->name_<<" wird gepusht.\n\n";
 }
 
-void Scene::addBox(Box const& b){
-  auto p = std::make_shared<Box>(b);
-  shapes_.push_back(p);
-  //std::cout<<"AddBox Funktion: "<<p->getName()<<" wird gepusht.\n\n";
-}
-
-void Scene::addSphere(Sphere const& s){
-  auto p = std::make_shared<Sphere>(s);
-  shapes_.push_back(p);
-  //std::cout<<"AddSphere Funktion: "<<p->getName()<<" wird gepusht.\n\n";
-}
+// void Scene::addBox(Box const& b){
+//   auto p = std::make_shared<Box>(b);
+//   shapes_.push_back(p);
+//   //std::cout<<"AddBox Funktion: "<<p->getName()<<" wird gepusht.\n\n";
+// }
+//
+// void Scene::addSphere(Sphere const& s){
+//   auto p = std::make_shared<Sphere>(s);
+//   shapes_.push_back(p);
+//   //std::cout<<"AddSphere Funktion: "<<p->getName()<<" wird gepusht.\n\n";
+// }
 
 void Scene::addLight(Light const& l){
   auto p = std::make_shared<Light>(l);
@@ -175,15 +170,16 @@ void Scene::printScene() const{
         std::cout<<*i;
       }
 
-      std::cout<<"\nObjekte der Szene:\n";
-      for(const auto& i: shapes_){
-        std::cout<< *i;
-      }
+      // std::cout<<"\nObjekte der Szene:\n";
+      // for(const auto& i: shapes_){
+      //   std::cout<< *i;
+      // }
+
+      std::cout << "Added Composite: \n" << *myScene.composite_ << std::endl;
 
       std::cout<<"\nLichtquellen der Szene:\n";
       for(const auto& i: lights_){
         Light l = *i;
         std::cout<<l;
       }
-
     }

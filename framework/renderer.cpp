@@ -71,73 +71,16 @@ OptionalHit Renderer::hitObject(Ray const& ray){
 
   OptionalHit nearestHit{false, std::numeric_limits<float>::infinity(), glm::vec3{0.0f}};
 
-  for(auto const& i: scene_.shapes_){
+  for(auto const& i: scene_.composite_->shapes_){
     float distance = 0.0f;
     auto currentHit = i -> intersect(ray, distance);
     if(currentHit.hit_&&(currentHit.t_ < nearestHit.t_)){
       nearestHit = currentHit;
-      nearestHit.nearestShape_ = i;//std::make_shared<Box>(i); *i -> createPointer());
+      nearestHit.nearestShape_ = i;
     }
   }
   return nearestHit;
 }
-
-
-//Achtung noch in Arbeit!! zwei mal gleiche Funktion aber leicht unterschiedlich!! Oben = alte version, Unten = neu
-
-//Berechnung der Farbe mit Beleuchtungsmodell
-/*Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n,
-      glm::vec3 const& v){
-
-   Color i{0.0f};
-   Color summeDif{0.0f};
-   Material m = nH.nearestShape_ -> getMaterial();
-   glm::vec3 intP = nH.intersectionPoint_;
-
-   for(auto const& h: scene_.lights_){
-     Light j = *h;
-
-     glm::vec3 l = glm::normalize(j.position_ - intP);
-     glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
-
-     Ray lightRay{intP, l};
-     lightRay.origin_ += n * 0.01f;
-
-     OptionalHit obstacle = hitObject(lightRay);
-
-     if(obstacle.hit_){
-       float lightDist =  glm::length(l);
-
-       if(lightDist < obstacle.t_){
-         //dann liegt nichts dazwischen!
-         summeDif.r += (j.ip_.r * ((m.kd_.r * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.r * pow(glm::dot(r,v),m.m_))));
-         summeDif.g += (j.ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
-         summeDif.b += (j.ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
-
-       }//if zu
-     }//if zu
-
-    if(!obstacle.hit_){
-      summeDif.r += (j.ip_.r * ((m.kd_.r * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.r * pow(glm::dot(r,v),m.m_))));
-      summeDif.g += (j.ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
-      summeDif.b += (j.ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
-    }
-    //i.r += (m.ka_.r * j.ia_.r) + summeDif.r;
-    //i.g += (m.ka_.g * j.ia_.g) + summeDif.g;
-    //i.b += (m.ka_.b * j.ia_.b) + summeDif.b;
-   }//for zu
-
-  //EIN ambientes Licht pro Szene wird in der Szenenbeschreibung eingelesen!
-   i.r = (m.ka_.r * scene_.ambientLight_.ia_.r) + summeDif.r;
-   i.g = (m.ka_.g * scene_.ambientLight_.ia_.g) + summeDif.g;
-   i.b = (m.ka_.b * scene_.ambientLight_.ia_.b) + summeDif.b;
-
-  Color f{0.0f};
-  f.r = i.r / (i.r +1);
-  f.g = i.g / (i.g +1);
-  f.b = i.b / (i.b +1);
-  return f;
-}*/
 
 //Berechnung der Farbe mit Beleuchtungsmodell
 Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 const& v){
