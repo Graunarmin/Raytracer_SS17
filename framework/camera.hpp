@@ -4,21 +4,24 @@
 #include <glm/vec4.hpp>
 #include <glm/glm.hpp>
 #include <cmath>
+#include <string>
 #include <iostream>
 #include <string>
 #include "ray.hpp"
 
 class Camera{
 
- public: 
+ public:
 
   Camera();
-  Camera(std::string name, float fovX);
+  Camera(std::string const& name, float fovX);
   ~Camera();
 
   Ray compRay(int x, int y, int width, int height);
 
   glm::mat4 transform();
+
+  //std::ostream& operator<<(std::ostream& os, Camera const& cam);
 
   //member
 

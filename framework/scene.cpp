@@ -109,7 +109,6 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           }//if sphere zu
 
           if(keyword == "composite"){
-            std::cout<<" ----- Gehe in comp-----\n";
             std::string cName;
             std::string shapeName;
 
@@ -133,6 +132,11 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
             }//while zu
           }//if composite zu
       }//if shape zu
+      if(keyword == "camera"){
+        ss>>myScene.camera_.name_;
+        ss>>myScene.camera_.fovX_;
+        std::cout<<"Added Camera: "<<myScene.camera_.name_<<" with fovX = "<<myScene.camera_.fovX_<<"\n";
+      }//if camera zu
     }//if define zu
   }//while zu
     file.close();

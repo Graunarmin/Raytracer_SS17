@@ -18,26 +18,29 @@ void Renderer::render(){
   for (unsigned y = 0; y < height_; ++y){
     for (unsigned x = 0; x < width_; ++x){
 
-      // scene_.camera_.fovX_ = 65;
-      //
-      // Ray ray = scene_.camera_.compRay(x, y, width_, height_);
+      // scene_.camera_.fovX_ = 45;
+
+      Ray ray = scene_.camera_.compRay(x, y, width_, height_);
 
       Pixel p(x,y);
 
+      //--------------------------------
+      //Ohne Kamera mit Beobachter in (0,0,0):
       //Pixel Koordinaten für Koordinatensystem umrechnen
-      glm::vec3 screenP{0.0f};
-      float w = width_ / 2;
-      float h = height_ / 2;
-      screenP.x = 1 * (x + (-w));
-      screenP.y = 1 * (y + (-h));
-      screenP.z = screenCenter_.z;
-
-      //Beobachter als Fußpunkt, Differenz zum Schirm ist Richtung
-      screenP.x -= beobachter_.x;
-      screenP.y -= beobachter_.y;
-      screenP.z -= beobachter_.z;
-
-      Ray ray(beobachter_, screenP);
+      // glm::vec3 screenP{0.0f};
+      // float w = width_ / 2;
+      // float h = height_ / 2;
+      // screenP.x = 1 * (x + (-w));
+      // screenP.y = 1 * (y + (-h));
+      // screenP.z = screenCenter_.z;
+      //
+      // //Beobachter als Fußpunkt, Differenz zum Schirm ist Richtung
+      // screenP.x -= beobachter_.x;
+      // screenP.y -= beobachter_.y;
+      // screenP.z -= beobachter_.z;
+      //
+      // Ray ray(beobachter_, screenP);
+      //--------------------------------
 
       //Berechnen der Farbe für jedes Pixel
       p.color = raytracer(ray);

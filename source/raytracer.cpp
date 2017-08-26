@@ -8,11 +8,11 @@
 
 int main(int argc, char* argv[])
 {
-  unsigned const width = 500;
-  unsigned const height = 300;
+  unsigned const width = 400;
+  unsigned const height = 400;
   //std::string const filename = "./checkerboard.ppm";
   std::string const filename = "./Szene.ppm";
-  std::string const filepath = "../../doc/material.txt";
+  std::string const filepath = "../../doc/szene.txt";
   //filename als instream anfragen
   Scene szene{};
   Scene superSzene = szene.SDFloader(filepath);

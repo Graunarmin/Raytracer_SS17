@@ -8,7 +8,7 @@ Camera::Camera():
   up_ {0.0f, 1.0f, 0.0f} {}
 
 
-Camera::Camera(std::string name, float fovX):
+Camera::Camera(std::string const& name, float fovX):
   name_ {name},
   fovX_ {fovX},
   eye_ {0.1f, 0.0f, 1.0f},
@@ -21,12 +21,12 @@ Camera::~Camera() {
 
 Ray Camera::compRay(int x, int y, int width, int height){
 
-  float dx = ((float(x) * 1.0)/width) - 0.5; 
-  float dy = ((float(y) * 1.0) /height) -0.5;
-  float dz = -1 * (0.5/(tan(fovX_/2)));
+  float dx = float(x) * 1.0/float(width) - 0.5;
+  float dy = float(y) * 1.0 /float(height) - 0.5;
+  float dz = -1.0 * (0.5/(tan(fovX_/2)));
 
   Ray ray {eye_, glm::vec3{dx, dy, dz}};
-  glm::mat4 mat = transform();
+  auto mat = transform();
 
   glm::vec4 v1 {ray.origin_, 1.0f};
   glm::vec4 v2 {ray.direction_, 0.0f};
@@ -53,3 +53,12 @@ glm::mat4 Camera::transform(){
 
   return transCam;
 }
+
+// std::ostream& operator<<(std::ostream& os, Camera const& cam){
+//   os<<"Name der Kamera: " << cam.name_<<std::endl<<
+//     "Öffnungswinkel: "<<cam.fovX_<<std::endl<<
+//     "Eye: ("<<cam.eye_.x<<", "<<cam.eye_.y<<", "<<cam.eye_.z<<")"<<std::endl<<
+//     "Direction: ("<<cam.dir_.x<<", "<<cam.dir_.y<<", "<<cam.dir_.z<<")"<<std::endl<<
+//     "Up: ("<<cam.up_.x<<", "<<cam.up_.y<<", "<<cam.up_.z<<")"std::endl;
+//     return os;
+//}
