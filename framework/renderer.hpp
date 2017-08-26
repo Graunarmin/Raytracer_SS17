@@ -39,6 +39,9 @@ public:
   Color compColor(OptionalHit const& nH, glm::vec3 const& n,
   glm::vec3 const& v/*, glm::vec3 const& schnP*/);
   void write(Pixel const& p);
+  void ambientLight(Color const& summeDif, Material const& m, Color& i);
+  void pointLight(Color& summeDif, Material const& m, std::shared_ptr<Light> const& h, 
+                   glm::vec3 const& r, glm::vec3 const& v, glm::vec3 const& l, glm::vec3 const& n);
 
   inline std::vector<Color> const& colorbuffer() const
   {

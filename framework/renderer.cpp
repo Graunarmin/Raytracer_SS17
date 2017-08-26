@@ -57,6 +57,7 @@ Color Renderer::raytracer(Ray const& ray){
    glm::vec3 v = glm::normalize(beobachter_ - nearestH.intersectionPoint_);
    return compColor(nearestH, n, v);
  }
+
  //Background Farbe
  Color y {0.9f};
  y.r = (y.r * scene_.ambientLight_.ia_.r);
@@ -82,9 +83,11 @@ OptionalHit Renderer::hitObject(Ray const& ray){
 }
 
 
+//Achtung noch in Arbeit!! zwei mal gleiche Funktion aber leicht unterschiedlich!! Oben = alte version, Unten = neu
+
 //Berechnung der Farbe mit Beleuchtungsmodell
-Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n,
-      glm::vec3 const& v/*, glm::vec3 const& intP*/){
+/*Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n,
+      glm::vec3 const& v){
 
    Color i{0.0f};
    Color summeDif{0.0f};
@@ -98,19 +101,22 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n,
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
      Ray lightRay{intP, l};
-     lightRay.origin_ += /*lightRay.direction_*/n * 0.001f;
+     lightRay.origin_ += n * 0.01f;
 
      OptionalHit obstacle = hitObject(lightRay);
 
      if(obstacle.hit_){
        float lightDist =  glm::length(l);
+
        if(lightDist < obstacle.t_){
          //dann liegt nichts dazwischen!
          summeDif.r += (j.ip_.r * ((m.kd_.r * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.r * pow(glm::dot(r,v),m.m_))));
          summeDif.g += (j.ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
          summeDif.b += (j.ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
+
        }//if zu
      }//if zu
+
     if(!obstacle.hit_){
       summeDif.r += (j.ip_.r * ((m.kd_.r * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.r * pow(glm::dot(r,v),m.m_))));
       summeDif.g += (j.ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
@@ -131,7 +137,73 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n,
   f.g = i.g / (i.g +1);
   f.b = i.b / (i.b +1);
   return f;
+}*/
+
+//Berechnung der Farbe mit Beleuchtungsmodell
+Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 const& v){
+
+   Color i{0.0f};
+   Color summeDif{0.0f};
+   Material m = nH.nearestShape_ -> getMaterial();
+   glm::vec3 intP = nH.intersectionPoint_;
+
+   for(auto const& h: scene_.lights_){
+
+     glm::vec3 l = glm::normalize(h->position_ - intP);
+     glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
+
+     Ray lightRay{intP, l};
+     lightRay.origin_ += intP + l * 0.01f; //Neue Version...schaut euch mal den Unterschied an! Was ist besser?
+     //lightRay.origin_ += n * 0.01f;      //Alte Version und von 0.001f zu 0.01f sieht schöner aus
+    
+     OptionalHit obstacle = hitObject(lightRay);
+
+     //Objekt liegt dazwischen
+     if(obstacle.hit_){
+       //Ausnahme es liegt doch kein Objekt dazwischen!
+       if(glm::length(l) < obstacle.t_){
+
+          pointLight(summeDif, m, h, r, v, l, n);
+       }
+       else{ //Es geht einfach viel zu selten hier rein...
+         std::cout << "gehe rein \n";
+       }
+     }
+
+     else if(!obstacle.hit_){
+       
+       pointLight(summeDif, m, h, r, v, l, n);
+     }
+   }//for zu
+
+    //EIN ambientes Licht pro Szene wird in der Szenenbeschreibung eingelesen!
+    ambientLight(summeDif, m, i);
+
+    i.r = i.r / (i.r +1);
+    i.g = i.g / (i.g +1);
+    i.b = i.b / (i.b +1);
+
+    return i;
+}//compColor zu
+
+void Renderer::ambientLight(Color const& summeDif, Material const& m, Color& i){
+
+  i.r = (m.ka_.r * scene_.ambientLight_.ia_.r) + summeDif.r;
+  i.g = (m.ka_.g * scene_.ambientLight_.ia_.g) + summeDif.g;
+  i.b = (m.ka_.b * scene_.ambientLight_.ia_.b) + summeDif.b;
 }
+
+void Renderer::pointLight(Color& summeDif, Material const& m, std::shared_ptr<Light> const& h, 
+                          glm::vec3 const& r, glm::vec3 const& v, glm::vec3 const& l, glm::vec3 const& n){
+  summeDif.r += (h->ip_.r * ((m.kd_.r * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.r * pow(glm::dot(r,v),m.m_))));
+  summeDif.g += (h->ip_.g * ((m.kd_.g * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.g * pow(glm::dot(r,v),m.m_))));
+  summeDif.b += (h->ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
+}
+
+
+
+
+//------------------------------------------------------------//
 
 
 void Renderer::write(Pixel const& p)
