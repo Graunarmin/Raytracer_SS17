@@ -1,0 +1,43 @@
+#Farben
+define material red   1 0 0 1 0 0 1 0 0 3
+define material blue  0 0 1 0 0 1 0 0 1 1
+define material grey  0.8 0.8 0.9 0.8 0.8 0.9 0.8 0.8 0.9 2
+define material purple 1 0.6 0.7 1 0.6 0.7 1 0.6 0.7 80
+define material blurple 0.6 0.6 1 0.6 0.6 1 0.6 0.6 1 3
+define material whiteCeramic 0.7 0.7 0.7 1.0 1.0 1.0 1.0 1.0 1.0 810
+define material yellow 1.0 0.6 0 1.0 0.6 0 1.0 0.6 0 40              #Kugel m = 40, Box m = 3
+define material turquoise 0 0.6 0.7 0 0.6 0.7 0 0.6 0.7 3           #Kugel m = 40, Box m = 3
+
+#Raum
+define shape box Boden -6 -4.5 -2 6 -4.2 -8 turquoise
+define shape box Wand -6 -4.2 -8 6 2 -8 blurple
+define shape box Seitenwand -6.1 -4.5 -2 -6 2 -8 yellow
+
+#Boxen
+define shape box Box1 -1 -4.2 -3 1 -1 -4 purple
+define shape box Box2 -2 -4.2 -2.8 -1.2 -3.5 -3.3 red           #lange Box
+define shape box Box3 -2.1 -3.5 -2.8 -1.3 -2.8 -3.3 blue             #theoretisch auf langer Box stehende Box
+define shape box Box4 -1.8 -2.8 -3 -1.4 -1.2 -3.3 blurple        #schwebende Box
+define shape box Box5 -6.5 2 -6 -3 3 -8 blue
+define shape box Box6 5.5 2 -8 6 4 -8.2 red
+
+#Kugeln
+define shape sphere Kugel 0 0 -3.5 1 whiteCeramic
+define shape sphere Kugel2 -1.6 -0.8 -3.1 0.4 turquoise
+
+#Licht
+define light ambient 0 0 0 0.3 0.3 0.3 0 0 0
+define light light1 -10 10 -1 0.6 0.6 0.6 1.0 1.0 1.0    #oben links?
+define light light2 10 6 -6 0.6 0.6 0.6 1.0 1.0 1.0          #liegt oben rechts?
+define light light3 -3 -5 0 0 0 0 1 1 1
+
+#camera
+define camera cam 46
+
+#Composite
+define shape composite root Boden Wand Seitenwand Kugel Kugel2 Box1 Box2 Box3 Box4 Box5 Box6
+
+#transform
+#transform Boden scale 2 4 2
+#transform Boden translate 3 0 2
+#transform Boden rotate 45 1 0 0
