@@ -67,8 +67,8 @@ glm::vec3 Sphere::computeNorm(OptionalHit const& hit) const{
 }
 
 std::shared_ptr<Shape> Sphere::transform(){
-  glm::vec4 c = {center_.x, center_.y, center_.z, 1.0f};
-  glm::vec3 h  {c * world_transformation_};
+  glm::vec4 c{center_.x, center_.y, center_.z, 1.0f};
+  glm::vec3 h{c * world_transformation_};
   center_ = h;
   return std::shared_ptr<Sphere>(this);
 }

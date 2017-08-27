@@ -139,14 +139,16 @@ glm::vec3 Box::computeNorm(OptionalHit const& hit) const{
 }
 
 std::shared_ptr<Shape> Box::transform(){
-  glm::vec4 mi {min_.x, min_.y, min_.z, 1.0f};
-  glm::vec4 ma {max_.x, max_.y, max_.z, 1.0f};
+  std::cout<<"-------Box vorher: "<<*this;
+  glm::vec4 mi{min_.x, min_.y, min_.z, 1.0f};
+  glm::vec4 ma{max_.x, max_.y, max_.z, 1.0f};
 
-  glm::vec3 j {mi * world_transformation_};
-  glm::vec3 i {ma * world_transformation_};
+  glm::vec3 j{mi * world_transformation_};
+  glm::vec3 i{ma * world_transformation_};
 
   min_ = j;
   max_ = i;
+  std::cout<<"-------Box nachher: "<<*this;
 
   return std::shared_ptr<Box>(this);
 }

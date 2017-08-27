@@ -59,30 +59,30 @@ Shape::Shape(std::string const& name, Material const& material):
     world_transformation_inv_ = glm::inverse(world_transformation_);
 }
 
-void Shape::rotate(float teta, glm::vec3 achse){   //Matrix reloaded 
+void Shape::rotate(float theta, glm::vec3 achse){   //Matrix reloaded
   glm::mat4 R;
 
   if(achse.x == 1){
     R[0] = {1,0,0,0};
-    R[1] = {0,cos(teta),sin(teta),0};
-    R[2] = {0,-sin(teta),cos(teta),0};
+    R[1] = {0,cos(theta),sin(theta),0};
+    R[2] = {0,-sin(theta),cos(theta),0};
     R[3] = {0,0,0,1};
 
     world_transformation_ *= R;
     world_transformation_inv_ = glm::inverse(world_transformation_);
   }
   else if(achse.y == 1){
-    R[0] = {cos(teta),0,-sin(teta),0};
+    R[0] = {cos(theta),0,-sin(theta),0};
     R[1] = {0,1,0,0};
-    R[2] = {sin(teta),0, cos(teta),0};
+    R[2] = {sin(theta),0, cos(theta),0};
     R[3] = {0,0,0,1};
 
     world_transformation_ *= R;
     world_transformation_inv_ = glm::inverse(world_transformation_);
   }
   else if(achse.z == 1){
-    R[0] = {cos(teta),sin(teta),0,0};
-    R[1] = {-sin(teta), cos(teta),0,0};
+    R[0] = {cos(theta),sin(theta),0,0};
+    R[1] = {-sin(theta), cos(theta),0,0};
     R[2] = {0,0,1,0};
     R[3] = {0,0,0,1};
 
@@ -90,7 +90,7 @@ void Shape::rotate(float teta, glm::vec3 achse){   //Matrix reloaded
     world_transformation_inv_ = glm::inverse(world_transformation_);
   }
   else{
-    std::cout << "-------ERROR-------- Not a valid axis -------ERROR-------- \n"; 
+    std::cout << "-------ERROR-------- Not a valid axis -------ERROR-------- \n";
   }
 }
 

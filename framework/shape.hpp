@@ -23,7 +23,6 @@ public:
   //pure virtual: muss überschrieben werden
   virtual float area() const = 0;
   virtual float volume() const = 0;
-
   virtual OptionalHit intersect(Ray const& ray, float& t) = 0;
   virtual glm::vec3 computeNorm(OptionalHit const& hit) const = 0;
   //virtual Shape transform() = 0;
@@ -36,14 +35,9 @@ public:
   std::string getName() const;
   Color getColor() const;
   Material getMaterial() const;
-
   void translate(glm::vec3 const& v);
   void rotate(float teta, glm::vec3 achse);
   void scale(glm::vec3 const& s);
-
-  
-
-
 
 
 protected:

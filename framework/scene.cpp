@@ -144,45 +144,35 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
       auto currentShape = shapeMap.find(keyword);
 
       if(currentShape != shapeMap.end()){
-        ss>>keyword;
+        std::string action;
+        ss>>action;
 
-        if(keyword == "translate"){
+        if(action == "translate"){
           glm::vec3 v;
-
           ss>>v.x;
           ss>>v.y;
           ss>>v.z;
-
           (currentShape->second)->translate(v);
-
-        }//ifzu
-
-        if(keyword == "rotate"){
-          float teta;
+        }//if zu
+        if(action == "rotate"){
+          float theta;
           glm::vec3 axis;
-
-          ss>>teta;
-
+          ss>>theta;
           ss>>axis.x;
           ss>>axis.y;
           ss>>axis.z;
-
-          (currentShape->second)->rotate(teta, axis);
-
+          (currentShape->second)->rotate(theta, axis);
         }//if zu
-
-        if(keyword == "scale"){
+        if(action == "scale"){
           glm::vec3 z;
-
           ss>>z.x;
           ss>>z.y;
           ss>>z.z;
-
           (currentShape->second)->scale(z);
-
         }//if zu
-
-        (currentShape->second)->transform();
+        /*(currentShape->second)->transform(); Das darf nicht hier aufgerufen werden!
+         * nur bei Bedarf je da, wo es gebraucht wird, die transMatrix bleibt ja im Objekt gespeichtert
+         * und kann also später verwendet werden*/
       }//if shape in map zu
     }//if transform zu
   }//while zu
