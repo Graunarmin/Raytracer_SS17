@@ -25,6 +25,8 @@ public:
   std::ostream& print(std::ostream& os) const override;
   glm::vec3 computeNorm(OptionalHit const& hit) const override;
 
+  std::shared_ptr<Shape> transform() override;
+
 
   //Member:
   std::string name_;

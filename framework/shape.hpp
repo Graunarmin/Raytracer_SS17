@@ -26,6 +26,9 @@ public:
 
   virtual OptionalHit intersect(Ray const& ray, float& t) = 0;
   virtual glm::vec3 computeNorm(OptionalHit const& hit) const = 0;
+  //virtual Shape transform() = 0;
+  virtual std::shared_ptr<Shape> transform() = 0;
+
   //virtual: kann überschrieben werden
   virtual std::ostream& print(std::ostream& os) const;
 
@@ -33,6 +36,12 @@ public:
   std::string getName() const;
   Color getColor() const;
   Material getMaterial() const;
+
+  void translate(glm::vec3 const& v);
+  void rotate(float teta, glm::vec3 achse);
+  void scale(glm::vec3 const& s);
+
+  
 
 
 
@@ -42,8 +51,8 @@ protected:
   std::string name_;
   Color color_;
   Material material_;
-  glm::mat4 world_transformation;
-  glm::mat4 world_transformation_inv;
+  glm::mat4 world_transformation_;
+  glm::mat4 world_transformation_inv_;
 };
 
 std::ostream& operator<<(std::ostream& os, Shape const& s);

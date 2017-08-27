@@ -9,6 +9,7 @@
 #include "composite.hpp"
 #include"camera.hpp"
 #include <iostream>
+#include <glm/glm.hpp>
 #include <cstdlib>
 #include <fstream>
 #include <string>

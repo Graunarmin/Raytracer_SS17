@@ -48,6 +48,11 @@ OptionalHit Composite::intersect(Ray const& ray, float& t){
 }
 
 glm::vec3 Composite::computeNorm(OptionalHit const& hit) const{
-  std::cout<<"Kein Normalenvektor für Composites, so sorry!\n";
+  std::cout<<"No Normalenvektor for Composites, so sorry!\n";
   return glm::vec3{-1.0f};
 }
+
+std::shared_ptr<Shape> Composite::transform(){
+  std::cout << "Don't be a bully! Don't transform poor composite....they don't like it....believe me!!! :( \n";
+}
+

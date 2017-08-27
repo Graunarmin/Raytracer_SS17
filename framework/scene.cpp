@@ -120,7 +120,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
               auto currentShape = shapeMap.find(shapeName);
 
-              if(currentShape != shapeMap.end()){
+              if(currentShape != shapeMap.end()){ //if(shapeMap.find(shapeName) != shapeMap.end()){
 
                 myScene.composite_->addShape(currentShape->second);
                 //second holt den dem String zugeordneten Wert aus der Map,
@@ -138,6 +138,52 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
         std::cout<<"Added Camera: "<<myScene.camera_.name_<<" with fovX = "<<myScene.camera_.fovX_<<"\n";
       }//if camera zu
     }//if define zu
+    if(keyword == "transform"){
+      ss>>keyword;
+
+      auto currentShape = shapeMap.find(keyword);
+
+      if(currentShape != shapeMap.end()){
+        ss>>keyword;
+
+        if(keyword == "scale"){
+          glm::vec3 z;
+
+          ss>>z.x;
+          ss>>z.y;
+          ss>>z.z;
+
+          (currentShape->second)->scale(z);
+
+        }//if zu
+
+        if(keyword == "tranlate"){
+          glm::vec3 v;
+
+          ss>>v.x;
+          ss>>v.y;
+          ss>>v.z;
+
+          (currentShape->second)->translate(v);
+
+        }//ifzu
+
+        if(keyword == "rotate"){
+          float teta;
+          glm::vec3 axis;
+
+          ss>>teta;
+
+          ss>>axis.x;
+          ss>>axis.y;
+          ss>>axis.z;
+
+          (currentShape->second)->rotate(teta, axis);
+
+        }//if zu
+        (currentShape->second)->transform();
+      }//if shape in map zu
+    }//if transform zu
   }//while zu
     file.close();
   }//if is-open zu

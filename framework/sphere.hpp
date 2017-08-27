@@ -28,6 +28,8 @@ public:
   OptionalHit intersect(Ray const& ray, float& t) override;
   glm::vec3 computeNorm(OptionalHit const& hit) const override;
 
+  std::shared_ptr<Shape> transform() override;
+
 private:
   glm::vec3 center_;
   float radius_;

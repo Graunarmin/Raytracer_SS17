@@ -28,13 +28,7 @@ Ray Camera::compRay(int x, int y, int width, int height){
   Ray ray {eye_, glm::vec3{dx, dy, dz}};
   auto mat = transform();
 
-  glm::vec4 v1 {ray.origin_, 1.0f};
-  glm::vec4 v2 {ray.direction_, 0.0f};
-
-  glm::vec3 v3 {mat * v1};
-  glm::vec3 v4 {mat * v2};
-
-  return Ray{v3, v4};
+  return ray.transformRay(mat);
 }
 
 glm::mat4 Camera::transform(){
@@ -53,12 +47,3 @@ glm::mat4 Camera::transform(){
 
   return transCam;
 }
-
-// std::ostream& operator<<(std::ostream& os, Camera const& cam){
-//   os<<"Name der Kamera: " << cam.name_<<std::endl<<
-//     "Öffnungswinkel: "<<cam.fovX_<<std::endl<<
-//     "Eye: ("<<cam.eye_.x<<", "<<cam.eye_.y<<", "<<cam.eye_.z<<")"<<std::endl<<
-//     "Direction: ("<<cam.dir_.x<<", "<<cam.dir_.y<<", "<<cam.dir_.z<<")"<<std::endl<<
-//     "Up: ("<<cam.up_.x<<", "<<cam.up_.y<<", "<<cam.up_.z<<")"std::endl;
-//     return os;
-//}

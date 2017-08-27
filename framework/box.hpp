@@ -27,6 +27,9 @@ public:
 
   glm::vec3 computeNorm(OptionalHit const& hit) const override;
 
+  std::shared_ptr<Shape> transform() override;
+
+
 private:
   //Raumdiagonale zwischen min und max
   glm::vec3 min_;
