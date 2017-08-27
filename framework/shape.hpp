@@ -6,6 +6,7 @@
 #include "optionalHit.hpp"
 
 #include <glm/vec3.hpp>
+#include <glm/glm.hpp>
 #include <cmath>
 #include <iostream>
 #include <string>
@@ -41,6 +42,8 @@ protected:
   std::string name_;
   Color color_;
   Material material_;
+  glm::mat4 world_transformation;
+  glm::mat4 world_transformation_inv;
 };
 
 std::ostream& operator<<(std::ostream& os, Shape const& s);
