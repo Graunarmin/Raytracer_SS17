@@ -54,5 +54,6 @@ glm::vec3 Composite::computeNorm(OptionalHit const& hit) const{
 
 std::shared_ptr<Shape> Composite::transform(){
   std::cout << "Don't be a bully! Don't transform poor composite....they don't like it....believe me!!! :( \n";
+  return nullptr;
 }
 
