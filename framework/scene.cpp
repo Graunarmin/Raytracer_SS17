@@ -146,18 +146,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
       if(currentShape != shapeMap.end()){
         ss>>keyword;
 
-        if(keyword == "scale"){
-          glm::vec3 z;
-
-          ss>>z.x;
-          ss>>z.y;
-          ss>>z.z;
-
-          (currentShape->second)->scale(z);
-
-        }//if zu
-
-        if(keyword == "tranlate"){
+        if(keyword == "translate"){
           glm::vec3 v;
 
           ss>>v.x;
@@ -181,6 +170,18 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           (currentShape->second)->rotate(teta, axis);
 
         }//if zu
+
+        if(keyword == "scale"){
+          glm::vec3 z;
+
+          ss>>z.x;
+          ss>>z.y;
+          ss>>z.z;
+
+          (currentShape->second)->scale(z);
+
+        }//if zu
+
         (currentShape->second)->transform();
       }//if shape in map zu
     }//if transform zu
