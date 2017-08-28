@@ -15,12 +15,22 @@ struct Material{
     ks_{Color{}},
     m_{0.0f}{}
 
+  //Für die Tests muss er bleiben!
   Material(std::string const& name, Color const& a, Color const& d, Color const& s, float m):
     name_{name},
     ka_{a},
     kd_{d},
     ks_{s},
     m_{m}{}
+
+  Material(std::string const& name, Color const& a, Color const& d, Color const& s, float m, float opacity, float ri):
+    name_{name},
+    ka_{a},
+    kd_{d},
+    ks_{s},
+    m_{m},
+    opacity_{opacity},
+    ri_{ri} {}
 
 
   //friend, da es ja aus der Shape aufgerufen wird!
@@ -39,5 +49,7 @@ struct Material{
   Color kd_;
   Color ks_;
   float m_;
+  float ri_;
+  float opacity_;
 };
 #endif //MATERIAL_HPP

@@ -34,7 +34,8 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>> mat.ks_.g;
           ss>> mat.ks_.b;
           ss>> mat.m_;
-
+          ss>> mat.ri_;
+          ss>> mat.opacity_;
           myScene.addMaterial(mat);
         }//if material zu
 
@@ -80,7 +81,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
             for(const auto& i: myScene.materials_){
               if(i->name_ == keyword){
-                auto bo = std::make_shared<Box>(bMin, bMax, bName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_});
+                auto bo = std::make_shared<Box>(bMin, bMax, bName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_, i->opacity_, i->ri_});
                 shapeMap[bName] = bo;
                 break;
               }//if zu
@@ -101,7 +102,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
             for(const auto& i: myScene.materials_){
               if(i->name_ == keyword){
-                auto sp = std::make_shared<Sphere>(sCenter, sRad, sName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_});
+                auto sp = std::make_shared<Sphere>(sCenter, sRad, sName, Material{i->name_, i->ka_, i->kd_, i->ks_, i->m_,  i->opacity_, i->ri_});
                 shapeMap[sName] = sp;
                 break;
               }//if zu

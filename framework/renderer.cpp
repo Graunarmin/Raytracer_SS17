@@ -18,7 +18,7 @@ void Renderer::render(){
   for (unsigned y = 0; y < height_; ++y){
     for (unsigned x = 0; x < width_; ++x){
 
-      // scene_.camera_.fovX_ = 45;
+      int depth = 2;
 
       Ray ray = scene_.camera_.compRay(x, y, width_, height_);
 
@@ -43,7 +43,7 @@ void Renderer::render(){
       //--------------------------------
 
       //Berechnen der Farbe für jedes Pixel
-      p.color = raytracer(ray);
+      p.color = raytracer(ray, depth);
 
       write(p);
     }
@@ -52,7 +52,7 @@ void Renderer::render(){
 }
 
 //Berechnen der Farbe
-Color Renderer::raytracer(Ray const& ray){
+Color Renderer::raytracer(Ray const& ray, int depth){
 
   //erstellt optionalHit vom nächsten Schnittpunkt mit nächstem Objekt,
   //gespeichert werden, ob Treffer, die Distanz, der Schnittpunkt und das Objekt
@@ -61,8 +61,8 @@ Color Renderer::raytracer(Ray const& ray){
  //Normale und Vektor zum Betrachter, um Farbe zu berechnen
  if(nearestH.hit_){
    glm::vec3 n = nearestH.nearestShape_->computeNorm(nearestH);
-   glm::vec3 v = glm::normalize(beobachter_ - nearestH.intersectionPoint_);
-   return compColor(nearestH, n, v);
+   glm::vec3 v = glm::normalize(ray.origin_ - nearestH.intersectionPoint_);
+   return compColor(nearestH, n, v, depth, ray);
  }
 
  //Background Farbe
@@ -90,18 +90,21 @@ OptionalHit Renderer::hitObject(Ray const& ray){
 }
 
 //Berechnung der Farbe mit Beleuchtungsmodell
-Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 const& v){
+Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 const& v, int depth, Ray const& ray){
 
    Color i{0.0f};
    Color summeDif{0.0f};
    Material m = nH.nearestShape_ -> getMaterial();
    glm::vec3 intP = nH.intersectionPoint_;
+   Color reflectionC{1.0f};
+   Color refractionC{1.0f};
 
    for(auto const& h: scene_.lights_){
 
      glm::vec3 l = glm::normalize(h->position_ - intP);
      glm::vec3 r = glm::normalize((2 * (glm::dot(n, l)) * n) - l);
 
+     //Schatten Ray
      Ray lightRay{intP, l};
      lightRay.origin_ += n * 0.01f;
 
@@ -114,9 +117,24 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
      }
    }//for zu
 
+   if(depth > 0){
+      reflectionC = reflection(ray, n, intP, depth);
+      depth -= 1;
+   }
+
+   if(m.opacity_ > 1){
+     refractionC = refraction(m, n, ray, intP, depth);
+   }
+
     //EIN ambientes Licht pro Szene wird in der Szenenbeschreibung eingelesen!
     ambientLight(summeDif, m, i);
 
+    //Reflektion
+    i.r += reflectionC.r * m.ks_.r * refractionC.r * m.opacity_;
+    i.g += reflectionC.g * m.ks_.g * refractionC.g * m.opacity_;
+    i.b += reflectionC.b * m.ks_.b * refractionC.b * m.opacity_;
+
+    //Colormapping 
     i.r = i.r / (i.r +1);
     i.g = i.g / (i.g +1);
     i.b = i.b / (i.b +1);
@@ -138,6 +156,21 @@ void Renderer::pointLight(Color& summeDif, Material const& m, std::shared_ptr<Li
   summeDif.b += (h->ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
 }
 
+Color Renderer::reflection(Ray const& ray, glm::vec3 const& n, glm::vec3 intP, int depth){
+    glm::vec3 r = glm::normalize(glm::reflect(ray.direction_, n));
+    Ray reflectionRay{intP, r};
+    reflectionRay.origin_ += n * 0.01f;
+    
+    return raytracer(reflectionRay, depth);
+}
+
+Color Renderer::refraction(Material const& m, glm::vec3 const& n, Ray const& ray, glm::vec3 const& intP, int depth){
+  glm::vec3 t = glm::normalize(glm::refract(ray.direction_, n, m.ri_));
+  Ray refractionRay{intP, t};
+  refractionRay.origin_ += n * 0.01f;
+
+  return raytracer(refractionRay, depth);
+}
 
 //------------------------------------------------------------//
 
