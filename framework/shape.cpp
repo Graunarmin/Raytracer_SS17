@@ -90,7 +90,7 @@ void Shape::rotate(float theta, glm::vec3 achse){   //Matrix reloaded
     world_transformation_inv_ = glm::inverse(world_transformation_);
   }
   else{
-    std::cout << "-------ERROR-------- Not a valid axis -------ERROR-------- \n";
+    std::cout << "-------ERROR------- Not a valid axis -------ERROR------- \n";
   }
 }
 

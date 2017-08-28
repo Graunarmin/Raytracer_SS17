@@ -14,11 +14,11 @@ int main(int argc, char* argv[])
   //std::string const filename = "./Szene.ppm";
   //std::string const filepath = "../../doc/szene.txt";
 
-  // std::string const filename = "./Szene1.ppm";
-  // std::string const filepath = "../../doc/szene1.txt";
+  std::string const filename = "./Szene1.ppm";
+  std::string const filepath = "../../doc/szene1.txt";
 
-  std::string const filename = "./Szene2.ppm";
-  std::string const filepath = "../../doc/szene2.txt";
+  //std::string const filename = "./Szene2.ppm";
+  //std::string const filepath = "../../doc/szene2.txt";
 
   //filename als instream anfragen
   Scene szene{};

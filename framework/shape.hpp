@@ -14,6 +14,8 @@
 class Shape{
 
 public:
+
+  //Konstruktoren
   Shape();
   Shape(std::string const& name, Color const& color);
   Shape(std::string const& name, Material const& material);
@@ -23,9 +25,9 @@ public:
   //pure virtual: muss überschrieben werden
   virtual float area() const = 0;
   virtual float volume() const = 0;
+  
   virtual OptionalHit intersect(Ray const& ray, float& t) = 0;
   virtual glm::vec3 computeNorm(OptionalHit const& hit) const = 0;
-  //virtual Shape transform() = 0;
   virtual std::shared_ptr<Shape> transform() = 0;
 
   //virtual: kann überschrieben werden
@@ -41,6 +43,7 @@ public:
 
 
 protected:
+
   //protected, damit die abgeleiteten drauf zugreifen können
   std::string name_;
   Color color_;

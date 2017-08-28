@@ -33,6 +33,7 @@ struct Scene{
   //std::vector<std::shared_ptr<Shape>> shapes_;
   std::vector<std::shared_ptr<Light>> lights_;
   std::vector<std::shared_ptr<Material>> materials_;
+  
   Light ambientLight_;
   Camera camera_;
 };

@@ -54,7 +54,7 @@ OptionalHit Sphere::intersect(Ray const& ray, float& t) {
   auto hit = glm::intersectRaySphere(ray.origin_, ray.direction_,
           center_, radius_*radius_, t);
   if(hit){
-    //Wenn es einen SP git: Koordinaten bestimmen
+    //Wenn es einen SP gibt: Koordinaten bestimmen
     intP.x = ray.origin_.x + (t*ray.direction_.x);
     intP.y = ray.origin_.y + (t*ray.direction_.y);
     intP.z = ray.origin_.z + (t*ray.direction_.z);

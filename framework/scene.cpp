@@ -124,20 +124,22 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
                 myScene.composite_->addShape(currentShape->second);
                 //second holt den dem String zugeordneten Wert aus der Map,
-                //also die Shap (bzw. den ptr auf die Shape)
+                //also die Shape (bzw. den ptr auf die Shape)
               }//if zu
               else{
-                 std::cout<<"Sorry, but this shape seems not to exist.";
+                 std::cout<<"Sorry, but this shape dosen't seem to exist.";
               }//else zu
             }//while zu
           }//if composite zu
       }//if shape zu
+
       if(keyword == "camera"){
         ss>>myScene.camera_.name_;
         ss>>myScene.camera_.fovX_;
         std::cout<<"Added Camera: "<<myScene.camera_.name_<<" with fovX = "<<myScene.camera_.fovX_<<"\n";
       }//if camera zu
     }//if define zu
+
     if(keyword == "transform"){
       ss>>keyword;
 
@@ -154,6 +156,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>>v.z;
           (currentShape->second)->translate(v);
         }//if zu
+
         if(action == "rotate"){
           float theta;
           glm::vec3 axis;
@@ -163,6 +166,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>>axis.z;
           (currentShape->second)->rotate(theta, axis);
         }//if zu
+        
         if(action == "scale"){
           glm::vec3 z;
           ss>>z.x;
