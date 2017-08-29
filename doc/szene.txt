@@ -34,4 +34,5 @@ define camera cam 46
 #composite
 define shape composite root Boden Box1 Box2 sphere1
 
-#Test
+#render
+render cam Szene.ppm 400 400

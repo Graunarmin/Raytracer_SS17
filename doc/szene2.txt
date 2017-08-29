@@ -37,6 +37,9 @@ define camera cam 46
 #Composite
 define shape composite root Boden Wand Seitenwand Kugel Kugel2 Box1 Box2 Box3 Box4 Box5 Box6
 
+#render
+render cam Szene2.ppm 400 400
+
 #transform
 #transform Boden scale 2 4 2
 #transform Boden translate 3 0 2
