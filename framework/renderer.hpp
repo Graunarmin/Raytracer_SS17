@@ -25,6 +25,7 @@
 #include <limits>
 #include <typeinfo>
 #include <cstdlib>
+#include <random>
 
 class Renderer
 {
