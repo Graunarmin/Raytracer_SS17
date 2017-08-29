@@ -167,7 +167,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>>axis.z;
           (currentShape->second)->rotate(theta, axis);
         }//if zu
-        
+
         if(action == "scale"){
           glm::vec3 z;
           ss>>z.x;
@@ -180,6 +180,12 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
          * und kann also später verwendet werden*/
       }//if shape in map zu
     }//if transform zu
+    if(keyword == "render"){
+      ss>>myScene.camera_.name_;
+      ss>>myScene.filename_;
+      ss>>myScene.width_;
+      ss>>myScene.height_;
+    }
   }//while zu
     file.close();
   }//if is-open zu

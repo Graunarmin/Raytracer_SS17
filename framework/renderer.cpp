@@ -1,14 +1,12 @@
 #include "renderer.hpp"
 
 
-Renderer::Renderer(unsigned w, unsigned h, std::string const& file,
-                    Scene const& scene, glm::vec3 const& be, glm::vec3 const& ce):
-  width_(w),
-  height_(h),
-  colorbuffer_(w*h, Color(0.0, 0.0, 0.0)),
-  filename_(file),
+Renderer::Renderer(Scene const& scene, glm::vec3 const& ce):
+  width_(scene.width_),
+  height_(scene.height_),
+  colorbuffer_(width_*height_, Color(0.0, 0.0, 0.0)),
+  filename_(scene.filename_),
   scene_(scene),
-  beobachter_(be),
   screenCenter_(ce),
   ppm_(width_, height_){}
 
@@ -30,7 +28,7 @@ void Renderer::render(){
         clr = raytracer(ray, depth);
       }
       Pixel p(x,y);
-      
+
       p.color.r = clr.r/2;
       p.color.g = clr.g/2;
       p.color.b = clr.b/2;*/
@@ -146,7 +144,7 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
    }
 
    //Refraktion:
-   //Opacity = Transparenz, je höher desto durchsichtiger 
+   //Opacity = Transparenz, je höher desto durchsichtiger
    if(m.opacity_ > 1){
      refractionC = refraction(m, n, ray, intP, depth);
    }
@@ -159,7 +157,7 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
     i.g += reflectionC.g * m.ks_.g * refractionC.g * m.opacity_;
     i.b += reflectionC.b * m.ks_.b * refractionC.b * m.opacity_;
 
-    //Colormapping 
+    //Colormapping
     i.r = i.r / (i.r +1);
     i.g = i.g / (i.g +1);
     i.b = i.b / (i.b +1);
@@ -186,7 +184,7 @@ Color Renderer::reflection(Ray const& ray, glm::vec3 const& n, glm::vec3 intP, i
     glm::vec3 r = glm::normalize(glm::reflect(ray.direction_, n));
     Ray reflectionRay{intP, r};
     reflectionRay.origin_ += n * 0.01f;
-    
+
     return raytracer(reflectionRay, depth);
 }
 
