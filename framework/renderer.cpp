@@ -1,13 +1,13 @@
 #include "renderer.hpp"
 
 
-Renderer::Renderer(Scene const& scene, glm::vec3 const& ce):
+Renderer::Renderer(Scene const& scene/*, glm::vec3 const& ce*/):
   width_(scene.width_),
   height_(scene.height_),
   colorbuffer_(width_*height_, Color(0.0, 0.0, 0.0)),
   filename_(scene.filename_),
   scene_(scene),
-  screenCenter_(ce),
+  //screenCenter_(ce),
   ppm_(width_, height_){}
 
 //Berechnen der Rays durch jedes einzelne Pixel
@@ -15,24 +15,6 @@ void Renderer::render(){
 
   for (unsigned y = 0; y < height_; ++y){
     for (unsigned x = 0; x < width_; ++x){
-
-      //-------------------------------------
-      /*Color clr{0.0f};
-      for(int i = 0; i < 2; ++i){
-        int depth = 2;
-        float u = float(x + drand48()) / float(width_);
-        float v = float(y + drand48()) / float(height_);
-
-        Ray ray = scene_.camera_.compRay(x, y, width_, height_);
-
-        clr = raytracer(ray, depth);
-      }
-      Pixel p(x,y);
-
-      p.color.r = clr.r/2;
-      p.color.g = clr.g/2;
-      p.color.b = clr.b/2;*/
-      //-------------------------------------
 
       int depth = 2;
 
