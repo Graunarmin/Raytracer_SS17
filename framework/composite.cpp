@@ -52,8 +52,11 @@ glm::vec3 Composite::computeNorm(OptionalHit const& hit) const{
   return glm::vec3{-1.0f};
 }
 
-std::shared_ptr<Shape> Composite::transform(){
+void Composite::transform(){
   std::cout << "Don't be a bully! Don't transform poor composite....they don't like it.... :( \n";
-  return nullptr;
+  //return nullptr;
 }
 
+void Composite::toScene(std::ofstream& file){
+  std::cout<<"And now for something completely different. (You really shouldn't call this function on poor composites.)\n";
+}

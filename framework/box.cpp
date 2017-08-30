@@ -138,17 +138,22 @@ glm::vec3 Box::computeNorm(OptionalHit const& hit) const{
   }
 }
 
-std::shared_ptr<Shape> Box::transform(){
+void Box::transform(){
   std::cout<<"-------Box vorher: "<< *this;
   glm::vec4 mi{min_.x, min_.y, min_.z, 1.0f};
   glm::vec4 ma{max_.x, max_.y, max_.z, 1.0f};
 
-  glm::vec3 j{mi * world_transformation_};
-  glm::vec3 i{ma * world_transformation_};
+  glm::vec3 j{world_transformation_ * mi};
+  glm::vec3 i{world_transformation_ * ma};
 
   min_ = j;
   max_ = i;
   std::cout<<"-------Box nachher: "<< *this;
 
-  return std::shared_ptr<Box>(this);
+  //return std::shared_ptr<Box>(this);
+}
+
+void Box::toScene(std::ofstream& file){
+  file<<"define shape box "<<getName()<<" "<<min_.x<<" "<<min_.y<<" "<<min_.z<<" "
+      <<max_.x<<" "<<max_.y<<" "<<max_.z<<" "<<getMaterial().name_<<std::endl;
 }

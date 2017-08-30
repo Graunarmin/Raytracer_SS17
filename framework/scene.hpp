@@ -7,7 +7,7 @@
 #include "sphere.hpp"
 #include "light.hpp"
 #include "composite.hpp"
-#include"camera.hpp"
+#include "camera.hpp"
 #include <iostream>
 #include <glm/glm.hpp>
 #include <cstdlib>

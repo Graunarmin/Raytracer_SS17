@@ -28,7 +28,8 @@ public:
   std::ostream& print(std::ostream& os) const override;
   OptionalHit intersect(Ray const& ray, float& t) override;
   glm::vec3 computeNorm(OptionalHit const& hit) const override;
-  std::shared_ptr<Shape> transform() override;
+  void transform() override;
+  void toScene(std::ofstream& file) override;
 
 private:
 

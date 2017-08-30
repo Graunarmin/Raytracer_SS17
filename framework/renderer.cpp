@@ -172,11 +172,30 @@ Color Renderer::reflection(Ray const& ray, glm::vec3 const& n, glm::vec3 intP, i
 
 Color Renderer::refraction(Material const& m, glm::vec3 const& n, Ray const& ray, glm::vec3 const& intP, int depth){
   //glm::vec3 t = glm::normalize(glm::refract(ray.direction_, n, m.ri_));
-  float c1 = glm::dot(ray.direction_, n);
+  // float ri;
+  // ri = (m.ri_ <= 0)? ri = 1 : ri = m.ri_;
+  //
+  // if(ray.inside_){
+  //  ri = 1/ri;
+  // }
+  //
+   float inAngle = glm::dot(ray.direction_, n);
+  //
+  // if(inAngle <= ri){
+  //   glm::vec3 t = glm::refract(ray.direction_, n, ri);
+  //
+  //   Ray refractionRay{intP, t, !ray.inside_};
+  //
+  //   refractionRay.origin_ += n * 0.01f;
+  //
+  //   return raytracer(refractionRay, depth);
+  // }
 
-  if(c1 <= (m.ri_)){
+  if(inAngle <= m.ri_){
     glm::vec3 t = glm::refract(ray.direction_, n, m.ri_);
+
     Ray refractionRay{intP, t};
+
     refractionRay.origin_ += n * 0.01f;
 
     return raytracer(refractionRay, depth);

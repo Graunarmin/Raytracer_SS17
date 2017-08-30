@@ -10,12 +10,19 @@ struct Ray{
 
   Ray():
     origin_{},
-    direction_{}{}
+    direction_{},
+    inside_{false}{}
 
   //normalized direction in constructor!
   Ray(glm::vec3 const& origin, glm::vec3 const& direction):
     origin_{origin},
-    direction_{glm::normalize(direction)}{}
+    direction_{glm::normalize(direction)},
+    inside_{false}{}
+
+    Ray(glm::vec3 const& origin, glm::vec3 const& direction, bool inside):
+      origin_{origin},
+      direction_{glm::normalize(direction)},
+      inside_{inside}{}
 
   friend std::ostream& operator<<(std::ostream&os, Ray const& ray){
     os<<"Ray origin: (" << ray.origin_.x << ", "<<ray.origin_.y<<", "<<
@@ -38,6 +45,7 @@ struct Ray{
 
   glm::vec3 origin_;
   glm::vec3 direction_;
+  bool inside_;
 
 };
 #endif //RAY_HPP

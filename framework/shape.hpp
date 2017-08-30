@@ -10,6 +10,8 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <sys/stat.h>
+#include <fstream>
 
 class Shape{
 
@@ -25,10 +27,11 @@ public:
   //pure virtual: muss überschrieben werden
   virtual float area() const = 0;
   virtual float volume() const = 0;
-  
+
   virtual OptionalHit intersect(Ray const& ray, float& t) = 0;
   virtual glm::vec3 computeNorm(OptionalHit const& hit) const = 0;
-  virtual std::shared_ptr<Shape> transform() = 0;
+  virtual void transform() = 0;
+  virtual void toScene(std::ofstream& file) = 0;
 
   //virtual: kann überschrieben werden
   virtual std::ostream& print(std::ostream& os) const;
@@ -40,6 +43,7 @@ public:
   void translate(glm::vec3 const& v);
   void rotate(float teta, glm::vec3 achse);
   void scale(glm::vec3 const& s);
+
 
 
 protected:

@@ -2,6 +2,7 @@
 
 #ka_ = Farbe! , kd_ = Helligkeit!, ks_ = reflektion!, m_ = größe der Lichtreflektion
 #define material name ka_         kd_         ks_        m_ ri_ opacity_(>1 = durchsichtig, mind. = 1!!!)
+#Brechungsfaktor darf nicht 0 sein, undurchsichtig 1
 
 #Für Boxen
 define material grey  0.8 0.8 0.9 0.8 0.8 0.9 0.8 0.8 0.9 2 0 1
@@ -45,7 +46,7 @@ define light light3 -15 10 -20 0.6 0.6 0.6 1.0 1.0 1.0           #links
 define light light4 15 10 -20 0.6 0.6 0.6 1.0 1.0 1.0           #rechts
 
 #camera
-define camera cam 45
+define camera cam 45.2 3 0 0 -30.0 30.0
 
 #Composite
 define shape composite root Boden Wand Kugel kleineKugel größereKugel kleinereKugel Box Box2
@@ -57,3 +58,4 @@ render cam Szene1.ppm 400 400
 #transform Boden scale 2 4 2
 #transform Boden translate 3 0 2
 #transform Boden rotate 45 1 0 0
+#transform Camera circle Winkel Center Radius

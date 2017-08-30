@@ -4,13 +4,14 @@
 #include <cmath>
 #include <catch.hpp>
 
+
 class Box : public Shape{
 
 public:
 
   //Konstruktoren
   Box();
-  Box(glm::vec3 const& min, glm::vec3 const& max, 
+  Box(glm::vec3 const& min, glm::vec3 const& max,
       std::string const& name, Color const& color);
   Box(glm::vec3 const& min, glm::vec3 const& max,
       std::string const& name, Material const& material);
@@ -28,7 +29,8 @@ public:
   OptionalHit intersect(Ray const& ray, float& t) override;
   std::ostream& print(std::ostream& os) const override;
   glm::vec3 computeNorm(OptionalHit const& hit) const override;
-  std::shared_ptr<Shape> transform() override;
+  void transform() override;
+  void toScene(std::ofstream& file) override;
 
 private:
 

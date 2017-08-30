@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "ray.hpp"
 
 class Camera{
@@ -15,14 +16,14 @@ class Camera{
 
   Camera();
   Camera(std::string const& name, float fovX);
+  Camera(std::string const& name, float fovX, glm::vec3 eye, glm::vec3 dir);
   ~Camera();
 
   Ray compRay(int x, int y, int width, int height);
 
   glm::mat4 transform();
-
-  //std::ostream& operator<<(std::ostream& os, Camera const& cam);
-
+  void around();
+  void toScene(std::ofstream& file);
   //member
 
   std::string name_;
@@ -30,6 +31,11 @@ class Camera{
   glm::vec3 eye_;
   glm::vec3 dir_;
   glm::vec3 up_;
+
+  //Member zum Umkreisen:
+  float angle_; //noch in Bogenmaß umrechnen!
+  glm::vec3 sceneCenter_;
+  float circleRadius_;
 };
 
-#endif
+#endif //CAMERA_HPP

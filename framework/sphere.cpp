@@ -66,9 +66,17 @@ glm::vec3 Sphere::computeNorm(OptionalHit const& hit) const{
    return glm::normalize(hit.intersectionPoint_ - getCenter());
 }
 
-std::shared_ptr<Shape> Sphere::transform(){
+void Sphere::transform(){
+  std::cout<<"----Kugel vorher: "<<*this<<"----------\n";
   glm::vec4 c{center_.x, center_.y, center_.z, 1.0f};
-  glm::vec3 h{c * world_transformation_};
+  glm::vec3 h{world_transformation_ * c};
   center_ = h;
-  return std::shared_ptr<Sphere>(this);
+
+  std::cout<<"----Kugel nachher: "<<*this<<"----------\n";
+  //return std::shared_ptr<Sphere>(this);
+}
+
+void Sphere::toScene(std::ofstream& file){
+  file<<"define shape sphere "<<getName()<<" "<<center_.x<<" "<<center_.y<<" "<<center_.z<<" "
+      <<radius_<<" "<<getMaterial().name_<<std::endl;
 }

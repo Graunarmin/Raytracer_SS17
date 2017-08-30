@@ -4,8 +4,14 @@
 #include <cmath>
 #include <vector>
 #include <sys/stat.h>
+#include "scene.hpp"
 
 int main(int argc, char const *argv[]) {
+
+  std::string const filepath = "../../doc/animation.txt";
+  Scene szene{};
+  Scene superSzene = szene.SDFloader(filepath);
+
 
   const int frames = 10;
   std::vector<std::string> fileNames;
@@ -18,25 +24,35 @@ int main(int argc, char const *argv[]) {
 
   }
 
-  //txt Dateien schreiben - Namen für alle Files aus den 
+  //txt Dateien schreiben - Namen für alle Files aus den Vektoren holen
   for(int i = 0; i < frames; ++i){
     std::string tmp = fileNames.back();
     std::ofstream afile("../../doc/TXT_Scenes/"+tmp, std::ios::out);
     fileNames.pop_back();
     if (afile.is_open()) {
+
       std::string im = imageNames.back();
 
       afile
-          <<"define material lightblue 0.45 0.615 1 0.45 0.615 1 0.45 0.615 1 810 1.5 3" <<std::endl
-          <<"define material matteGrey 0.8 0.8 0.9 0.8 0.8 0.9 0 0 0 2 0 1" <<std::endl
-          <<"define shape box Boden -21.5 -6 -6 21.6 -5.9 -37 matteGrey"<<std::endl
-          <<"define shape sphere Kugel -4 -3.7 -18 2.2 lightblue"<<std::endl
+          <<"define material grey  0.8 0.8 0.9 0.8 0.8 0.9 0.8 0.8 0.9 2 0 1"<<std::endl
+          <<"define material matteGrey 0.8 0.8 0.9 0.8 0.8 0.9 0 0 0 2 0 1"<<std::endl
+          <<"define material reflectiveDarkGrey 0.8 0.8 0.9 0.3 0.3 0.3 1 1 1 200 0 1"<<std::endl
+          <<"define material pinkGlass 1 0 0.5 1 0 0.5 0.5 0.5 0.5 200 2.4 20"<<std::endl
+          <<"define material lightblue 0.45 0.615 1 0.45 0.615 1 0.45 0.615 1 810 1.5 3"<<std::endl;
+
+          for(auto const& i: superSzene.composite_->shapes_){
+              i->transform();//transformiert das Objekt
+              i->toScene(afile);//schreibt es in den file
+          }
+          superSzene.camera_.around();
+          superSzene.camera_.toScene(afile);
+
+      afile
           <<"define light ambient 0 0 0 0.5 0.5 0.5 0 0 0"<<std::endl
           <<"define light light3 -15 10 -20 0.6 0.6 0.6 1.0 1.0 1.0"<<std::endl
-          <<"define camera cam 45"<<std::endl
-          <<"define shape composite root Boden Kugel"<<std::endl
-          <<"render cam ../../doc/PPM_Images/"<< im << " 400 400"<<std::endl
-          <<"transform Kugel translate 3 0 2"<<std::endl;
+          <<"define shape composite root Boden Wand Kugel"<<std::endl
+          <<"transform Kugel translate 3 0 2"<<std::endl
+          <<"render cam ../../doc/PPM_Images/"<< im << " 400 400"<<std::endl;
       imageNames.pop_back();
       afile.close();
     }
