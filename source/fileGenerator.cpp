@@ -18,6 +18,7 @@ int main(int argc, char const *argv[]) {
 
   }
 
+  //txt Dateien schreiben - Namen für alle Files aus den 
   for(int i = 0; i < frames; ++i){
     std::string tmp = fileNames.back();
     std::ofstream afile("../../doc/TXT_Scenes/"+tmp, std::ios::out);

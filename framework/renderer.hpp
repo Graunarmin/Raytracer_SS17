@@ -30,7 +30,7 @@
 class Renderer
 {
 public:
-  Renderer(Scene const& scene,/* glm::vec3 const& ce*/);
+  Renderer(Scene const& scene/*, glm::vec3 const& ce*/);
 
   void render();
   OptionalHit hitBox(Ray const& ray);

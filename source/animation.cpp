@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     Scene superSzene = szene.SDFloader(filepath);
     //superSzene.printScene();
 
-    Renderer app{superSzene, screenCenter};
+    Renderer app{superSzene};
 
     std::thread thr([&app]() { app.render(); });
 

@@ -19,9 +19,9 @@ int main(int argc, char* argv[])
   Scene superSzene = szene.SDFloader(filepath);
   superSzene.printScene();
 
-  glm::vec3 screenCenter{0.0f, 0.0f, -100.0f};
+  //glm::vec3 screenCenter{0.0f, 0.0f, -100.0f};
 
-  Renderer app{superSzene, screenCenter};
+  Renderer app{superSzene/*, screenCenter*/};
 
   std::thread thr([&app]() { app.render(); });
 
