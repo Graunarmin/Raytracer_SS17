@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <thread>
 #include <utility>
+#include <string>
 #include <cmath>
 
 int main(int argc, char* argv[])

@@ -23,4 +23,13 @@ ${FRAMEWORK_NAME}
   ${GLFW_LIBRARIES}
  )
 
+add_executable(fileGenerator fileGenerator.cpp)
+
 add_executable(animation animation.cpp)
+target_link_libraries(animation ${FRAMEWORK_NAME} ${LIBRARIES}
+  glfw
+  ${GLFW_LIBRARIES}
+  )
+add_dependencies(animation glfw ${FRAMEWORK_NAME} ${COPY_BINARY})
+
+install(TARGETS animation DESTINATION .)

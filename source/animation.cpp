@@ -1,34 +1,27 @@
+#include <renderer.hpp>
+
+#include <GLFW/glfw3.h>
+#include <thread>
+#include <utility>
 #include <string>
-#include <iostream>
-#include <fstream>
 #include <cmath>
-#include <vector>
-#include <sys/stat.h>
 
-int main(int argc, char const *argv[]) {
 
-  const int frames = 3;
-  std::vector<std::string> fileNames;
-  std::vector<std::string> imageNames;
+int main(int argc, char* argv[]) {
 
-  //Vektoren mit den Namen für die Frameworks und Bilder generieren
-  for(int i = frames; i > 0; --i){
-    fileNames.push_back("framework" + std::to_string(i) + ".txt");
-    imageNames.push_back("image" + std::to_string(i) + ".ppm");
+  for(int i = 0; i < 10; ++i){
+    std::string filepath = "../../doc/TXT_Scenes/framework"+std::to_string(i)+".txt";
+    Scene szene{};
+    Scene superSzene = szene.SDFloader(filepath);
+    //superSzene.printScene();
 
-  }
+    glm::vec3 screenCenter{0.0f, 0.0f, -100.0f};
 
-  for(int i = 0; i < frames; ++i){
-    std::string tmp = fileNames.back();
-    //std::ofstream fOut("../doc/"+tmp);
+    Renderer app{superSzene, screenCenter};
 
-    std::ofstream afile("../../doc/TXT_Scenes/"+tmp, std::ios::out);
-    fileNames.pop_back();
-    if (afile.is_open()) {
-      afile << "define material red 1 0 0 1 0 0 1 1 1 0 0 40"<<std::endl;
-      //Hier Szenenbeschreibung einfügen
-      afile.close();
-    }
+    std::thread thr([&app]() { app.render(); });
+
+    thr.join();
 
   }
   return 0;
