@@ -22,3 +22,5 @@ target_link_libraries(tests
 ${FRAMEWORK_NAME}
   ${GLFW_LIBRARIES}
  )
+
+add_executable(animation animation.cpp)
