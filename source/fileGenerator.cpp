@@ -1,19 +1,26 @@
+#include "scene.hpp"
+#include <renderer.hpp>
+
+#include <GLFW/glfw3.h>
+#include <thread>
+#include <utility>
+#include <cstdlib>
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <cmath>
 #include <vector>
 #include <sys/stat.h>
-#include "scene.hpp"
 
-int main(int argc, char const *argv[]) {
+
+int main(int argc, char* argv[]) {
 
   std::string const filepath = "../../doc/animation.txt";
   Scene szene{};
   Scene superSzene = szene.SDFloader(filepath);
 
 
-  const int frames = 10;
+  const int frames = 120;
   std::vector<std::string> fileNames;
   std::vector<std::string> imageNames;
 
@@ -21,7 +28,6 @@ int main(int argc, char const *argv[]) {
   for(int i = frames; i > 0; --i){
     fileNames.push_back("framework" + std::to_string(i) + ".txt");
     imageNames.push_back("image" + std::to_string(i) + ".ppm");
-
   }
 
   //txt Dateien schreiben - Namen für alle Files aus den Vektoren holen
@@ -51,12 +57,26 @@ int main(int argc, char const *argv[]) {
           <<"define light ambient 0 0 0 0.5 0.5 0.5 0 0 0"<<std::endl
           <<"define light light3 -15 10 -20 0.6 0.6 0.6 1.0 1.0 1.0"<<std::endl
           <<"define shape composite root Boden Wand Kugel"<<std::endl
-          <<"transform Kugel translate 3 0 2"<<std::endl
+          <<"transform Kugel translate 1 0 -1"<<std::endl
           <<"render cam ../../doc/PPM_Images/"<< im << " 400 400"<<std::endl;
       imageNames.pop_back();
       afile.close();
     }
-
   }
+
+
+  // for(int i = 0; i < frames; ++i){
+  //   std::string path = "../../doc/TXT_Scenes/framework"+std::to_string(i)+".txt";
+  //   Scene scene{};
+  //   Scene tolleSzene = scene.SDFloader(path);
+  //   //superSzene.printScene();
+  //
+  //   Renderer app{tolleSzene};
+  //
+  //   std::thread thr([&app]() { app.render(); });
+  //
+  //   thr.join();
+  //
+  // }
   return 0;
 }

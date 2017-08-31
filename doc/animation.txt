@@ -9,13 +9,13 @@ define material pinkGlass 1 0 0.5 1 0 0.5 0.5 0.5 0.5 200 2.4 20
 define material lightblue 0.45 0.615 1 0.45 0.615 1 0.45 0.615 1 810 1.5 3
 
 #Boden
-define shape box Boden -21.5 -6 -6 21.6 -5.9 -37 matteGrey
+define shape box Boden -21.5 -4 -10 21.6 -3.8 -45 matteGrey
 
 #Wand
 define shape box Wand -21.6 -5.9 -37 21.9 22 -37.1 reflectiveDarkGrey
 
 #Kugeln
-define shape sphere Kugel -4 -3.7 -18 2.2 lightblue
+define shape sphere Kugel -18 -2.3 -20 1.5 lightblue
 
 #Licht
 define light ambient 0 0 0 0.5 0.5 0.5 0 0 0
@@ -31,4 +31,4 @@ define shape composite root Boden Wand Kugel
 #render
 render cam animation.ppm 400 400
 
-transform Kugel translate 3 0 2
+transform Kugel translate 0.1 0 -0.1
