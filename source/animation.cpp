@@ -12,9 +12,9 @@
 
 
 int main(int argc, char* argv[]) {
-  //std::system("fileGenerator.exe");
+  std::system("/Users/valerie/documents/RecoverRaytracer/programmiersprachen-raytracer/build/source/fileGenerator.exe");
 
-  for(int i = 0; i < 120; ++i){
+  for(int i = 0; i <= 120; ++i){
     std::string filepath = "../../doc/TXT_Scenes/framework"+std::to_string(i)+".txt";
     Scene szene{};
     Scene superSzene = szene.SDFloader(filepath);
