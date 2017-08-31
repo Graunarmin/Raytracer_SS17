@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
   Scene superSzene = szene.SDFloader(filepath);
 
 
-  const int frames = 10;
+  const int frames = 120;
   std::vector<std::string> fileNames;
   std::vector<std::string> imageNames;
 
@@ -57,8 +57,12 @@ int main(int argc, char* argv[]) {
           superSzene.ambientLight_.toScene(afile);
 
       afile
-          <<"define shape composite root Boden Wand Kugel Box"<<std::endl
-          <<"transform Kugel translate 1 0 -1"<<std::endl
+          <<"define shape composite root Boden Wand Kugel Box Kugel1 Kugel2 Box1"<<std::endl
+          <<"transform Kugel translate 0.1 0 -0.1"<<std::endl
+          <<"transform Box translate 0.2 0 -0.3 "<<std::endl 
+          <<"transform Kugel1 translate -0.1 0 -0.1"<<std::endl
+          <<"transform Kugel2 translate 0 0.1 0"<<std::endl 
+          <<"transform Box1 translate 0 0 0.3"<<std::endl 
           <<"render cam ../../doc/PPM_Images/"<< im << " 400 400"<<std::endl;
       imageNames.pop_back();
       afile.close();

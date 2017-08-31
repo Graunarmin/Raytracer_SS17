@@ -66,7 +66,7 @@ Color Renderer::raytracer(Ray const& ray, int depth){
  }
 
  //Background Farbe
- Color y {0.9f};
+ Color y {1.0f}; //Normalerweise 0.9f
  y.r = (y.r * scene_.ambientLight_.ia_.r);
  y.g = (y.g * scene_.ambientLight_.ia_.g);
  y.b = (y.b * scene_.ambientLight_.ia_.b);
