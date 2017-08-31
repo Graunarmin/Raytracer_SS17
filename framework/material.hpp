@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "color.hpp"
 
 struct Material{
@@ -31,6 +32,12 @@ struct Material{
     m_{m},
     opacity_{opacity},
     ri_{ri} {}
+
+void toScene(std::ofstream& file){
+      file<<"define material "<<name_<<" "<<ka_.r<<" "<<ka_.g<<" "<<ka_.b<<" "
+          <<kd_.r<<" "<<kd_.g<<" "<<kd_.b<<" "<<ks_.r<<" "<<ks_.g<<" "<<ks_.b<<" "
+          <<m_<<" "<<ri_<<" "<<opacity_<<std::endl;
+    }
 
 
   //friend, da es ja aus der Shape aufgerufen wird!

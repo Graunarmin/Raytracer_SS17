@@ -7,6 +7,7 @@
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
+#include <fstream>
 
 struct Light{
 
@@ -21,6 +22,11 @@ struct Light{
     position_{pos},
     ia_{ia},
     ip_{ip}{}
+
+  void toScene(std::ofstream& file){
+    file<<"define light "<<name_<<" "<<position_.x<<" "<<position_.y<<" "<<position_.z<<" "
+        <<ia_.r<<" "<<ia_.g<<" "<<ia_.b<<" "<<ip_.r<<" "<<ip_.g<<" "<<ip_.b<<std::endl;
+  }
 
   friend std::ostream& operator<<(std::ostream& os, Light const& light){
     os << "Name der Lichtquelle: " << light.name_<< std::endl <<
