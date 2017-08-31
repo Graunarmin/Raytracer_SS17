@@ -25,3 +25,5 @@ checkerboard.ppm
 
 build
 cmake_out
+PPM_Images
+TXT_Scenes
