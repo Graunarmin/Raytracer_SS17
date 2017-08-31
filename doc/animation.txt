@@ -3,6 +3,7 @@
 define material grey  0.8 0.8 0.9 0.8 0.8 0.9 0.8 0.8 0.9 2 0 1
 define material matteGrey 0.8 0.8 0.9 0.8 0.8 0.9 0 0 0 2 0 1
 define material reflectiveDarkGrey 0.8 0.8 0.9 0.3 0.3 0.3 1 1 1 200 0 1
+define material mint 0.5 1 0.875 0.5 1 0.875 0.5 1 0.875 3 0 1
 
 #Für Kugeln
 define material pinkGlass 1 0 0.5 1 0 0.5 0.5 0.5 0.5 200 2.4 20
@@ -17,6 +18,9 @@ define shape box Wand -21.6 -5.9 -37 21.9 22 -37.1 reflectiveDarkGrey
 #Kugeln
 define shape sphere Kugel -18 -2.3 -20 1.5 lightblue
 
+#Boxen
+define shape box Box 3 -5.9 -10 4.5 -4.4 -11.5 mint
+
 #Licht
 define light ambient 0 0 0 0.5 0.5 0.5 0 0 0
 define light light3 -15 10 -20 0.6 0.6 0.6 1.0 1.0 1.0           #links
@@ -26,7 +30,7 @@ define light light3 -15 10 -20 0.6 0.6 0.6 1.0 1.0 1.0           #links
 define camera cam 45.2 3 0 0 -30 30
 
 #Composite
-define shape composite root Boden Wand Kugel
+define shape composite root Boden Wand Kugel Box
 
 #render
 render cam animation.ppm 400 400

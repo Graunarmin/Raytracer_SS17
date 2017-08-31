@@ -20,12 +20,12 @@ int main(int argc, char* argv[]) {
   Scene superSzene = szene.SDFloader(filepath);
 
 
-  const int frames = 120;
+  const int frames = 10;
   std::vector<std::string> fileNames;
   std::vector<std::string> imageNames;
 
   //Vektoren mit den Namen für die Frameworks und Bilder generieren
-  for(int i = frames; i > 0; --i){
+  for(int i = frames; i >= 0; --i){
     fileNames.push_back("framework" + std::to_string(i) + ".txt");
     imageNames.push_back("image" + std::to_string(i) + ".ppm");
   }
@@ -44,7 +44,8 @@ int main(int argc, char* argv[]) {
           <<"define material matteGrey 0.8 0.8 0.9 0.8 0.8 0.9 0 0 0 2 0 1"<<std::endl
           <<"define material reflectiveDarkGrey 0.8 0.8 0.9 0.3 0.3 0.3 1 1 1 200 0 1"<<std::endl
           <<"define material pinkGlass 1 0 0.5 1 0 0.5 0.5 0.5 0.5 200 2.4 20"<<std::endl
-          <<"define material lightblue 0.45 0.615 1 0.45 0.615 1 0.45 0.615 1 810 1.5 3"<<std::endl;
+          <<"define material lightblue 0.45 0.615 1 0.45 0.615 1 0.45 0.615 1 810 1.5 3"<<std::endl
+          <<"define material mint 0.5 1 0.875 0.5 1 0.875 0.5 1 0.875 3 0 1"<<std::endl;
 
           for(auto const& i: superSzene.composite_->shapes_){
               i->transform();//transformiert das Objekt
@@ -56,7 +57,7 @@ int main(int argc, char* argv[]) {
       afile
           <<"define light ambient 0 0 0 0.5 0.5 0.5 0 0 0"<<std::endl
           <<"define light light3 -15 10 -20 0.6 0.6 0.6 1.0 1.0 1.0"<<std::endl
-          <<"define shape composite root Boden Wand Kugel"<<std::endl
+          <<"define shape composite root Boden Wand Kugel Box"<<std::endl
           <<"transform Kugel translate 1 0 -1"<<std::endl
           <<"render cam ../../doc/PPM_Images/"<< im << " 400 400"<<std::endl;
       imageNames.pop_back();
