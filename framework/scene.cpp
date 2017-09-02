@@ -54,7 +54,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>>light.ip_.b;
 
           if(light.name_ == "ambient"){
-            std::cout<<"Das ambiente Licht: "<< light<<"\n";
+            //std::cout<<"Das ambiente Licht: "<< light<<"\n";
             myScene.ambientLight_ = light;
           }//if zu
           else{
@@ -148,7 +148,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
         ss>>myScene.camera_.sceneCenter_.y;
         ss>>myScene.camera_.sceneCenter_.z;
         ss>>myScene.camera_.circleRadius_;
-        std::cout<<"Added Camera: "<<myScene.camera_.name_<<" with fovX = "<<myScene.camera_.fovX_<<"\n";
+        //std::cout<<"Added Camera: "<<myScene.camera_.name_<<" with fovX = "<<myScene.camera_.fovX_<<"\n";
       }//if camera zu
     }//if define zu
 
