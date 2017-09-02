@@ -16,7 +16,7 @@ void Renderer::render(){
   for (unsigned y = 0; y < height_; ++y){
     for (unsigned x = 0; x < width_; ++x){
 
-      int depth = 2;
+      int depth = 3;
 
       Ray ray = scene_.camera_.compRay(x, y, width_, height_);
 

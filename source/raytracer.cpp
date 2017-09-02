@@ -9,11 +9,13 @@
 
 int main(int argc, char* argv[])
 {
+  std::string const filepath = "../../doc/DieSzene.txt";
+
   //std::string const filepath = "../../doc/szene.txt";
 
   //std::string const filepath = "../../doc/szene1.txt";
 
-  std::string const filepath = "../../doc/animation.txt";
+  //std::string const filepath = "../../doc/animation.txt";
 
   //std::string const filepath = "../../doc/szene2.txt";
 
