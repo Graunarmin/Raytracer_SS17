@@ -128,7 +128,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
                 //also die Shape (bzw. den ptr auf die Shape)
               }//if zu
               else{
-                 std::cout<<"Sorry, but this shape dosen't seem to exist.";
+                 std::cout<<"Sorry, but "<<shapeName<<" dosen't seem to exist.";
               }//else zu
             }//while zu
           }//if composite zu

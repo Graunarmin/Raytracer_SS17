@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 
   Scene szene{};
   Scene superSzene = szene.SDFloader(filepath);
-  superSzene.printScene();
+  //superSzene.printScene();
 
   //glm::vec3 screenCenter{0.0f, 0.0f, -100.0f};
 
