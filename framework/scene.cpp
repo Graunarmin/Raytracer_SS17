@@ -53,9 +53,8 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>>light.ip_.g;
           ss>>light.ip_.b;
 
-          if(light.name_ == "ambient"){
-            //std::cout<<"Das ambiente Licht: "<< light<<"\n";
-            myScene.ambientLight_ = light;
+          if(light.name_ == "ambient"){ 
+            myScene.ambientLight_ = light;    //Member ambientLight_ 
           }//if zu
           else{
             myScene.addLight(light);
@@ -121,8 +120,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
               auto currentShape = shapeMap.find(shapeName);
 
-              if(currentShape != shapeMap.end()){ //if(shapeMap.find(shapeName) != shapeMap.end()){
-
+              if(currentShape != shapeMap.end()){ 
                 myScene.composite_->addShape(currentShape->second);
                 //second holt den dem String zugeordneten Wert aus der Map,
                 //also die Shape (bzw. den ptr auf die Shape)
@@ -148,7 +146,6 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
         ss>>myScene.camera_.sceneCenter_.y;
         ss>>myScene.camera_.sceneCenter_.z;
         ss>>myScene.camera_.circleRadius_;
-        //std::cout<<"Added Camera: "<<myScene.camera_.name_<<" with fovX = "<<myScene.camera_.fovX_<<"\n";
       }//if camera zu
     }//if define zu
 
@@ -186,11 +183,9 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>>z.z;
           (currentShape->second)->scale(z);
         }//if zu
-        /*(currentShape->second)->transform(); Das darf nicht hier aufgerufen werden!
-         * nur bei Bedarf je da, wo es gebraucht wird, die transMatrix bleibt ja im Objekt gespeichtert
-         * und kann also später verwendet werden*/
       }//if shape in map zu
     }//if transform zu
+    
     if(keyword == "render"){
       ss>>myScene.camera_.name_;
       ss>>myScene.filename_;

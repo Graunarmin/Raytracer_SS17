@@ -3,7 +3,7 @@
 Shape::Shape():
   name_{"Cooles Objekt"},
   material_{},
-  world_transformation_{1.0f},
+  world_transformation_{1.0f},      //1.0f = Einheitsmatrix
   world_transformation_inv_{1.0f}{}
 
 Shape::Shape(std::string const& name, Color const& color):
@@ -19,7 +19,7 @@ Shape::Shape(std::string const& name, Material const& material):
 
   Shape::~Shape()
   {
-    //std::cout << "Deconstructor Base class Shape\n";
+    //std::cout << "Destructor Base class Shape\n";
   }
 
   std::string Shape::getName() const{
@@ -47,6 +47,7 @@ Shape::Shape(std::string const& name, Material const& material):
     return s.print(os);
   }
 
+  //Verschieben um Vektor v
   void Shape::translate(glm::vec3 const& v){
     glm::mat4 T;
 
@@ -59,7 +60,8 @@ Shape::Shape(std::string const& name, Material const& material):
     world_transformation_inv_ = glm::inverse(world_transformation_);
 }
 
-void Shape::rotate(float theta, glm::vec3 achse){   //Matrix reloaded
+//Rotiert um Winkel theta um Achse
+void Shape::rotate(float theta, glm::vec3 const& achse){   //Matrix reloaded
   glm::mat4 R;
 
   if(achse.x == 1){
@@ -94,6 +96,7 @@ void Shape::rotate(float theta, glm::vec3 achse){   //Matrix reloaded
   }
 }
 
+//Skaliert um Vektor z
 void Shape::scale(glm::vec3 const& z){
   glm::mat4 S;
 

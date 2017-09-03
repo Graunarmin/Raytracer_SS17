@@ -10,7 +10,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
-#include <sys/stat.h>
+//#include <sys/stat.h>
 #include <fstream>
 
 class Shape{
@@ -24,16 +24,16 @@ public:
 
   virtual ~Shape();
 
-  //pure virtual: muss überschrieben werden
+  //pure virtual: muss überschrieben werden, hier nur deklariert 
   virtual float area() const = 0;
   virtual float volume() const = 0;
 
-  virtual OptionalHit intersect(Ray const& ray, float& t) = 0;
+  virtual OptionalHit intersect(Ray const& ray, float& t) const = 0;
   virtual glm::vec3 computeNorm(OptionalHit const& hit) const = 0;
   virtual void transform() = 0;
-  virtual void toScene(std::ofstream& file) = 0;
+  virtual void toScene(std::ofstream& file) const = 0;
 
-  //virtual: kann überschrieben werden
+  //virtual: kann überschrieben werden, hier auch definiert 
   virtual std::ostream& print(std::ostream& os) const;
 
   //non-virtual: nicht überschreiben
@@ -41,7 +41,7 @@ public:
   Color getColor() const;
   Material getMaterial() const;
   void translate(glm::vec3 const& v);
-  void rotate(float teta, glm::vec3 achse);
+  void rotate(float teta, glm::vec3 const& achse);
   void scale(glm::vec3 const& s);
 
 
@@ -56,6 +56,7 @@ protected:
   glm::mat4 world_transformation_inv_;
 };
 
+//Wird nicht auf Objekt aufgerufen (Bei std::cout << verwendet)
 std::ostream& operator<<(std::ostream& os, Shape const& s);
 
 #endif //SHAPE_HPP

@@ -11,29 +11,22 @@ Box::Box(glm::vec3 const& min, glm::vec3 const& max,
     Shape{name, color},
     min_{min},
     max_{max}{
-      /*min_.x = std::min(min.x, max.x);
-      min_.y = std::min(min.y, max.y);
-      min_.z = std::min(min.z, max.z);
-      max_.x = std::max(min.x, max.x);
-      max_.y = std::max(min.y, max.y);
-      max_.z = std::max(min.z, max.z);*/
-    }
-
-Box::Box(glm::vec3 const& min, glm::vec3 const& max,
-        std::string const& name, Material const& material):
-  Shape{name, material},
-  min_{min},
-  max_{max}{
     /*min_.x = std::min(min.x, max.x);
     min_.y = std::min(min.y, max.y);
     min_.z = std::min(min.z, max.z);
     max_.x = std::max(min.x, max.x);
     max_.y = std::max(min.y, max.y);
     max_.z = std::max(min.z, max.z);*/
-  }
+    }
+
+Box::Box(glm::vec3 const& min, glm::vec3 const& max,
+        std::string const& name, Material const& material):
+  Shape{name, material},
+  min_{min},
+  max_{max}{}
 
 Box::~Box(){
-  //std::cout << "Deconstructor derived class Box\n";
+  //std::cout << "Destructor derived class Box\n";
 }
 
 //Methoden
@@ -57,7 +50,7 @@ float Box::volume() const{
   return diff.x * diff.y * diff.z;
 }
 
-OptionalHit Box::intersect(Ray const& ray, float& t){
+OptionalHit Box::intersect(Ray const& ray, float& t) const{
 
   glm::vec3 intP{0.0f};
 
@@ -83,20 +76,19 @@ OptionalHit Box::intersect(Ray const& ray, float& t){
   float tN = std::max(tNX, tNY);
 
   if(tF < tN){
-    //t = std::abs(tF);
     return OptionalHit{false, 0, intP};
   }
 
   float tFar = std::min(tF, tFZ);
   float tNear = std::max(tN, tNZ);
 
-  //Bedingungen!!
   if((tFar < 0) || (tFar < tNear) || (tNear < 0)){
-    //t = std::abs(tFar);
     return OptionalHit{false, 0, intP};
   }
 
+  //Distanz zuweisen
   t = std::abs(tNear);
+
   //Schnittpunkt berechnen
   intP.x = ray.origin_.x + (t*ray.direction_.x);
   intP.y = ray.origin_.y + (t*ray.direction_.y);
@@ -115,19 +107,19 @@ std::ostream& Box::print(std::ostream& os) const{
 }
 
 glm::vec3 Box::computeNorm(OptionalHit const& hit) const{
-  if((hit.intersectionPoint_.x == Approx(min_.x))){   //Dann yz Ebene n = (0,1,1)
+  if((hit.intersectionPoint_.x == Approx(min_.x))){        //Dann yz Ebene n = (1,0,0)
     return glm::normalize(glm::vec3{-1.0f, 0.0f, 0.0f});
   }
   else if((hit.intersectionPoint_.x == Approx(max_.x))){
     return glm::normalize(glm::vec3{1.0f, 0.0f, 0.0f});
   }
-  else if((hit.intersectionPoint_.y == Approx(min_.y))){   //Dann xz Ebene n = (1,0,1)
+  else if((hit.intersectionPoint_.y == Approx(min_.y))){   //Dann xz Ebene n = (0,1,0)
     return glm::normalize(glm::vec3{0.0f, -1.0f, 0.0f});
   }
   else if((hit.intersectionPoint_.y == Approx(max_.y))){
     return glm::normalize(glm::vec3{0.0f, 1.0f, 0.0f});
   }
-  else if((hit.intersectionPoint_.z == Approx(min_.z))){   //Dann xy Ebene n = (1,1,0)
+  else if((hit.intersectionPoint_.z == Approx(min_.z))){   //Dann xy Ebene n = (0,0,1)
     return glm::normalize(glm::vec3{0.0f, 0.0f, -1.0f});
   }
   else if((hit.intersectionPoint_.z == Approx(max_.z))){
@@ -139,7 +131,7 @@ glm::vec3 Box::computeNorm(OptionalHit const& hit) const{
 }
 
 void Box::transform(){
-  std::cout<<"-------Box vorher: "<< *this;
+
   glm::vec4 mi{min_.x, min_.y, min_.z, 1.0f};
   glm::vec4 ma{max_.x, max_.y, max_.z, 1.0f};
 
@@ -148,12 +140,9 @@ void Box::transform(){
 
   min_ = j;
   max_ = i;
-  std::cout<<"-------Box nachher: "<< *this;
-
-  //return std::shared_ptr<Box>(this);
 }
 
-void Box::toScene(std::ofstream& file){
+void Box::toScene(std::ofstream& file) const{
   file<<"define shape box "<<getName()<<" "<<min_.x<<" "<<min_.y<<" "<<min_.z<<" "
       <<max_.x<<" "<<max_.y<<" "<<max_.z<<" "<<getMaterial().name_<<std::endl;
 }

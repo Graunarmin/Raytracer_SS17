@@ -55,23 +55,22 @@ void Renderer::render(){
 Color Renderer::raytracer(Ray const& ray, int depth){
 
  //erstellt optionalHit vom nächsten Schnittpunkt mit nächstem Objekt,
- //gespeichert werden, ob Treffer, die Distanz, der Schnittpunkt und das Objekt
+ //gespeichert werden, ob Treffer, die Distanz, der Schnittpunkt und Pointer auf das Objekt
  OptionalHit nearestH = hitObject(ray);
 
  //Normale und Vektor zum Betrachter, um Farbe zu berechnen
  if(nearestH.hit_){
-   glm::vec3 n = nearestH.nearestShape_->computeNorm(nearestH);
-   glm::vec3 v = glm::normalize(ray.origin_ - nearestH.intersectionPoint_);
+   glm::vec3 n = nearestH.nearestShape_->computeNorm(nearestH);               //Normalen Vektor
+   glm::vec3 v = glm::normalize(ray.origin_ - nearestH.intersectionPoint_);   //Vektor zum Betrachter
    return compColor(nearestH, n, v, depth, ray);
  }
 
  //Background Farbe
- Color y {1.0f}; //Normalerweise 0.9f
+ Color y {1.0f}; 
  y.r = (y.r * scene_.ambientLight_.ia_.r);
  y.g = (y.g * scene_.ambientLight_.ia_.g);
  y.b = (y.b * scene_.ambientLight_.ia_.b);
  return y;
- //return Color{1.0f, 1.0f, 0.5f};
 }
 
 OptionalHit Renderer::hitObject(Ray const& ray){
@@ -94,11 +93,12 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
 
    Color i{0.0f};
    Color summeDif{0.0f};
-   Material m = nH.nearestShape_ -> getMaterial();
-   glm::vec3 intP = nH.intersectionPoint_;
    Color reflectionC{1.0f};
    Color refractionC{1.0f};
+   Material m = nH.nearestShape_ -> getMaterial();
+   glm::vec3 intP = nH.intersectionPoint_;
 
+   //Schatten
    for(auto const& h: scene_.lights_){
 
      glm::vec3 l = glm::normalize(h->position_ - intP);               //l = Vektor zu Licht
@@ -110,12 +110,14 @@ Color Renderer::compColor(OptionalHit const& nH, glm::vec3 const& n, glm::vec3 c
 
      //Distanz von Schnittpunkt zu Licht
      float distance = glm::length(intP - h->position_);
+
      OptionalHit obstacle = hitObject(lightRay);
 
      //Objekt liegt hinter Lichtquelle, also kein Schatten -> d.h. Punktlicht muss berechnet werden
      if(distance < obstacle.t_){
        pointLight(summeDif, m, h, r, v, l, n);
      }
+     //Falls im Schatten nur Ambient
    }//for zu
 
    //Reflektion:
@@ -162,8 +164,8 @@ void Renderer::pointLight(Color& summeDif, Material const& m, std::shared_ptr<Li
   summeDif.b += (h->ip_.b * ((m.kd_.b * std::max(glm::dot(l,n), 0.0f)) + (m.ks_.b * pow(glm::dot(r,v),m.m_))));
 }
 
-Color Renderer::reflection(Ray const& ray, glm::vec3 const& n, glm::vec3 intP, int depth){
-    glm::vec3 r = glm::normalize(glm::reflect(ray.direction_, n));
+Color Renderer::reflection(Ray const& ray, glm::vec3 const& n, glm::vec3 const& intP, int depth){
+    glm::vec3 r = glm::normalize(glm::reflect(ray.direction_, n));    //Spiegeln Vektor von Betrachter an n
     Ray reflectionRay{intP, r};
     reflectionRay.origin_ += n * 0.01f;
 
@@ -174,7 +176,7 @@ Color Renderer::refraction(Material const& m, glm::vec3 const& n, Ray const& ray
   
    float inAngle = glm::dot(ray.direction_, n);
 
-  if(inAngle <= m.ri_){
+  if(inAngle <= m.ri_){ //Ansonsten TIR
     glm::vec3 t = glm::refract(ray.direction_, n, m.ri_);
 
     Ray refractionRay{intP, t};

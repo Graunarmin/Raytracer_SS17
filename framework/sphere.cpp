@@ -20,7 +20,7 @@ Sphere::Sphere(glm::vec3 const& center, float radius,
   radius_{radius}{}
 
 Sphere::~Sphere(){
-  //std::cout << "Deconstructor derived class Sphere\n";
+  //std::cout << "Destructor derived class Sphere\n";
 }
 
 glm::vec3 const& Sphere::getCenter() const{
@@ -47,7 +47,7 @@ std::ostream& Sphere::print(std::ostream& os) const{
   return os;
 }
 
-OptionalHit Sphere::intersect(Ray const& ray, float& t) {
+OptionalHit Sphere::intersect(Ray const& ray, float& t) const{
   //distance ist dann der Abstand vom ray.origin zum nächsten Punkt der Kugel
   //bekommt nen Ray und ne "leere" distance, wird auf sphere aufgerufen
   glm::vec3 intP{0.0f};
@@ -67,16 +67,13 @@ glm::vec3 Sphere::computeNorm(OptionalHit const& hit) const{
 }
 
 void Sphere::transform(){
-  std::cout<<"----Kugel vorher: "<<*this<<"----------\n";
+
   glm::vec4 c{center_.x, center_.y, center_.z, 1.0f};
   glm::vec3 h{world_transformation_ * c};
   center_ = h;
-
-  std::cout<<"----Kugel nachher: "<<*this<<"----------\n";
-  //return std::shared_ptr<Sphere>(this);
 }
 
-void Sphere::toScene(std::ofstream& file){
+void Sphere::toScene(std::ofstream& file) const{
   file<<"define shape sphere "<<getName()<<" "<<center_.x<<" "<<center_.y<<" "<<center_.z<<" "
       <<radius_<<" "<<getMaterial().name_<<std::endl;
 }

@@ -10,7 +10,7 @@
 #include <fstream>
 #include <cmath>
 #include <vector>
-#include <sys/stat.h>
+//#include <sys/stat.h>
 
 
 int main(int argc, char* argv[]) {

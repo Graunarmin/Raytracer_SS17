@@ -14,10 +14,10 @@ struct Light{
   Light():
     name_{"Default Light"},
     position_{0.0f},
-    ia_{0.0f},
-    ip_{0.0f}{}
+    ia_{0.0f},      //Ambient
+    ip_{0.0f}{}     //Diffus und Spekular
 
-  Light(std::string name, glm::vec3 pos, Color ia, Color ip):
+  Light(std::string const& name, glm::vec3 const& pos, Color const& ia, Color const& ip):
     name_{name},
     position_{pos},
     ia_{ia},

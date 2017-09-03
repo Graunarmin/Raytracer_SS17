@@ -32,7 +32,7 @@ std::ostream& Composite::print(std::ostream& os) const{
   return os;
 }
 
-OptionalHit Composite::intersect(Ray const& ray, float& t){
+OptionalHit Composite::intersect(Ray const& ray, float& t) const{
 
   OptionalHit nearestHit{false, std::numeric_limits<float>::max(), glm::vec3{0.0f}};
 
@@ -57,6 +57,6 @@ void Composite::transform(){
   //return nullptr;
 }
 
-void Composite::toScene(std::ofstream& file){
+void Composite::toScene(std::ofstream& file) const{
   std::cout<<"And now for something completely different. (You really shouldn't call this function on poor composites.)\n";
 }

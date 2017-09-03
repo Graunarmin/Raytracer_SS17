@@ -17,7 +17,6 @@ int main(int argc, char* argv[]) {
     std::string filepath = "../../doc/TXT_Scenes/framework"+std::to_string(i)+".txt";
     Scene szene{};
     Scene superSzene = szene.SDFloader(filepath);
-    //superSzene.printScene();
 
     Renderer app{superSzene};
 

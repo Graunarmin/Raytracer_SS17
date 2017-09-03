@@ -45,4 +45,4 @@ transform Kugel translate 0.1 0 -0.1
 transform Box translate 0.2 0 -0.3
 transform Kugel1 translate -0.1 0 -0.1
 transform Kugel2 translate -0.05 0.1 0
-transform Box1 translate 0 0 0.2
+transform Box1 translate 0 0 0.3

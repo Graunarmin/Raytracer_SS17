@@ -27,10 +27,9 @@ struct Scene{
   void printScene() const;
 
 
-
-  //Smartpointer!!
-  std::shared_ptr<Composite> composite_;
+  //Member
   //std::vector<std::shared_ptr<Shape>> shapes_;
+  std::shared_ptr<Composite> composite_;
   std::vector<std::shared_ptr<Light>> lights_;
   std::vector<std::shared_ptr<Material>> materials_;
 

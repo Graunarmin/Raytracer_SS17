@@ -24,7 +24,7 @@ Camera::Camera(std::string const& name, float fovX, glm::vec3 eye, glm::vec3 dir
 
 Camera::~Camera() {}
 
-Ray Camera::compRay(int x, int y, int width, int height){
+Ray Camera::compRay(int x, int y, int width, int height) const{
 
   float dx = float(x) * 1.0/float(width) - 0.5;
   float dy = float(y) * 1.0 /float(height) - 0.5;
@@ -36,7 +36,7 @@ Ray Camera::compRay(int x, int y, int width, int height){
   return ray.transformRay(mat);
 }
 
-glm::mat4 Camera::transform(){
+glm::mat4 Camera::transform() const{
 
   glm::vec3 n = glm::normalize(dir_);
   glm::vec3 e = eye_;

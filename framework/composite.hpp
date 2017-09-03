@@ -20,13 +20,13 @@ public:
   float area() const override;
   float volume() const override;
   void addShape(std::shared_ptr<Shape> const& s);
-  OptionalHit intersect(Ray const& ray, float& t) override;
+  OptionalHit intersect(Ray const& ray, float& t) const override;
 
   std::ostream& print(std::ostream& os) const override;
   glm::vec3 computeNorm(OptionalHit const& hit) const override;
 
-    void transform() override;
-  void toScene(std::ofstream& file) override;
+  void transform() override;
+  void toScene(std::ofstream& file) const override;
 
 
   //Member:
