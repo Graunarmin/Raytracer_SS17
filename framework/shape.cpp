@@ -22,15 +22,15 @@ Shape::Shape(std::string const& name, Material const& material):
     //std::cout << "Destructor Base class Shape\n";
   }
 
-  std::string Shape::getName() const{
+  std::string const& Shape::getName() const{
     return name_;
   }
 
-  Color Shape::getColor() const{
+  Color const& Shape::getColor() const{
     return color_;
   }
 
-  Material Shape::getMaterial() const{
+  Material const& Shape::getMaterial() const{
     return material_;
   }
 
@@ -107,4 +107,12 @@ void Shape::scale(glm::vec3 const& z){
 
   world_transformation_ *= S;
   world_transformation_inv_ = glm::inverse(world_transformation_);
+}
+
+glm::mat4 const& Shape::getWorldTrans() const{
+  return world_transformation_;
+}
+
+glm::mat4 const& Shape::getInvWorldTrans() const{
+  return world_transformation_inv_;
 }

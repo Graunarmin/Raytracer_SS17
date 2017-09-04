@@ -55,7 +55,6 @@ define shape composite root Boden Wand Kugel kleineKugel größereKugel kleinere
 render cam Szene1.ppm 400 400
 
 #transform
-#transform Boden scale 2 4 2
-#transform Boden translate 3 0 2
-#transform Boden rotate 45 1 0 0
-#transform Camera circle Winkel Center Radius
+transform Boden scale 2 4 2
+transform Boden translate 3 0 2
+transform Boden rotate 45 1 0 0

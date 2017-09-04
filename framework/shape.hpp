@@ -24,7 +24,7 @@ public:
 
   virtual ~Shape();
 
-  //pure virtual: muss überschrieben werden, hier nur deklariert 
+  //pure virtual: muss überschrieben werden, hier nur deklariert
   virtual float area() const = 0;
   virtual float volume() const = 0;
 
@@ -33,16 +33,18 @@ public:
   virtual void transform() = 0;
   virtual void toScene(std::ofstream& file) const = 0;
 
-  //virtual: kann überschrieben werden, hier auch definiert 
+  //virtual: kann überschrieben werden, hier auch definiert
   virtual std::ostream& print(std::ostream& os) const;
 
   //non-virtual: nicht überschreiben
-  std::string getName() const;
-  Color getColor() const;
-  Material getMaterial() const;
+  std::string const& getName() const;
+  Color const& getColor() const;
+  Material const& getMaterial() const;
   void translate(glm::vec3 const& v);
   void rotate(float teta, glm::vec3 const& achse);
   void scale(glm::vec3 const& s);
+  glm::mat4 const& getWorldTrans() const;
+  glm::mat4 const& getInvWorldTrans() const;
 
 
 

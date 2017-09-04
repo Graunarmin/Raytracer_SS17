@@ -53,8 +53,8 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
           ss>>light.ip_.g;
           ss>>light.ip_.b;
 
-          if(light.name_ == "ambient"){ 
-            myScene.ambientLight_ = light;    //Member ambientLight_ 
+          if(light.name_ == "ambient"){
+            myScene.ambientLight_ = light;    //Member ambientLight_
           }//if zu
           else{
             myScene.addLight(light);
@@ -120,7 +120,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
 
               auto currentShape = shapeMap.find(shapeName);
 
-              if(currentShape != shapeMap.end()){ 
+              if(currentShape != shapeMap.end()){
                 myScene.composite_->addShape(currentShape->second);
                 //second holt den dem String zugeordneten Wert aus der Map,
                 //also die Shape (bzw. den ptr auf die Shape)
@@ -185,7 +185,7 @@ Scene Scene::SDFloader(std::string const& fileIn) const{
         }//if zu
       }//if shape in map zu
     }//if transform zu
-    
+
     if(keyword == "render"){
       ss>>myScene.camera_.name_;
       ss>>myScene.filename_;
