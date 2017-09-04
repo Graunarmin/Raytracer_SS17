@@ -66,7 +66,7 @@ Color Renderer::raytracer(Ray const& ray, int depth){
  }
 
  //Background Farbe
- Color y {1.0f}; 
+ Color y {1.0f};
  y.r = (y.r * scene_.ambientLight_.ia_.r);
  y.g = (y.g * scene_.ambientLight_.ia_.g);
  y.b = (y.b * scene_.ambientLight_.ia_.b);
@@ -173,7 +173,7 @@ Color Renderer::reflection(Ray const& ray, glm::vec3 const& n, glm::vec3 const& 
 }
 
 Color Renderer::refraction(Material const& m, glm::vec3 const& n, Ray const& ray, glm::vec3 const& intP, int depth){
-  
+
    float inAngle = glm::dot(ray.direction_, n);
 
   if(inAngle <= m.ri_){ //Ansonsten TIR

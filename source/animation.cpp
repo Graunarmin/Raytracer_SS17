@@ -12,8 +12,9 @@
 
 
 int main(int argc, char* argv[]) {
+  std::cout<<"Rendering Pictures ...\n";
 
-  for(int i = 0; i <= 120; ++i){
+  for(int i = 0; i <= 140; ++i){
     std::string filepath = "../../doc/TXT_Scenes/framework"+std::to_string(i)+".txt";
     Scene szene{};
     Scene superSzene = szene.SDFloader(filepath);
@@ -23,7 +24,7 @@ int main(int argc, char* argv[]) {
     std::thread thr([&app]() { app.render(); });
 
     thr.join();
-
   }
+  std::cout<<"Rendering complete!\n";
   return 0;
 }

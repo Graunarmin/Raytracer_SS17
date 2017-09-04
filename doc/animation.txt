@@ -39,7 +39,7 @@ define camera cam 45.2 3 0 0 -30 30
 define shape composite root Boden Wand Kugel Box Kugel1 Kugel2 Box1
 
 #render
-render cam animation.ppm 400 400
+render cam animation.ppm 800 800
 
 transform Kugel translate 0.1 0 -0.1
 transform Box translate 0.2 0 -0.3

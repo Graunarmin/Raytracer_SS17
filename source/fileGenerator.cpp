@@ -18,14 +18,15 @@ int main(int argc, char* argv[]) {
   std::string const filepath = "../../doc/animation.txt";
   Scene szene{};
   Scene superSzene = szene.SDFloader(filepath);
+  std::cout<<"Loading Files ... \n";
 
 
-  const int frames = 120;
+  const int frames = 140;
   std::vector<std::string> fileNames;
   std::vector<std::string> imageNames;
 
   //Vektoren mit den Namen für die Frameworks und Bilder generieren
-  for(int i = frames; i >= 0; --i){
+  for(int i = frames; i > 0; --i){
     fileNames.push_back("framework" + std::to_string(i) + ".txt");
     imageNames.push_back("image" + std::to_string(i) + ".ppm");
   }
@@ -68,5 +69,6 @@ int main(int argc, char* argv[]) {
       afile.close();
     }
   }
+  std::cout<<"Loading complete!\n";
   return 0;
 }
